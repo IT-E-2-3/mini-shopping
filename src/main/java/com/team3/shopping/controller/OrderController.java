@@ -1,4 +1,4 @@
-package com.mycompany.webapp.controller;
+package com.team3.shopping.controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

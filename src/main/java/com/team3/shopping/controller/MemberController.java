@@ -21,4 +21,15 @@ public class MemberController {
 		logger.info("실행");
 		return "member/joinForm";
 	}
+	
+	@RequestMapping("/with")
+	public String newfile() {
+		logger.info("s뉴파일");
+		return "member/template_with_header_category";
+	}
+	@RequestMapping("/without")
+	public String newfile2() {
+		logger.info("s뉴파일");
+		return "member/template_without_header_category";
+	}
 }  
