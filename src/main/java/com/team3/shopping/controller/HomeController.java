@@ -20,7 +20,8 @@ public class HomeController {
 	
 	@RequestMapping("/error/403")
 	public String error403() {
-		logger.info("실행");
+		logger.info("실행123");
 		return "error/403";
 	}
+	//hello team3
 }  
