@@ -77,3 +77,5 @@
 			</div>
 		</div>
 	</nav>
+	
+	<div class="page-title"></div>

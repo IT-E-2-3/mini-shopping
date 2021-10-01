@@ -61,7 +61,7 @@
 </head>
 <body>
 	<nav id="header-fixed"
-		class="navbar navbar-expand-sm navbar-light bg-white border-bottom">
+		class="navbar navbar-expand-sm navbar-light bg-white border-bottom ">
 		<div class="collapse navbar-collapse" id="navbarColor"
 			style="display: flex; justify-content: space-around">
 			<div class="left-logo">
@@ -239,6 +239,8 @@
 			<li>티셔츠</li>
 		</ul>
 	</div>
+	
+	<div class="page-title"></div>
 	<script>
       class Menu {
         constructor(elem) {

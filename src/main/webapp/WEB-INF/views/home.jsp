@@ -20,7 +20,7 @@
 					<%-- 사이트간 요청 위조 방지가 비활성화되어 있을 경우 --%>  
 					<%-- 
 					<a href="${pageContext.request.contextPath}/logout" 
-					   class="btn btn-info btn-sm">로그아웃</a> 
+					   class="btn btn-info btn-sm">로그아웃 </a> 
 					--%>
 					   
 					<%-- 사이트간 요청 위조 방지가 활성화되어 있을 경우 --%>   

@@ -74,7 +74,7 @@
 				<h4 class="stext-301 cl0 p-b-30">이벤트</h4>
 				<p class="stext-107 cl7 size-201">
 					<!-- 웹사이트를 만드느라 고생한 우리팀원들, 열정적으로 알려주시는 교수님, 이러한 좋은 기회를 만들어 주신 KOSA 선임님들과 현대IT&E관계자 분들께 감사함을 표시합니다. -->
-
+				
 				</p>
 
 			</div>
@@ -111,17 +111,7 @@
 
 		<div class="p-t-40">
 			<div class="flex-c-m flex-w p-b-18">
-				<a href="#" class="m-all-1"> <img
-					src="images/icons/icon-pay-01.png" alt="ICON-PAY">
-				</a> <a href="#" class="m-all-1"> <img
-					src="images/icons/icon-pay-02.png" alt="ICON-PAY">
-				</a> <a href="#" class="m-all-1"> <img
-					src="images/icons/icon-pay-03.png" alt="ICON-PAY">
-				</a> <a href="#" class="m-all-1"> <img
-					src="images/icons/icon-pay-04.png" alt="ICON-PAY">
-				</a> <a href="#" class="m-all-1"> <img
-					src="images/icons/icon-pay-05.png" alt="ICON-PAY">
-				</a>
+				
 			</div>
 
 			<p class="stext-107 cl6 txt-center">create by team3 (고정민, 박경무,
