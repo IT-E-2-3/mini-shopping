@@ -1,4 +1,4 @@
-package com.mycompany.webapp.exception;
+package com.team3.shopping.exception;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
