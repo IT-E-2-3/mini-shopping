@@ -1,4 +1,4 @@
-package com.mycompany.webapp.security;
+package com.team3.shopping.security;
 
 import java.io.IOException;
 
