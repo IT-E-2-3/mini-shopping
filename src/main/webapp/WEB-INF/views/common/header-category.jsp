@@ -65,7 +65,7 @@
 		<div class="collapse navbar-collapse" id="navbarColor"
 			style="display: flex; justify-content: space-around">
 			<div class="left-logo">
-				<a class="navbar-brand ml-2 font-weight-bold" href="home.html"><img
+				<a class="navbar-brand ml-2 font-weight-bold" href="/"><img
 					src="${pageContext.request.contextPath}/resources/images/top-header-handsome-logo.png" /></a>
 			</div>
 			<div class="middle">
@@ -89,7 +89,7 @@
 					<li class="nav-item"><a class="nav-link"
 						href="shoping-cart.html">쇼핑백(2)</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="order_detail.html">주문조회</a></li>
+						href="order/orderList">주문조회</a></li>
 					<li class="nav-item"><a class="nav-link"
 						href="order_detail.html">마이쿠폰</a></li>
 				</ul>

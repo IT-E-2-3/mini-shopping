@@ -105,20 +105,20 @@
 
 	<!-- 인증 성공 또는 실패시 실행되는 핸들러 객체 설정 -->
 	<bean id="authenticationSuccessHandler" 
-		  class="com.mycompany.webapp.security.AuthenticationSuccessHandler">
+		  class="com.team3.shopping.security.AuthenticationSuccessHandler">
 		<!-- 로그인 성공후 리다이렉트로 이동할 경로 -->
 		<property name="alwaysUseDefaultTargetUrl" value="false"/>
 		<property name="defaultTargetUrl" value="/"/>	  
 	</bean>
 		  
 	<bean id="authenticationFailureHandler" 
-		  class="com.mycompany.webapp.security.AuthenticationFailureHandler">
+		  class="com.team3.shopping.security.AuthenticationFailureHandler">
 		<!-- 로그인 실패후 리다이렉트로 이동할 경로 -->
 		<property name="defaultFailureUrl" value="/loginForm"/>
 	</bean>
 	
 	<bean id="logoutSuccessHandler"
-		  class="com.mycompany.webapp.security.LogoutSuccessHandler">
+		  class="com.team3.shopping.security.LogoutSuccessHandler">
 		<!-- 로그아웃 성공시 리다이렉트로 이동할 경로 -->
 		<property name="defaultTargetUrl" value="/"/>
 	</bean>
