@@ -3,5 +3,7 @@
   
 <configuration>
 	<typeAliases>
+		<typeAlias alias="order" type="com.team3.shopping.dto.OrderDto" />
+		<typeAlias alias="orderItem" type="com.team3.shopping.dto.OrderItemDto" />
 	</typeAliases>	
 </configuration>
