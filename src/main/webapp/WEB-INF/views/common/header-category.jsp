@@ -235,7 +235,7 @@
 	
 	<div class="page-title"></div>
 	<script>
-      class 남성u {
+      class menu {
         constructor(elem) {
           this._elem = elem;
           this._currenthover = null;
@@ -262,7 +262,7 @@
             this._currenthover = 남성;
             남성.style.display = "flex";
 
-            남성.onmouseout = function () {
+            남성.onmouseleave = function () {
               남성.style.display = "none";
             };
           } else if (action == "키즈") {
@@ -272,7 +272,7 @@
             this._currenthover = 키즈;
             키즈.style.display = "flex";
 
-            키즈.onmouseout = function () {
+            키즈.onmouseleave = function () {
               키즈.style.display = "none";
             };
           } else if (action == "라이프스타일") {
@@ -282,11 +282,11 @@
             this._currenthover = 라이프스타일;
             라이프스타일.style.display = "flex";
 
-            라이프스타일.onmouseout = function () {
+            라이프스타일.onmouseleave = function () {
               라이프스타일.style.display = "none";
             };
           }
         }
       }
-      new 남성u(navbar);
+      new menu(navbar);
     </script>
