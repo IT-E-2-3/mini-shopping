@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.team3.shopping.dao.OrderDao">
+	<select id="getMyCartByMlogin" resultType="cart" parameterType="String">
+		SELECT mid, pid, color_code, size_code, camount
+		FROM mycart
+		where mid = #{mid}
+	</select>
+
+	<select id="getPriceByCartPid" resultType="cart" parameterType="cart">
+		SELECT price
+		FROM product
+		where mid = #{cart.pid}
+	</select>
+	
+	<select id="getMidBymolgin" parameterType="String" resultType="String">
+		SELECT mid FROM member where mlogin_id =#{mlogin_id}
+	</select>
+	
+
+
+</mapper>

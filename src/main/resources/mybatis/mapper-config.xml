@@ -3,5 +3,8 @@
   
 <configuration>
 	<typeAliases>
+	
+		<typeAlias type="com.team3.shopping.dto.CartDto" alias="cart"/>
+	
 	</typeAliases>	
 </configuration>
