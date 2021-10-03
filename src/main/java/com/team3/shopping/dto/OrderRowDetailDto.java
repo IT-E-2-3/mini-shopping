@@ -10,5 +10,5 @@ public class OrderRowDetailDto {
 	private String pbrand;
 	private String pname;
 	private String pprice;
-	
+	 
 }
