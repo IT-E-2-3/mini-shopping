@@ -3,11 +3,11 @@
 <%@ include file="/WEB-INF/views/common/header-category.jsp"%>
 	<div class="page-title">
 		<div>
-			<a href="#">여성 </a>
+			<a href="#">${parent.category_name}</a>
 		</div>
-		<div>></div>
+		<div>&nbsp;>&nbsp;</div>
 		<div>
-			<a href="#">아우터 </a>
+			<a href="#">${current.category_name}</a>
 		</div>
 	</div>
 	
@@ -16,16 +16,20 @@
 		<div id="sidebar">
 			<div>
 				<h6 class="p-1 border-bottom"
-					style="text-align: center; font-size: 20px">아우터</h6>
+					style="text-align: center; font-size: 20px">${current.category_name}</h6>
 				<ul class="list-group list-group-flush ml-4">
-					<li class="list-group-item border-0 subcategory"><a href="#">티셔츠</a>
+					<!-- <li class="list-group-item border-0 subcategory"><a href="#">티셔츠</a>
 					</li>
 					<li class="list-group-item border-0 subcategory"><a href="#">블라우스</a>
 					</li>
 					<li class="list-group-item border-0 subcategory"><a href="#">셔츠</a>
 					</li>
 					<li class="list-group-item border-0 subcategory"><a href="#">니트</a>
-					</li>
+					</li> -->
+					<c:forEach var="sub" items="${subcategory}">
+						<li class="list-group-item border-0 subcategory"><a href="#">${sub.category_name}</a>
+						</li>
+					</c:forEach>
 				</ul>
 			</div>
 		</div>
