@@ -93,24 +93,29 @@ principal 로그인아이디 알기위해 사용
 	
 
 	
-	/*
-	 * @GetMapping("/orderList") public String orderList(Model model) {
-	 * logger.info("실행");
-	 * 
-	 * String mid = "M1"; //test List<OrderDto> orders =
-	 * orderService.getOrderList(mid);
-	 * 
-	 * for (OrderDto order : orders) { String OID = order.getOID();
-	 * logger.info("oid " + OID); List<OrderItemDto> orderitems =
-	 * orderService.getOrderItems(OID); order.setorder(orderitems);
-	 * order.setProductKindNum(orderitems.size());
-	 * 
-	 * logger.info(orderitems.toString()); //1개의 주문 이름 -- 1개의 product name String
-	 * PID = orderitems.get(0).getPID(); String pname = orderService.getPname(PID);
-	 * order.setMainItem(pname); }
-	 * 
-	 * model.addAttribute("orderList", orders);
-	 * 
-	 * return "order/orderList"; }
-	 */
+	@GetMapping("/orderList")
+	public String orderList(Model model) {
+		logger.info("실행");
+		
+		String mid = "M1"; //test 
+		List<OrderDto> orders = orderService.getOrderList(mid);
+		
+		for (OrderDto order : orders) {
+			String OID = order.getOid();
+			logger.info("oid " + OID);
+			List<OrderItemDto> orderitems = orderService.getOrderItems(OID);
+			order.setOrderItems(orderitems);
+			order.setProductKindNum(orderitems.size());
+			
+			logger.info(orderitems.toString());
+			//1개의 주문 이름 -- 1개의 product name
+			String PID = orderitems.get(0).getPID();
+			String pname = orderService.getPname(PID);
+			order.setMainItem(pname);
+		}
+		
+		model.addAttribute("orderList", orders);
+		
+		return "order/orderList";
+	}
 }  

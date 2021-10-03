@@ -1,6 +1,8 @@
 package com.team3.shopping.dto;
 
 
+import java.util.List;
+
 import lombok.Data;
 
 @Data
@@ -26,6 +28,10 @@ public class OrderDto {
 	private String oaddtionaltel;
 	private String orequest;
 	private String orecipent_email;
+	
+	private List<OrderItemDto> orderItems;
+	private String mainItem;
+	private Integer productKindNum;
 }
 
 /*
@@ -43,7 +49,5 @@ public class OrderDto {
 	private Integer OCARD_INSTALLMENT_PERIOD;
 	private String OACCOUNTHOLDER;
 	private String ODEPOSIT_DEADLINE;
-	private List<OrderItemDto> orderItems;
-	private String mainItem;
-	private Integer productKindNum;
+	
 */
