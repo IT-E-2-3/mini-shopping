@@ -29,13 +29,13 @@
 	
 							<div class="col-sm-4">
 								<!-- 상품 사진 -->
-								<img src="http://newmedia.thehandsome.com/IL/2B/FW/IL2B9WJC412W_DG_S01.jpg" style="width: 100%; margin: 1rem" alt="" >
+								<img src="${item.product_detail_url1 }" style="width: 100%; margin: 1rem" alt="" >
 							</div>
 								<!-- 상품 설명 -->
 							<div class="col-sm-7 m-l-15 m-t-20" style="vertical-align: middle">
 									<a href="#" class="basket_tlt" style="color:black" onclick="javascript:setEcommerceData('0', 'Click ADD');GA_Event('쇼핑백','상품','울 셋업 재킷');"> 
-										<p class="tlt">LÄTT</p> 
-										<p class="sb_tlt">울 셋업 재킷</p>
+										<p class="tlt">${item.pbrand}</p> 
+										<p class="sb_tlt">${item.pname }</p>
 									</a>
 									<p class="color_op mt-2" style="color:gray">
 										color : ${item.color_code }<span class="and_line">/</span>
@@ -46,7 +46,7 @@
 						</th>
 						<th class="col-sm-2 text-center" >
 							<div class="m-t-7">
-								₩745,000
+								${item.pprice }
 							</div>
 						</th>
 						<th class="col-sm-2 text-center">

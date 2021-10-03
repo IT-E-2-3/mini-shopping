@@ -14,6 +14,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import com.team3.shopping.dto.OrderDto;
 import com.team3.shopping.dto.OrderItemDto;
+import com.team3.shopping.dto.OrderRowDetailDto;
 
 @Service
 public class OrderService {
@@ -66,5 +67,10 @@ public class OrderService {
 
 		String imgurl = orderDao.selectImageUrl(pid, pcolor);
 		return imgurl;
+	}
+	
+	public List<OrderRowDetailDto> getProductInfo(String pid){
+		List<OrderRowDetailDto> infos = orderDao.selectProductbyOid(pid);
+		return infos;
 	}
 }

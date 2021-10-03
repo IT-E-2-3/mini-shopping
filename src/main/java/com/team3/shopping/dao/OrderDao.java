@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 
 import com.team3.shopping.dto.OrderDto;
 import com.team3.shopping.dto.OrderItemDto;
+import com.team3.shopping.dto.OrderRowDetailDto;
 import com.team3.shopping.dto.CartDto;
 
 @Mapper
@@ -20,4 +21,5 @@ public interface OrderDao {
 	public List<OrderItemDto> selectOrderItemsbyOid(String oid);
 	public String selectPnamebyPid(String pid);
 	public String selectImageUrl(@Param("pid") String pid, @Param("pcolor") String pcolor);
+	public List<OrderRowDetailDto> selectProductbyOid(String oid);
 }

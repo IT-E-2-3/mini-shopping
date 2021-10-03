@@ -24,40 +24,58 @@
 	<select id="selectAllbyMid" parameterType="String"
 		resultType="order">
 		SELECT OID ,MID ,ODATE, OZIP_CODE,
-		OADDRESS, ODETAIL_ADDRESS ,ORECIPIENT, ORECIPIENT_TEL ,OTOTAL_PRICE
-		,OCHANNEL, OCARD_NAME, OCARD_INSTALLMENTRATE
-		,OCARD_INSTALLMENT_PERIOD, OACCOUNTHOLDER, ODEPOSIT_DEADLINE
+		OADDRESS, ODETAIL_ADDRESS
+		,ORECIPIENT, ORECIPIENT_TEL ,OTOTAL_PRICE
+		,OCHANNEL, OCARD_NAME,
+		OCARD_INSTALLMENTRATE
+		,OCARD_INSTALLMENT_PERIOD, OACCOUNTHOLDER,
+		ODEPOSIT_DEADLINE
 		FROM ORDERS
 		where MID=#{mid}
 	</select>
-	
+
 	<select id="selectOrderbyOid" parameterType="String"
 		resultType="order">
 		SELECT OID ,MID ,ODATE, OZIP_CODE,
-		OADDRESS, ODETAIL_ADDRESS ,ORECIPIENT, ORECIPIENT_TEL ,OTOTAL_PRICE
-		,OCHANNEL, OCARD_NAME, OCARD_INSTALLMENTRATE
-		,OCARD_INSTALLMENT_PERIOD, OACCOUNTHOLDER, ODEPOSIT_DEADLINE
+		OADDRESS, ODETAIL_ADDRESS
+		,ORECIPIENT, ORECIPIENT_TEL ,OTOTAL_PRICE
+		,OCHANNEL, OCARD_NAME,
+		OCARD_INSTALLMENTRATE
+		,OCARD_INSTALLMENT_PERIOD, OACCOUNTHOLDER,
+		ODEPOSIT_DEADLINE
 		FROM ORDERS
 		where OID=#{oid}
 	</select>
-	
+
 	<select id="selectOrderItemsbyOid" parameterType="String"
 		resultType="orderItem">
 		SELECT OID, PID, COLOR_CODE, SIZE_CODE, OAMOUNT
-		FROM ORDER_ITEMS
+		FROM
+		ORDER_ITEMS
 		where OID=#{oid}
 	</select>
-	
-	<select id="selectPnamebyPid" parameterType="String" resultType="String">
+
+	<select id="selectPnamebyPid" parameterType="String"
+		resultType="String">
 		SELECT PNAME
 		FROM PRODUCT
 		WHERE PID=#{pid}
 	</select>
-	
-	<select id="selectImageUrl" resultType="String" >
-		SELECT product_detail_url1
+
+	<select id="selectImageUrl" resultType="String">
+		SELECT
+		product_detail_url1
 		FROM color_url
-		WHERE PID=#{pid} AND COLOR_CODE=#{pcolor}
+		WHERE PID=#{pid} AND
+		COLOR_CODE=#{pcolor}
+	</select>
+
+	<select id="selectProductbyOid" parameterType="String" resultType="orderRowDetail">
+		select order_items.oid, color_url.color_code, product_detail_url1, pbrand, pname, pprice, order_items.oamount, order_items.size_code
+		from color_url join product on color_url.pid = product.pid join order_items on color_url.pid = order_items.pid and color_url.color_code = order_items.color_code
+		where exists (
+		select * from order_items 
+		where oid = #{oid} and color_url.pid = order_items.pid and color_url.color_code = order_items.color_code)
 	</select>
 
 </mapper>

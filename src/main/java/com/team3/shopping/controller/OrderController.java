@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import com.team3.shopping.dto.CartDto;
 import com.team3.shopping.dto.OrderDto;
 import com.team3.shopping.dto.OrderItemDto;
+import com.team3.shopping.dto.OrderRowDetailDto;
 import com.team3.shopping.service.OrderService;
 
 @Controller
@@ -113,20 +114,13 @@ public class OrderController {
 	public String orderDetail(@RequestParam String oid, Model model, HttpSession session) {
 		logger.info("실행");
 		OrderDto order = (OrderDto) orderService.getOrder(oid);
-		List<OrderItemDto> orderItems =  orderService.getOrderItems(oid);
-		
-		for (OrderItemDto orderItem : orderItems) {
-			//main url 구하기
-			String pid =orderItem.getPid();
-			String pcolor = orderItem.getColor_code();
-			String imgurl =  orderService.getImageUrl(pid, pcolor);
-			orderItem.setMainimageurl(imgurl);
-		}
-		
+		List<OrderRowDetailDto> orderItems =  orderService.getProductInfo(oid);
+	
 		model.addAttribute("order", order);
 		model.addAttribute("orderItems", orderItems);
 		
 		logger.info(order.toString());
+		logger.info(orderItems.toString());
 		return "order/orderDetail";
 	}
 }
