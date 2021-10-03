@@ -1,5 +1,6 @@
 package com.team3.shopping.dto;
 
+
 import lombok.Data;
 
 @Data
@@ -28,37 +29,21 @@ public class OrderDto {
 }
 
 /*
-	private String oid;
-	timeStamp�� ����?
-	
-   private String mid;
-  	mid�� login ������ ������
-  	
-   private String odate;
-   timeStamp�� ���� �ϸ鼭 ���� ������
-   
-   private String ozip_code;
-   private String oaddress;
-   private String odetail_address;
-   private String orecipent;
-   private String orecipent_tel;
-   form �Է�
-   
-    private String ochannel;
-   ����
-   
-   private String ototal_price;
-  cart�� pid ���� ������ ���ͼ���ġ��
-
-   
-   private String ocard_name;
-   private String ocard_installmentrate;
-   private String ocard_installmentrate_period;
-   radio ��ư���� ����
-   
-   private String oaccountholder;
-   private String odeposit_deadline;
- 	radio ��ư���� ����
- 
- 
- */
+		private String OID;
+	private String MID;
+	private String ODATE;
+	private Integer OZIP_CODE;
+	private String OADDRESS;
+	private String ORECIPIENT;
+	private String ORECIPIENT_TEL;
+	private Integer OTOTAL_PRICE;
+	private String OCHANNEL;
+	private String OCARD_NAME;
+	private Integer OCARD_INSTALLMENTRATE;
+	private Integer OCARD_INSTALLMENT_PERIOD;
+	private String OACCOUNTHOLDER;
+	private String ODEPOSIT_DEADLINE;
+	private List<OrderItemDto> orderItems;
+	private String mainItem;
+	private Integer productKindNum;
+*/
