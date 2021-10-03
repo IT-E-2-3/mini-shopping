@@ -100,8 +100,8 @@
 	
 	<security:jdbc-user-service id="jdbcUserService"
 								data-source-ref="dataSource"
-								users-by-username-query="SELECT mid, mpassword, menabled FROM member WHERE mid=?"
-								authorities-by-username-query="SELECT mid, mrole FROM member WHERE mid=?"/>
+								users-by-username-query="SELECT MLOGIN_ID, MPW, menabled FROM member WHERE MLOGIN_ID=?"
+								authorities-by-username-query="SELECT MLOGIN_ID, mrole FROM member WHERE MLOGIN_ID=?"/>
 
 	<!-- 인증 성공 또는 실패시 실행되는 핸들러 객체 설정 -->
 	<bean id="authenticationSuccessHandler" 
