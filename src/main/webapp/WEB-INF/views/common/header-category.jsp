@@ -71,14 +71,10 @@
 			<div class="middle">
 				<ul id="navbar" class="navbar-nav"
 					style="display: flex; margin-left: 15px">
-					<li class="nav-item"><a class="nav-link" href="#"
-						data-action="여성">여성</a></li>
-					<li class="nav-item"><a class="nav-link" href="#"
-						data-action="남성">남성</a></li>
-					<li class="nav-item"><a class="nav-link" href="#"
-						data-action="키즈">키즈</a></li>
-					<li class="nav-item"><a class="nav-link" href="#"
-						data-action="뷰티">뷰티</a></li>
+					<li class="nav-item"><a class="nav-link" href="#" data-action="키즈">키즈</a></li>
+					<li class="nav-item"><a class="nav-link" href="#" data-action="라이프스타일">라이프스타일</a></li>
+					<li class="nav-item"><a class="nav-link" href="#" data-action="남성">남성</a></li>
+					<li class="nav-item"><a class="nav-link" href="#" data-action="여성">여성</a></li>
 				</ul>
 			</div>
 
@@ -97,152 +93,149 @@
 		</div>
 	</nav>
 
-	<div id="여성" class="sub-back">
+	<!-- 키즈 category -->
+	<div id="키즈" class="sub-back">
+		<li class="category-list">전체보기</li>
+		<ul class="category-list" style="display: flex; flex-direction: column">
+			<div class="largecategory">의류</div>
+			<li>하의</li>
+			<li>상의</li>
+		</ul>
+
+		<ul class="category-list">
+			<div class="largecategory">잡화</div>
+			<li>기타 소품</li>
+		</ul>
+	</div>
+	
+	<!-- 라이프스타일 -->
+	<div id="라이프스타일" class="sub-back">
 		<li class="category-list">전체보기</li>
 		<ul class="category-list"
 			style="display: flex; flex-direction: column">
-			<div class="largecategory">아우터</div>
-			<li>재킷</li>
-			<li>재킷</li>
-			<li>재킷</li>
+			<div class="largecategory">배스</div>
+			<li>기타 소품</li>
 		</ul>
 
 		<ul class="category-list">
-			<div class="largecategory">탑</div>
-			<li>티셔츠</li>
-		</ul>
-
-		<ul class="category-list"
-			style="display: flex; flex-direction: column">
-			<div class="largecategory">아우터</div>
-			<li>재킷</li>
-			<li>재킷</li>
-			<li>재킷</li>
-		</ul>
-
-		<ul class="category-list">
-			<div class="largecategory">
-				<a href="productlist.html">탑 </a>
-			</div>
-			<li>티셔츠</li>
-		</ul>
-		<ul class="category-list"
-			style="display: flex; flex-direction: column">
-			<div class="largecategory">아우터</div>
-			<li>재킷</li>
-			<li>재킷</li>
-			<li>재킷</li>
-		</ul>
-
-		<ul class="category-list">
-			<div class="largecategory">탑</div>
-			<li>티셔츠</li>
+			<div class="largecategory">홈</div>
+			<li>패브릭</li>
+			<li>프래그런스</li>
+			<li>기타 소품</li>
 		</ul>
 	</div>
 	<div id="남성" class="sub-back">
 		<li class="category-list">전체보기</li>
 		<ul class="category-list"
 			style="display: flex; flex-direction: column">
-			<div class="largecategory">탑</div>
-			<li>티셔츠</li>
-			<li>티셔츠</li>
-			<li>티셔츠</li>
+			<div class="largecategory">아우터</div>
+			<li>가디건/베스트</li>
+			<li>코트</li>
+			<li>다운/패딩</li>
+			<li>재킷</li>
+			<li>점퍼</li>
+			<li>트렌치코트</li>
 		</ul>
 
 		<ul class="category-list">
-			<div class="largecategory">아우터</div>
-			<li>재킷</li>
+			<div class="largecategory">팬츠</div>
+			<li>데님</li>
+			<li>루즈/테이퍼드</li>
+			<li>쇼츠</li>
+			<li>스트레이트</li>
+			<li>조거/트랙</li>
 		</ul>
 
 		<ul class="category-list"
 			style="display: flex; flex-direction: column">
-			<div class="largecategory">탑</div>
-			<li>티셔츠</li>
-			<li>티셔츠</li>
-			<li>티셔츠</li>
+			<div class="largecategory">SPECIAL SHOP*</div>
+			<li>CLUB MONACO : 폴로 한잔의 여유</li>
+			<li>CLUB MONACO : COATS FOR MEN</li>
+			<li>SYSTEM HOMME : (NEW) SWEATS</li>
+			<li>SYSTEM HOMME : PARIS PT</li>
+			<li>SYSTEM HOMME : SYSTEM X 275C</li>
+			<li>SYSTEM HOMME : TYPE 2</li>
+			<li>THEHANDSOME 5TH : # WITH US</li>
+			<li>TIME HOMME : ONLINE EXCLUSIVE</li>
+			<li>TIME HOMME THE GENTLE </li>
 		</ul>
 
 		<ul class="category-list">
-			<div class="largecategory">
-				<a href="productlist.html">탑 </a>
-			</div>
-			<li>티셔츠</li>
+			<div class="largecategory">수트</div>
+			<li>드레스셔츠</li>
+			<li>수트재킷</li>
+			<li>수트팬츠</li>
 		</ul>
-		<ul class="category-list"
-			style="display: flex; flex-direction: column">
-			<div class="largecategory">아우터</div>
-			<li>재킷</li>
-			<li>재킷</li>
-			<li>재킷</li>
-		</ul>
-
 		<ul class="category-list">
 			<div class="largecategory">탑</div>
+			<li>니트</li>
+			<li>셔츠</li>
 			<li>티셔츠</li>
 		</ul>
 	</div>
-	<div id="키즈" class="sub-back">
+	<div id="여성" class="sub-back">
 		<li class="category-list">전체보기</li>
 		<ul class="category-list"
 			style="display: flex; flex-direction: column">
-			<div class="largecategory">의류</div>
-			<li>상의</li>
-			<li>하의</li>
+			<div class="largecategory">드레스</div>
+			<li>롱/맥시 드레스</li>
+			<li>미디 드레스</li>
+			<li>미니 드레스</li>
 		</ul>
 
 		<ul class="category-list">
-			<div class="largecategory">잡화</div>
-			<li>슈즈</li>
+			<div class="largecategory">패션잡화</div>
+			<li>가방</li>
+			<li>기타 소품</li>
 			<li>스카프/머플러</li>
-			<li>기타</li>
-		</ul>
-	</div>
-	<div id="뷰티" class="sub-back">
-		<li class="category-list">전체보기</li>
-		<ul class="category-list"
-			style="display: flex; flex-direction: column">
-			<div class="largecategory">스킨케어</div>
-			<li>티셔츠</li>
-			<li>티셔츠</li>
-			<li>티셔츠</li>
 		</ul>
 
-		<ul class="category-list">
-			<div class="largecategory">바디/헤어케어</div>
+		<ul class="category-list"
+			style="display: flex; flex-direction: column">
+			<div class="largecategory">아우터</div>
+			<li>가디건/베스트</li>
+			<li>코트</li>
+			<li>다운/패딩</li>
 			<li>재킷</li>
-		</ul>
-
-		<ul class="category-list"
-			style="display: flex; flex-direction: column">
-			<div class="largecategory">향수</div>
-			<li>티셔츠</li>
-			<li>티셔츠</li>
-			<li>티셔츠</li>
+			<li>점퍼</li>
+			<li>트렌치 코트</li>
 		</ul>
 
 		<ul class="category-list">
 			<div class="largecategory">
-				<a href="productlist.html">탑 </a>
+				<a href="productlist.html">팬츠</a>
 			</div>
-			<li>티셔츠</li>
+			<li>캐주얼</li>
+			<li>데님</li>
+			<li>포멀</li>
+			<li>쇼츠</li>
 		</ul>
 		<ul class="category-list"
 			style="display: flex; flex-direction: column">
-			<div class="largecategory">아우터</div>
-			<li>재킷</li>
-			<li>재킷</li>
-			<li>재킷</li>
+			<div class="largecategory">스커트</div>
+			<li>플레어 스커트</li>
+			<li>롱/맥시 스커트</li>
+			<li>미니 스커트</li>
+			<li>펜슬 스커트</li>
 		</ul>
 
 		<ul class="category-list">
+			<div class="largecategory">SPECIAL SHOP*</div>
+			<li>잠시 생략....</li>
+		</ul>
+		
+		<ul class="category-list">
 			<div class="largecategory">탑</div>
+			<li>블라우스</li>
+			<li>니트</li>
+			<li>셔츠</li>
 			<li>티셔츠</li>
 		</ul>
 	</div>
 	
 	<div class="page-title"></div>
 	<script>
-      class Menu {
+      class 남성u {
         constructor(elem) {
           this._elem = elem;
           this._currenthover = null;
@@ -282,18 +275,18 @@
             키즈.onmouseout = function () {
               키즈.style.display = "none";
             };
-          } else if (action == "뷰티") {
+          } else if (action == "라이프스타일") {
             if (this._currenthover != null) {
               this._currenthover.style.display = "none";
             }
-            this._currenthover = 뷰티;
-            뷰티.style.display = "flex";
+            this._currenthover = 라이프스타일;
+            라이프스타일.style.display = "flex";
 
-            뷰티.onmouseout = function () {
-              뷰티.style.display = "none";
+            라이프스타일.onmouseout = function () {
+              라이프스타일.style.display = "none";
             };
           }
         }
       }
-      new Menu(navbar);
+      new 남성u(navbar);
     </script>
