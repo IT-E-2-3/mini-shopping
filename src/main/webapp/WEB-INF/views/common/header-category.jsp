@@ -57,7 +57,7 @@
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/css/main.css" />
 <link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/resources/css/style.css" />
+	href="${pageContext.request.contextPath}/resources/css/style.css?version=51" />
 </head>
 <body>
 	<nav id="header-fixed"
@@ -124,7 +124,7 @@
 			<li>기타 소품</li>
 		</ul>
 	</div>
-	<div id="남성" class="sub-back">
+	<div id="남성" class="sub-back men">
 		<li class="category-list">전체보기</li>
 		<ul class="category-list"
 			style="display: flex; flex-direction: column">
@@ -173,7 +173,7 @@
 			<li>티셔츠</li>
 		</ul>
 	</div>
-	<div id="여성" class="sub-back">
+	<div id="여성" class="sub-back women">
 		<li class="category-list">전체보기</li>
 		<ul class="category-list"
 			style="display: flex; flex-direction: column">
@@ -192,7 +192,7 @@
 
 		<ul class="category-list"
 			style="display: flex; flex-direction: column">
-			<div class="largecategory">아우터</div>
+			<div class="largecategory"><a href="list?c=0403">아우터</a></div>
 			<li>가디건/베스트</li>
 			<li>코트</li>
 			<li>다운/패딩</li>
@@ -202,9 +202,7 @@
 		</ul>
 
 		<ul class="category-list">
-			<div class="largecategory">
-				<a href="productlist.html">팬츠</a>
-			</div>
+			<div class="largecategory">팬츠</div>
 			<li>캐주얼</li>
 			<li>데님</li>
 			<li>포멀</li>

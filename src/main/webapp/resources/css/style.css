@@ -25,6 +25,13 @@
   opacity: 0.8;
 }
 
+.sub-back.men{
+	height: 380px;
+}
+.sub-back.women{
+	height:300px;
+}
+
 .sub-back:hover {
   display: block;
 }
