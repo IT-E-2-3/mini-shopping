@@ -137,7 +137,8 @@
 									<input type="text" class="form-control text-center"
 										placeholder="0000" id="tel3" name="tel3">
 								</div>
-
+								
+								<span class="order_tel-error text-danger"></span>
 
 							</th>
 						</tr>
@@ -190,6 +191,7 @@
 									</div>
 									<div class="btn btn-outline-dark">우편번호 조회</div>
 								</div>
+								<span class="ozip_code-error text-danger"></span>
 								<div class="">
 									<div class="form-group w-75 d-inline-block text-center">
 										<label for="exampleInputEmail1" class="form-label mt-4"></label>
@@ -199,6 +201,7 @@
 
 									</div>
 								</div>
+								<span class="oaddress-error text-danger"></span>
 								<div class="">
 									<div class="form-group w-75 d-inline-block text-center">
 										<label for="exampleInputEmail1" class="form-label mt-4"></label>
@@ -207,7 +210,9 @@
 											name="odetail_address" placeholder="상세 주소를 입력해 주세요.">
 									</div>
 								</div>
+								
 							</th>
+							
 						</tr>
 
 
@@ -230,6 +235,7 @@
 										</div>
 									</div>
 								</div>
+								<span class="orecipent-error text-danger"></span>
 							</th>
 						</tr>
 						<tr class="table-secondary">
@@ -268,6 +274,7 @@
 										name="tel6" placeholder="0000">
 
 								</div>
+								<span class="orecipent_tel-error text-danger"></span>
 							</th>
 						</tr>
 
@@ -328,6 +335,7 @@
 											name="orequest" placeholder="0/20자">
 									</div>
 								</div>
+								<span class="orequest-error text-danger"></span>
 							</th>
 						</tr>
 
@@ -363,8 +371,9 @@
 										<option value="yahoo.com">yahoo.com</option>
 										<option value="dreamwiz.com">dreamwiz.com</option>
 									</select>
+									
 								</div>
-
+								<span class="orecipent_email-error text-danger"></span>
 								<div class="form-group  w-25 d-inline-block m-b-10">
 									<label for="exampleSelect1" class="form-label"></label>
 								</div>
@@ -469,11 +478,6 @@
 		
 		event.preventDefault();
 		
-		/*
-		브라우저 유효성 검사 추가 예정
-		UI 변경 로직
-		*/
-
 		const Ozip_code = ozip_code.value;
 		const Oaddress = oaddress.value;
 		const Odetail_address = odetail_address.value
@@ -482,6 +486,79 @@
 		const Orecipent_tel = tel4.value + "-" + tel5.value +  "-" + tel6.value;
 		const Oaddtional_tel = tel7.value +  "-" + tel8.value +  "-" + tel9.value;
 		const Orecipent_email = orecipent_email1.value + "@" + orecipent_email12.value;
+		
+		/*
+		브라우저 유효성 검사 추가 예정
+		UI 변경 로직
+		*/
+		
+		//유효성 검사 결과 변수
+		let checkResult = true;
+		
+		//입력 길이 체크
+		console.log("Ozip_code", Ozip_code);
+		const ozipcodeError = document.querySelector(".ozip_code-error");
+		ozipcodeError.innerHTML = "";
+		if(Ozip_code === "") {
+			ozipcodeError.innerHTML = "필수 입력 사항";
+			checkResult = false;
+		}
+		
+		const oaddressError = document.querySelector(".oaddress-error");
+		
+		if(Oaddress === "") {
+			oaddressError.innerHTML = "필수 입력 사항";
+			checkResult = false;
+		} 
+		/* 
+		//정규 표현식을 이용한 전화번호 형식 체크
+		let param2 = form.param2.value;
+		const param2Error = document.querySelector("#form0 .param2-error");
+		param2Error.innerHTML = "";
+		if(param2 === "") {
+			param2Error.innerHTML = "필수 입력 사항";
+			checkResult = false;
+		} else {
+			const pattern = /(010|011)-[0-9]{3,4}-[0-9]{4}/i;
+			const result = pattern.test(param2);
+			if(result === false) {
+				param2Error.innerHTML = "전화번호 형식이 아님";
+				checkResult = false;
+			}
+		}
+		
+		//정규 표현식을 이용한 이메일 형식 체크
+		let param3 = form.param3.value;
+		const param3Error = document.querySelector("#form0 .param3-error");
+		param3Error.innerHTML = "";
+		if(param3 === "") {
+			param3Error.innerHTML = "필수 입력 사항";
+			checkResult = false;
+		} else {
+			const pattern = /([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)/i;
+			const result = pattern.test(param3);
+			if(result === false) {
+				param3Error.innerHTML = "이메일 형식이 아님";
+				checkResult = false;
+			}
+		}
+		
+		//날짜가 비었는지 체크
+		let param5 = form.param5.value;
+		console.log(param5);
+		const param5Error = document.querySelector("#form0 .param5-error");
+		param5Error.innerHTML = "";
+		if(param5 === "") {
+			param5Error.innerHTML = "필수 입력 사항";
+			checkResult = false;
+		}  */
+		
+		
+		//서버로 제출할지 말지 결정
+		if(!checkResult) {
+			return false;
+		}
+
 		
 		//console.log(Ozip_code, Oaddress, Odetail_address, Orecipent, Orequest, Orecipent_tel, Oaddtional_tel, Orecipent_email);
 		
