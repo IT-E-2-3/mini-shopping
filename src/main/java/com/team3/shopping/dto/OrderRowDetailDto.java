@@ -10,7 +10,7 @@ public class OrderRowDetailDto {
 	private String product_detail_url1;
 	private String pbrand;
 	private String pname;
-	private String pprice;
+	private Integer pprice;
 	private Integer oamount;
 }
 /*	mid 로 cart 접근하고 pid, color_code, size_code camount 얻어옴
