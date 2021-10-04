@@ -5,7 +5,9 @@ import lombok.Data;
 
 @Data
 public class OrderDto {
-
+	
+	
+	
 	private String oid;
 	private String mid;
 	private String odate;
@@ -14,19 +16,63 @@ public class OrderDto {
 	private String odetail_address;
 	private String orecipent;
 	private String orecipent_tel;
-	private String ototal_price;
+	private int ototal_price;
 	private String ochannel="the handsome";
 	private String ocard_name;
 	private String ocard_installmentrate;
 	private String ocard_installmentrate_period;
 	private String oaccountholder;
 	private String odeposit_deadline;
-	
-	private String ordertel;
-	private String oaddtionaltel;
+	private String order_tel;
+	private String oaddtional_tel;
 	private String orequest;
 	private String orecipent_email;
+	private String opayment;
 }
+/*
+ * 	
+		
+	로그인 정보로 얻어오는 항목
+	private String mid;
+	생성해야할 목록
+	private String oid;
+	private String odate;	
+	private String ochannel="the handsome";
+	
+	form 으로 얻어오는 항목
+	private String order_tel;
+	private String ozip_code;
+	private String oaddress;
+	private String odetail_address;
+	private String orecipent;
+	private String orecipent_tel;
+	private String oaddtional_tel;
+	private String orequest;
+	private String orecipent_email;
+	
+	// 이걸 어쩐다?
+	private String ototal_price;
+	
+	결제수단으로 선택하는 항목
+	private String opayment;
+	//어떤 결제수단을 고르냐에 따라 html 의 hide 속성값이 변하여
+	 * 추가로 선택하는 화면이 나오고
+	그로부터 선택하는 값
+	private String ocard_name;
+	private String ocard_installmentrate;
+	private String ocard_installmentrate_period;
+	
+	어떤 결제수단을 고르냐에 따라 html 의 hide 속성값이 변하여
+	 * 추가로 선택하는 화면이 나오고
+	그로부터 자동생성되는 값.
+	
+	private String oaccountholder;
+	private String odeposit_deadline;
+	
+	
+
+
+ */
 
 /*
 		private String OID;
