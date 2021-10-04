@@ -14,8 +14,8 @@
 				<tr>
 				
 					<th class="col-sm-6 text-center text-black" >상품 정보</th>
-					<th class="col-sm-2 text-center text-black">수량</th>
 					<th class="col-sm-1 text-center text-black">판매가</th>
+					<th class="col-sm-2 text-center text-black">수량</th>
 					
 				</tr>
 			</thead>
@@ -25,7 +25,7 @@
 							<!-- 상품 정보 th -->
 							<th class="col-sm-6" >
 								<!-- 상품 정보  row-->
-								<div class="row" style="width: 100%">
+								<div class="row" style="width: 100%;">
 		
 								<div class="col-sm-4">
 									<!-- 상품 사진 -->

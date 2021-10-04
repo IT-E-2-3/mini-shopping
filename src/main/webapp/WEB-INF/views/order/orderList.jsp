@@ -25,7 +25,7 @@
 						<a href="orderDetail?oid=${order.oid}" class="basket_tlt" style="color: black"
 						onclick="javascript:setEcommerceData('0', 'Click ADD');GA_Event('쇼핑백','상품','울 셋업 재킷');">
 							<p class="sb_tlt">
-								${order.mainItem} <span class="text-right"> 외 ${order.productKindNum }건</span>
+								${order.mainItem} <span class="text-right">  ${(order.productKindNum - 1) != 0 ? "외 " += order.productKindNum - 1 += "건" : ""}</span>
 							</p>
 						</a>
 					</th>
