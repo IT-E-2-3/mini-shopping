@@ -72,7 +72,7 @@
 				<ul class="navbar-nav">
 					<li class="nav-item"><a class="nav-link" href="#">로그인</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">쇼핑백(2)</a></li>
-					<li class="nav-item"><a class="nav-link" href="order/orderList">주문조회</a></li>
+					<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/order/orderList">주문조회</a></li>
 				</ul>
 			</div>
 		</div>
