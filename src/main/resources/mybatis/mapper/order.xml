@@ -75,7 +75,7 @@
 	<select id="selectProductbyOid" parameterType="String" resultType="orderRowDetail">
 		select order_items.oid, color_url.color_code, product_detail_url1, pbrand, pname, pprice, order_items.oamount, order_items.size_code
 		from color_url join product on color_url.pid = product.pid join order_items on color_url.pid = order_items.pid and color_url.color_code = order_items.color_code
-		where exists (
+		where oid=#{oid} and exists (
 		select * from order_items 
 		where oid = #{oid} and color_url.pid = order_items.pid and color_url.color_code = order_items.color_code)
 	</select>

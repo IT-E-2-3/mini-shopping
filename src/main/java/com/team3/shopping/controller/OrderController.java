@@ -124,7 +124,7 @@ public class OrderController {
 		logger.info(order.toString());
 		
 		logger.info("성공");
-		//orderService.makeOrder(OrderRowList, oid, order);
+		orderService.makeOrder(OrderRowList, oid, order);
 
 		// 성공시
 
