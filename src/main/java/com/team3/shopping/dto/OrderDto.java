@@ -28,8 +28,9 @@ public class OrderDto {
 	private String orequest;
 	private String orecipent_email;
 	private String opayment;
-  
-  private String mainItem;
+	
+	private List<OrderItemDto> orderItems;
+	private String mainItem;
 	private Integer productKindNum;
 }
 /*
