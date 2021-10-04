@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import com.team3.shopping.dto.MemberInfoDto;
 import com.team3.shopping.dto.OrderDto;
 import com.team3.shopping.dto.OrderItemDto;
 import com.team3.shopping.dto.OrderRowDetailDto;
@@ -43,31 +44,36 @@ public class OrderController {
    @Resource
    OrderService orderService;
 
-   int total_amount = 0;
-   List<OrderRowDetailDto> OrderRowList;
 
-   @GetMapping("/")
-   public String content(Model model, Principal principal) {
-      logger.info("실행");
-      total_amount = 0;
-      String mid = orderService.getMid(principal.getName());
-//      logger.info(mid);
+	int total_amount = 0;
+	List<OrderRowDetailDto> OrderRowList;
 
-      // cart의 내용 받아오기
-      OrderRowList = orderService.getMyCart(mid);
 
-      DecimalFormat decFormat = new DecimalFormat("###,###");
-      for (OrderRowDetailDto orderRowDetailDto : OrderRowList) {
-         int price = (orderRowDetailDto.getPprice());
-         total_amount += price * orderRowDetailDto.getOamount();
-         
-      }
-//      logger.info(total_amount+" ");
 
-      String decimal_total_amount = decFormat.format(total_amount);
+	@GetMapping("/")
+	public String content(Model model, Principal principal) {
+		logger.info("실행");
+		total_amount = 0;
+		MemberInfoDto member = orderService.getMid(principal.getName());
+//		logger.info(mid);
 
-      model.addAttribute("OrderRowList", OrderRowList);
-      model.addAttribute("total_amount", decimal_total_amount);
+		// cart의 내용 받아오기
+		OrderRowList = orderService.getMyCart(member.getMid());
+
+		DecimalFormat decFormat = new DecimalFormat("###,###");
+		for (OrderRowDetailDto orderRowDetailDto : OrderRowList) {
+			int price = (orderRowDetailDto.getPprice());
+			total_amount += price * orderRowDetailDto.getOamount();
+		
+		}
+//		logger.info(total_amount+" ");
+
+		String decimal_total_amount = decFormat.format(total_amount);
+
+		model.addAttribute("OrderRowList", OrderRowList);
+		model.addAttribute("total_amount", decimal_total_amount);
+		model.addAttribute("member", member);
+
 
       return "order/order";
    }
@@ -87,6 +93,16 @@ public class OrderController {
 
       binder.addValidators(new OrderFormValidator());
    }
+	/*
+	 * public String orderComplete( @ModelAttribute("orderForm") @Valid OrderDto
+	 * order, BindingResult bindingResult) {
+	 * 
+	 * if(bindingResult.hasErrors()) { logger.info("다시 입력폼 제공 + 에러 메시지"); //forward
+	 * return "redirect:/order/"; } else { logger.info("정상 요청 처러후 응답 제공");
+	 * //redirect return "redirect:/"; } }
+	 */
+
+
 
    @GetMapping(value="order", produces = "application/json'; charset=UTF-8")
    @ResponseBody
@@ -106,8 +122,12 @@ public class OrderController {
       }
       
       logger.info(order.toString());
+      MemberInfoDto member = orderService.getMid(principal.getName());
+//		logger.info(mid);
 
-      String mid = orderService.getMid(principal.getName());
+		// cart의 내용 받아오기
+	
+      String mid = member.getMid();
       // 주문에 대한 트랜젝션 - 재고가 없으면 실패
       // Timestamp timesteamp = new Timestamp(System.currentTimeMillis());
       // timesteamp = timesteamp.
@@ -139,6 +159,7 @@ public class OrderController {
       
       return json;
    }
+
 
    @GetMapping("/orderSuccess")
    public String orderSuccess() {
@@ -181,17 +202,21 @@ public class OrderController {
       return "order/orderList";
    }
 
-   @GetMapping("/orderDetail")
-   public String orderDetail(@RequestParam String oid, Model model, HttpSession session) {
-      logger.info("실행");
-      OrderDto order = (OrderDto) orderService.getOrder(oid);
-      List<OrderRowDetailDto> orderItems = orderService.getProductInfo(oid);
+	@GetMapping("/orderDetail")
+	public String orderDetail(@RequestParam String oid, Model model, HttpSession session) {
+		logger.info("실행");
+		OrderDto order = (OrderDto) orderService.getOrder(oid);
+		List<OrderRowDetailDto> orderItems = orderService.getProductInfo(oid);
 
-      model.addAttribute("order", order);
-      model.addAttribute("orderItems", orderItems);
+		model.addAttribute("order", order);
+		model.addAttribute("orderItems", orderItems);
 
-      logger.info(order.toString());
-      logger.info(orderItems.toString());
-      return "order/orderDetail";
-   }
+		logger.info(order.toString());
+		logger.info(orderItems.toString());
+		return "order/orderDetail";
+	}
 }
+
+
+
+

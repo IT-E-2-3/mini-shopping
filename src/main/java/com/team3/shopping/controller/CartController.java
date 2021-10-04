@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.team3.shopping.dto.MemberInfoDto;
 import com.team3.shopping.dto.OrderRowDetailDto;
 import com.team3.shopping.service.OrderService;
 
@@ -28,8 +29,12 @@ public class CartController {
 	public String cart(Model model, Principal principal) {
 		
 		total_amount = 0;
-		String mid = orderService.getMid(principal.getName());
-//		logger.info(mid);
+		 MemberInfoDto member = orderService.getMid(principal.getName());
+//			logger.info(mid);
+
+			// cart의 내용 받아오기
+		
+	      String mid = member.getMid();//		logger.info(mid);
 		
 		//cart의 내용 받아오기
 		OrderRowList = orderService.getMyCart(mid);
@@ -55,7 +60,12 @@ public class CartController {
 	public String cart2(Model model, Principal principal) {
 		
 		total_amount = 0;
-		String mid = orderService.getMid(principal.getName());
+		 MemberInfoDto member = orderService.getMid(principal.getName());
+//			logger.info(mid);
+
+			// cart의 내용 받아오기
+		
+	      String mid = member.getMid();
 //		logger.info(mid);
 		
 		//cart의 내용 받아오기

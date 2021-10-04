@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.team3.shopping.dao.OrderDao;
 import com.team3.shopping.dto.CartDto;
+import com.team3.shopping.dto.MemberInfoDto;
 
 import org.apache.ibatis.annotations.Param;
 import org.slf4j.Logger;
@@ -38,7 +39,7 @@ public class OrderService {
 		return orderDao.getPriceByCartPid(cartList);
 	}
 
-	public String getMid(String mlogin_id) {
+	public MemberInfoDto getMid(String mlogin_id) {
 		return orderDao.getMidBymolgin(mlogin_id);
 
 	}

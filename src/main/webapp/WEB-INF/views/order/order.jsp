@@ -405,19 +405,19 @@
                            <div class="form-check d-inline-flex">
                               <label class="form-check-label"> <input type="radio"
                                  class="form-check-input " name="optionsRadios"
-                                 id="optionsRadios1" value="option1" checked=""> 신용카드
+                                 id="optionsRadios1" value="1" checked=""> 신용카드
                               </label>
                            </div>
                            <div class="form-check d-inline-flex">
                               <label class="form-check-label"> <input type="radio"
                                  class="form-check-input" name="optionsRadios"
-                                 id="optionsRadios2" value="option2"> 마일리지
+                                 id="optionsRadios2" value="2"> 마일리지
                               </label>
                            </div>
                            <div class="form-check disabled d-inline-flex">
                               <label class="form-check-label"> <input type="radio"
                                  class="form-check-input" name="optionsRadios"
-                                 id="optionsRadios3" value="option3"> 가상계좌
+                                 id="optionsRadios3" value="3"> 가상계좌
                               </label>
                            </div>
                            <div></div>

@@ -10,6 +10,7 @@ import com.team3.shopping.dto.OrderDto;
 import com.team3.shopping.dto.OrderItemDto;
 import com.team3.shopping.dto.OrderRowDetailDto;
 import com.team3.shopping.dto.CartDto;
+import com.team3.shopping.dto.MemberInfoDto;
 
 @Mapper
 public interface OrderDao {
@@ -18,7 +19,7 @@ public interface OrderDao {
 	public List<OrderRowDetailDto> getMyCartByMlogin(String mid);
 
 	// 로그인 정보로 mid를 얻어온다.
-	public String getMidBymolgin(String mlogin_id);
+	public MemberInfoDto getMidBymolgin(String mlogin_id);
 	
 
 	// cart의 모든 아이템을 얻어온다.
