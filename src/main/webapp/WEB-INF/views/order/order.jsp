@@ -22,8 +22,11 @@
 					</tr>
 				</thead>
 				<tbody>
-	
-				<c:forEach var="item" items="${cartList}"> 
+	<script type="text/javascript">
+
+</script>
+				<c:forEach var="item" items="${OrderRowList}"> 
+				
 					<tr class="table-secondary">
 
 
@@ -36,7 +39,7 @@
 									<!-- 상품 사진 -->
 									<div class="stext-110 cl2 m-l-25 m-t-10 m-b-10">
 										<img
-											src="http://newmedia.thehandsome.com/IL/2B/FW/IL2B9WJC412W_DG_S01.jpg"
+											src="${item.product_detail_url1}"
 											alt="" style="width: 98px;">
 									</div>
 
@@ -45,11 +48,11 @@
 								<!-- 상품 설명 -->
 								<div class="col-sm-6 m-l-20 m-t-15">
 									<a href="#" class="basket_tlt" style="color: black">
-										<p class="tlt">product.pbrand</p>
-										<p class="sb_tlt">product.pname</p>
+										<p class="tlt">${item.pbrand }</p>
+										<p class="sb_tlt">${item.pname}</p>
 									</a>
 									<p class="color_op mt-2" style="color: gray">
-										color : product.product_color_code <span class="and_line">/</span> size : product.product_edtail_url1
+										color : ${item.color_code}<span class="and_line">/</span> size : ${item.size_code}
 									</p>
 
 								</div>
@@ -58,15 +61,15 @@
 						</th>
 						<!-- 상품 정보 th 사진+정보 끝 -->
 
-						<!-- 가격시작 -->
+						 
 						<th class="col-sm-1 text-left">
-							<div class="m-t-7 m-r-30 m-l--0 ">₩ ${item.camount}</div>
+							<div class="m-t-7 m-r-30 m-l--0 onePrice ">${item.pprice}</div>
 						</th>
-						<!-- 가격끝 -->
+					
 
 						<!-- 수량 시작 -->
 						<th class="col-sm-2 text-center">
-							<div class="m-t-7 ">${item.camount}</div>
+							<div class="m-t-7 ">${item.oamount}</div>
 						</th>
 						<!-- 수량 끝 -->
 					</tr>
@@ -308,7 +311,8 @@
 							<!-- 행 -->
 							<th class="col-sm-10 text-left text-black">
 								<div class="form-group  w-25 d-inline-block m-b-10">
-									<label for="exampleSelect1" class="form-label"></label> <select
+									<label for="exampleSelect1" class="form-label"></label> 
+									<select name="tel7"
 										class="form-select  text-center" >
 										<option value="010">010</option>
 										<option value="011">011</option>
@@ -323,7 +327,7 @@
 								<div class="form-group w-25 d-inline-block text-center">
 									<label for="exampleInputEmail1" class="form-label mt-4"></label>
 									<input type="text" class="form-control text-center"
-										id="exampleInputEmail1" aria-describedby="emailHelp"
+										name="tel8"
 										placeholder="0000">
 
 								</div>
@@ -333,7 +337,7 @@
 								<div class="form-group w-25 d-inline-block text-center">
 									<label for="exampleInputEmail1" class="form-label mt-4"></label>
 									<input type="text" class="form-control text-center"
-										id="exampleInputEmail1" aria-describedby="emailHelp"
+										name="tel9"
 										placeholder="0000">
 
 								</div>
@@ -355,7 +359,7 @@
 									<div class="form-group w-75 d-inline-block text-center">
 										<label for="exampleInputEmail1" class="form-label mt-4"></label>
 										<input type="text" class="form-control text-center"
-											id="exampleInputEmail1" aria-describedby="emailHelp"
+											name="orequest"
 											placeholder="0/20자">
 
 									</div>
@@ -378,7 +382,7 @@
 								<div class="form-group w-25 d-inline-block text-center">
 									<label for="exampleInputEmail1" class="form-label mt-4"></label>
 									<input type="text" class="form-control text-center"
-										id="exampleInputEmail1" aria-describedby="emailHelp"
+										name="email1"
 										placeholder="ILOVETEAM3">
 
 								</div>
@@ -387,7 +391,7 @@
 								<div class="form-group w-25 d-inline-block text-center">
 									<label for="exampleInputEmail1" class="form-label mt-4"></label>
 									<input type="text" class="form-control text-center"
-										id="exampleInputEmail1" aria-describedby="emailHelp"
+									name="email2"
 										placeholder="naver.com">
 
 								</div>
@@ -490,7 +494,7 @@
 					<div class="flex-w flex-t p-b-13 justify-content-between">
 						<b style="color: black;"> 상품금액</b>
 						<div>
-							<span id="totalNormalAmt">813,000</span>원
+							<span id="totalNormalAmt">${total_amount}</span>원
 						</div>
 					</div>
 					<div class="flex-w flex-t bor12 p-b-13 justify-content-between">
@@ -499,14 +503,17 @@
 							<span id="totalDeliAmt">0</span>원
 						</dd>
 					</div>
+					
 
 					<div class="flex-w flex-t p-b-40 p-t-13 justify-content-between"
 						style="font-size: 20px;">
 						<dt class="ee_tit ee_strong">결제예정금액</dt>
 						<dd class="ee_price ee_strong">
-							<span id="totalOrdAmt">813,000</span>원
+							<span id="totalOrdAmt" >${total_amount}</span>원
 						</dd>
 					</div>
+					
+				
 
 					<button
 						class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer">

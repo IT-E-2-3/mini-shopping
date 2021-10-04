@@ -20,4 +20,10 @@ public class ControllerExceptionHandler {
 		e.printStackTrace();
 		return "error/500";
 	}
+	
+	@ExceptionHandler
+	public String dd(ProductSoldOutException e) {
+		e.printStackTrace();
+		return "error/productsoldout";
+	}
 }
