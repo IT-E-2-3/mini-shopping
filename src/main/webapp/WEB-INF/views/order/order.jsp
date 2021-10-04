@@ -235,7 +235,7 @@
 										</div>
 									</div>
 								</div>
-								<span class="orecipent-error text-danger"></span>
+								<span class="orecipent-error text-danger">헬로</span>
 							</th>
 						</tr>
 						<tr class="table-secondary">
@@ -360,7 +360,7 @@
 								<div class="form-group w-25 d-inline-block text-center">
 									<label for="exampleInputEmail1" class="form-label mt-4"></label>
 
-									<select id="orecipent_email12" name="orecipent_email12"
+									<select id="orecipent_email2" name="orecipent_email12"
 										class="form-select  text-center">
 										<option value="">직접입력</option>
 										<option value="naver.com">naver.com</option>
@@ -483,82 +483,120 @@
 		const Odetail_address = odetail_address.value
 		const Orecipent = orecipent.value;
 		const Orequest = orequest.value;
+		const Oorder_tel = tel1.value + "-"+  tel2.value + "-" + tel3.value;
 		const Orecipent_tel = tel4.value + "-" + tel5.value +  "-" + tel6.value;
 		const Oaddtional_tel = tel7.value +  "-" + tel8.value +  "-" + tel9.value;
-		const Orecipent_email = orecipent_email1.value + "@" + orecipent_email12.value;
+		const Orecipent_email = orecipent_email1.value + "@" + orecipent_email2.value;
 		
 		/*
-		브라우저 유효성 검사 추가 예정
-		UI 변경 로직
+		브라우저 유효성 검사
 		*/
 		
 		//유효성 검사 결과 변수
 		let checkResult = true;
 		
-		//입력 길이 체크
+		// 필수 배송지 입력
 		console.log("Ozip_code", Ozip_code);
 		const ozipcodeError = document.querySelector(".ozip_code-error");
 		ozipcodeError.innerHTML = "";
-		if(Ozip_code === "") {
+		if(Ozip_code == "" || Ozip_code.trim() == "" ) {
 			ozipcodeError.innerHTML = "필수 입력 사항";
 			checkResult = false;
+		}else{			
+			ozipcodeError.innerHTML = "";
 		}
 		
+		// 필수 배송지 입력
 		const oaddressError = document.querySelector(".oaddress-error");
-		
-		if(Oaddress === "") {
+		if(Oaddress == "" || Ozip_code.trim() == "") {
 			oaddressError.innerHTML = "필수 입력 사항";
 			checkResult = false;
+		} else{
+				oaddressError.innerHTML = "";			
+		}
+		// 수령인
+		const orecipentError = document.querySelector(".orecipent-error");
+		if(Orecipent == "" || Orecipent.trim() == "") {
+			orecipentError.innerHTML = "필수 입력 사항";
+			checkResult = false;
+		}else{
+			orecipentError.innerHTML = "";		
+		}
+		// 수령인 전화번호
+		const Orecipent_telError = document.querySelector(".orecipent_tel-error");
+		if(Orecipent_tel == "" || Orecipent_tel.trim() == "") {
+			Orecipent_telError.innerHTML = "필수 입력 사항";
+			checkResult = false;
+		}else{
+			const pattern = /(010|011|016|017|018|019)-[0-9]{3,4}-[0-9]{4}/g;
+			const result = pattern.test(Orecipent_tel);
+			if(result === false) {
+				console.log("번호 형식");
+				Orecipent_telError.innerHTML = "번호 형식이 아닙니다.";
+				checkResult = false;
+			}else{
+				Orecipent_telError.innerHTML = "";				
+			}
 		} 
-		/* 
-		//정규 표현식을 이용한 전화번호 형식 체크
-		let param2 = form.param2.value;
-		const param2Error = document.querySelector("#form0 .param2-error");
-		param2Error.innerHTML = "";
-		if(param2 === "") {
-			param2Error.innerHTML = "필수 입력 사항";
+	
+		// 주문자 전화번호
+		const Oorder_telError = document.querySelector(".order_tel-error");
+		if(Oorder_tel == "" || Oorder_tel.trim() == "") {
+			Oorder_telError.innerHTML = "필수 입력 사항";
 			checkResult = false;
-		} else {
-			const pattern = /(010|011)-[0-9]{3,4}-[0-9]{4}/i;
-			const result = pattern.test(param2);
+		}else{
+			const pattern = /(010|011|016|017|018|019)-[0-9]{3,4}-[0-9]{4}/g;
+			const result = pattern.test(Oorder_tel);
 			if(result === false) {
-				param2Error.innerHTML = "전화번호 형식이 아님";
+				console.log(Oorder_tel);
+				Oorder_telError.innerHTML = "번호 형식이 아닙니다.";
 				checkResult = false;
+			}else{
+				Oorder_telError.innerHTML = "";				
+			}
+		} 
+		
+		// 수령인 이메일
+		const orecipent_emailError = document.querySelector(".orecipent_email-error");
+		console.log("orecipent_email2", orecipent_email2);
+		if(orecipent_email1.value == "" || orecipent_email1.value.trim() == "") {
+			orecipent_emailError.innerHTML = "필수 입력 사항";
+			checkResult = false;
+		}else if(orecipent_email2.value == "" || orecipent_email2.value.trim() ==""){
+			orecipent_emailError.innerHTML = "필수 입력 사항";
+			checkResult = false;
+		}else{
+			const pattern = /^(.+)@(.+)$/g;
+			const result = pattern.test(Orecipent_email);
+			if(result === false) {
+				orecipent_emailError.innerHTML = "이메일 형식이 아닙니다.";
+				checkResult = false;
+			}else{
+				orecipent_emailError.innerHTML = "";				
 			}
 		}
 		
-		//정규 표현식을 이용한 이메일 형식 체크
-		let param3 = form.param3.value;
-		const param3Error = document.querySelector("#form0 .param3-error");
-		param3Error.innerHTML = "";
-		if(param3 === "") {
-			param3Error.innerHTML = "필수 입력 사항";
-			checkResult = false;
-		} else {
-			const pattern = /([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)/i;
-			const result = pattern.test(param3);
-			if(result === false) {
-				param3Error.innerHTML = "이메일 형식이 아님";
+		// 배송 요청 사항
+		const orequestError = document.querySelector(".orequest-error");
+		if(Orequest != "" && Orequest.length > 20 ){
+			orequestError.innerHTML ="배송 길이가 초과했습니다."
+		}else {
+			const pattern = /[\{\}\[\]\/?.,;:|\)*~`!^\-+<>@\#$%&\\\=\(\'\"]/gi;
+			
+			const result = pattern.test(Orequest);
+			if(result === true){
+				orequestError.innerHTML = "배송 요청은 특수문자를 포함할 수 없습니다.";
 				checkResult = false;
+			}else{
+				orequestError.innerHTML = "";				
 			}
 		}
 		
-		//날짜가 비었는지 체크
-		let param5 = form.param5.value;
-		console.log(param5);
-		const param5Error = document.querySelector("#form0 .param5-error");
-		param5Error.innerHTML = "";
-		if(param5 === "") {
-			param5Error.innerHTML = "필수 입력 사항";
-			checkResult = false;
-		}  */
-		
-		
+	
 		//서버로 제출할지 말지 결정
 		if(!checkResult) {
 			return false;
 		}
-
 		
 		//console.log(Ozip_code, Oaddress, Odetail_address, Orecipent, Orequest, Orecipent_tel, Oaddtional_tel, Orecipent_email);
 		
@@ -582,7 +620,7 @@
 				ocard_installmentrate_period: 0,
 				oaccountholder: null,
 				odeposit_deadline: null,
-				order_tel: null,
+				order_tel: Oorder_tel,
 				oaddtional_tel: Oaddtional_tel, 
 				orequest: Orequest,
 				orecipent_email: Orecipent_email,
