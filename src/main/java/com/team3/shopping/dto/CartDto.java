@@ -8,6 +8,7 @@ public class CartDto {
 	private String pid;
 	private String color_code;
 	private String size_code;
-	private String camount;
+	private int camount;
+//	private String camount;
 	private String price;
 }

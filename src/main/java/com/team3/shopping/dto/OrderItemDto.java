@@ -4,10 +4,10 @@ import lombok.Data;
 
 @Data
 public class OrderItemDto {
-	private String OID;
-	   private String PID;
-	   private String COLOR_CODE;
-	   private String SIZE_CODE;
-	   private String OAMOUNT;
-	   private String mainImageUrl;
+	private String oid;
+	   private String pid;
+	   private String color_code;
+	   private String size_code;
+	   private String oamount;
+	   private String mainimageurl;
 }

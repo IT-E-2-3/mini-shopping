@@ -85,7 +85,7 @@
 					<li class="nav-item"><a class="nav-link"
 						href="shoping-cart.html">쇼핑백(2)</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="order/orderList">주문조회</a></li>
+						href="${pageContext.request.contextPath}/order/orderList">주문조회</a></li>
 					<li class="nav-item"><a class="nav-link"
 						href="order_detail.html">마이쿠폰</a></li>
 				</ul>

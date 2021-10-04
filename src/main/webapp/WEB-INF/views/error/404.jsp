@@ -8,8 +8,15 @@
 	</div>
 	<div class="card-body">
 		<p>요청 URL이 잘못 구성 되었습니다.</p>
+			
 		<div>
-			<a href="${pageContext.request.contextPath}/" class="btn btn-danger btn-sm">홈으로가기</a>
+			<a href="${pageContext.request.contextPath}/" >
+			<img  src="/resources/images/team3.jpg" class="w-50">
+			</a>
+			<br>
+			<a href="${pageContext.request.contextPath}/" class="btn btn-danger btn-sm">홈으로가기
+			
+			</a>
 		</div>
 	</div>
 </div>
