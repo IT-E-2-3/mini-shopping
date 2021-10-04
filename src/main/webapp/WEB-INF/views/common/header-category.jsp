@@ -20,7 +20,7 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/vendor/bootstrap/css/bootstrap.min.css" />
 <script
-	src="${pageContext.request.contextPath}/resources/jquery/jquery-3.5.1.min.js"></script>
+	src="${pageContext.request.contextPath}/resources/vendor/jquery/jquery-3.2.1.min.js"></script>
 <script
 	src="${pageContext.request.contextPath}/resources/vendor/bootstrap/js/bootstrap.min.js"></script>
 <script
