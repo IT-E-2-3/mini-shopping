@@ -14,13 +14,12 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <!--===============================================================================================-->
-<link rel="icon" type="image/png"
-	href="${pageContext.request.contextPath}/images/icons/favicon.png" />
+<link rel="icon" type="image/jpg"
+	href="${pageContext.request.contextPath}/resources/images/icons/hansome.jpg" />
 <!--===============================================================================================-->
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/vendor/bootstrap/css/bootstrap.min.css" />
-<script
-	src="${pageContext.request.contextPath}/resources/jquery/jquery-3.5.1.min.js"></script>
+<script	src="${pageContext.request.contextPath}/resources/vendor/jquery/jquery-3.2.1.min.js"></script>
 <script
 	src="${pageContext.request.contextPath}/resources/bootstrap-4.6.0-dist/js/bootstrap.bundle.min.js"></script>
 
@@ -56,6 +55,8 @@
 	href="${pageContext.request.contextPath}/resources/css/main.css" />
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/css/style.css" />
+	
+	
 </head>
 <body>
 	<!-- Header -->
@@ -70,7 +71,26 @@
 
 			<div class="right">
 				<ul class="navbar-nav">
-					<li class="nav-item"><a class="nav-link" href="#">로그인</a></li>
+					<sec:authorize access="isAnonymous()">
+						<li class="nav-item"><a class="nav-link" href="/loginForm">로그인</a>
+						</li>
+					</sec:authorize>
+
+					<sec:authorize access="isAuthenticated()">
+
+						<%-- 사이트간 요청 위조 방지가 비활성화되어 있을 경우 --%>
+						<%-- 
+							<a href="${pageContext.request.contextPath}/logout" 
+							   class="btn btn-success btn-sm">로그아웃</a> 
+							--%>
+
+						<%-- 사이트간 요청 위조 방지가 활성화되어 있을 경우 --%>
+
+
+
+						<li class="nav-item"><a class="nav-link" href="/logout">로그아웃</a>
+						</li>
+					</sec:authorize>
 					<li class="nav-item"><a class="nav-link" href="#">쇼핑백(2)</a></li>
 					<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/order/orderList">주문조회</a></li>
 				</ul>

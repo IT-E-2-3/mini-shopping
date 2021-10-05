@@ -14,18 +14,18 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <!--===============================================================================================-->
-<link rel="icon" type="image/png"
-	href="${pageContext.request.contextPath}/images/icons/favicon.png" />
+<link rel="icon" type="image/jpg"
+	href="${pageContext.request.contextPath}/resources/images/icons/hansome.jpg" />
 <!--===============================================================================================-->
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/vendor/bootstrap/css/bootstrap.min.css" />
 <script
-	src="${pageContext.request.contextPath}/resources/jquery/jquery-3.5.1.min.js"></script>
+	src="${pageContext.request.contextPath}/resources/vendor/jquery/jquery-3.2.1.min.js"></script>
 <script
 	src="${pageContext.request.contextPath}/resources/vendor/bootstrap/js/bootstrap.min.js"></script>
 <script
 	src="${pageContext.request.contextPath}/resources/bootstrap-4.6.0-dist/js/bootstrap.bundle.min.js"></script>
-	
+
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/fonts/font-awesome-4.7.0/css/font-awesome.min.css" />
@@ -36,14 +36,12 @@
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/fonts/linearicons-v1.0.0/icon-font.min.css" />
 <!--===============================================================================================-->
-<link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/resources/vendor/animate/animate.css" />
+
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/vendor/css-hamburgers/hamburgers.min.css" />
 <!--===============================================================================================-->
-<link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/resources/vendor/animsition/css/animsition.min.css" />
+
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/vendor/select2/select2.min.css" />
@@ -71,19 +69,42 @@
 			<div class="middle">
 				<ul id="navbar" class="navbar-nav"
 					style="display: flex; margin-left: 15px">
-					<li class="nav-item"><a class="nav-link" href="#" data-action="키즈">키즈</a></li>
-					<li class="nav-item"><a class="nav-link" href="#" data-action="라이프스타일">라이프스타일</a></li>
-					<li class="nav-item"><a class="nav-link" href="#" data-action="남성">남성</a></li>
-					<li class="nav-item"><a class="nav-link" href="#" data-action="여성">여성</a></li>
+					<li class="nav-item"><a class="nav-link" href="#"
+						data-action="키즈">키즈</a></li>
+					<li class="nav-item"><a class="nav-link" href="#"
+						data-action="라이프스타일">라이프스타일</a></li>
+					<li class="nav-item"><a class="nav-link" href="#"
+						data-action="남성">남성</a></li>
+					<li class="nav-item"><a class="nav-link" href="#"
+						data-action="여성">여성</a></li>
 				</ul>
 			</div>
 
 			<div class="right">
 				<ul class="navbar-nav">
-					<li class="nav-item"><a class="nav-link" href="login.html">로그아웃</a>
-					</li>
+					<sec:authorize access="isAnonymous()">
+						<li class="nav-item"><a class="nav-link" href="/loginform">로그인</a>
+						</li>
+					</sec:authorize>
+
+					<sec:authorize access="isAuthenticated()">
+
+						<%-- 사이트간 요청 위조 방지가 비활성화되어 있을 경우 --%>
+						<%-- 
+							<a href="${pageContext.request.contextPath}/logout" 
+							   class="btn btn-success btn-sm">로그아웃</a> 
+							--%>
+
+						<%-- 사이트간 요청 위조 방지가 활성화되어 있을 경우 --%>
+
+
+
+						<li class="nav-item"><a class="nav-link" href="/logout">로그아웃</a>
+						</li>
+					</sec:authorize>
+
 					<li class="nav-item"><a class="nav-link"
-						href="shoping-cart.html">쇼핑백(2)</a></li>
+						href="${pageContext.request.contextPath}/cart/">쇼핑백(숫자)</a></li>
 					<li class="nav-item"><a class="nav-link"
 						href="${pageContext.request.contextPath}/order/orderList">주문조회</a></li>
 					<li class="nav-item"><a class="nav-link"
@@ -96,7 +117,8 @@
 	<!-- 키즈 category -->
 	<div id="키즈" class="sub-back">
 		<li class="category-list">전체보기</li>
-		<ul class="category-list" style="display: flex; flex-direction: column">
+		<ul class="category-list"
+			style="display: flex; flex-direction: column">
 			<div class="largecategory">의류</div>
 			<li>하의</li>
 			<li>상의</li>
@@ -107,7 +129,7 @@
 			<li>기타 소품</li>
 		</ul>
 	</div>
-	
+
 	<!-- 라이프스타일 -->
 	<div id="라이프스타일" class="sub-back">
 		<li class="category-list">전체보기</li>
@@ -157,7 +179,7 @@
 			<li>SYSTEM HOMME : TYPE 2</li>
 			<li>THEHANDSOME 5TH : # WITH US</li>
 			<li>TIME HOMME : ONLINE EXCLUSIVE</li>
-			<li>TIME HOMME THE GENTLE </li>
+			<li>TIME HOMME THE GENTLE</li>
 		</ul>
 
 		<ul class="category-list">
@@ -221,7 +243,7 @@
 			<div class="largecategory">SPECIAL SHOP*</div>
 			<li>잠시 생략....</li>
 		</ul>
-		
+
 		<ul class="category-list">
 			<div class="largecategory">탑</div>
 			<li>블라우스</li>
@@ -230,7 +252,7 @@
 			<li>티셔츠</li>
 		</ul>
 	</div>
-	
+
 	<div class="page-title"></div>
 	<script>
       class menu {
