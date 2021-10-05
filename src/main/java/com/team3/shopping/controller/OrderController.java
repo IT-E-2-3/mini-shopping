@@ -3,6 +3,7 @@ package com.team3.shopping.controller;
 import java.security.Principal;
 import java.text.DecimalFormat;
 import java.time.LocalTime;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -72,7 +73,16 @@ public class OrderController {
 
 		model.addAttribute("OrderRowList", OrderRowList);
 		model.addAttribute("total_amount", decimal_total_amount);
+		String mname = member.getMname();
+		StringBuilder sb = new StringBuilder();
+		sb.append(mname.charAt(0));
+		for (int i = 0; i < mname.length()-2; i++) {
+			sb.append("*");
+		}
+		sb.append(mname.charAt(mname.length()-1));
+		member.setMname(sb.toString());
 		model.addAttribute("member", member);
+		
 
 
       return "order/order";
@@ -106,7 +116,7 @@ public class OrderController {
 
    @GetMapping(value="order", produces = "application/json'; charset=UTF-8")
    @ResponseBody
-   public String orderForm(@ModelAttribute("orderForm") @Valid OrderDto order, Errors errors, Principal principal) {
+   public String orderForm(@ModelAttribute("orderForm") @Valid OrderDto order, Errors errors, Principal principal, HttpSession session) {
       logger.info("실행");
       
       if (errors.hasErrors()) {
@@ -140,15 +150,18 @@ public class OrderController {
       order.setOid(oid);
       order.setOdate("21/10/01 18:15:17.000000000");
       order.setOtotal_price(total_amount);
+      
+      session.removeAttribute(oid);
+      session.setAttribute("oid", oid);
 
       logger.info(order.toString());
       
       logger.info("성공");
-      //orderService.makeOrder(OrderRowList, oid, order);
-
+      orderService.makeOrder(OrderRowList, oid, order);
+      logger.info(order.toString());
       // 성공시
 
-      // List<OrderRowDetailDto> OrderRowList = orderService.getMyCart(mid);
+//       List<OrderRowDetailDto> OrderRowList = orderService.getMyCart(mid);
       //
 
       // BeanUtils.copyProperties(mid, timesteamp);
@@ -161,13 +174,23 @@ public class OrderController {
    }
 
 
-   @GetMapping("/orderSuccess")
-   public String orderSuccess() {
-      logger.info("실행");
-     
+
    
-      return "order/orderSuccess";
-   }
+
+	@RequestMapping("/ordersuccess")
+	public String ordersuccess(Model model, HttpSession session) {
+		logger.info("실행");
+		String oid = (String) session.getAttribute("oid");
+		OrderDto order = (OrderDto) orderService.getOrder(oid);
+		List<OrderRowDetailDto> orderItems = orderService.getProductInfo(oid);
+
+		model.addAttribute("order", order);
+		model.addAttribute("orderItems", orderItems);
+
+	
+		logger.info(orderItems.toString());
+		return "order/orderSuccess";
+	}
    
    @RequestMapping("/error/403")
    public String error403() {
@@ -176,10 +199,12 @@ public class OrderController {
    }
 
    @RequestMapping("/orderList")
-   public String orderList(Model model) {
+   public String orderList(Model model, Principal principal) {
       logger.info("실행");
+      MemberInfoDto member = orderService.getMid(principal.getName());
 
-      String mid = "M1"; // test
+      String mid = member.getMid();
+//      String mid = "M1"; // test
       List<OrderDto> orders = orderService.getOrderList(mid);
 
       for (OrderDto order : orders) {

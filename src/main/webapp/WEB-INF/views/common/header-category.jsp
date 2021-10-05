@@ -14,8 +14,8 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <!--===============================================================================================-->
-<link rel="icon" type="image/png"
-	href="${pageContext.request.contextPath}/resources/images/icons/favicon.png" />
+<link rel="icon" type="image/jpg"
+	href="${pageContext.request.contextPath}/resources/images/icons/hansome.jpg" />
 <!--===============================================================================================-->
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/vendor/bootstrap/css/bootstrap.min.css" />
