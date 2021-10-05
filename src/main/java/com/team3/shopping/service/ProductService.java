@@ -33,4 +33,16 @@ public class ProductService {
 	public int getCountRows(String cateCode) {
 		return productdao.getCountRows(cateCode);
 	}
+	public ProductListDto getproductDetail(String pid, String color) {
+		return productdao.getproductDetail(pid, color);
+	}
+	public List<ProductListDto> getSizeList(String pid, String color) {
+		return productdao.getSizeList(pid, color);
+	}
+	public List<ProductListDto> getColorList(String pid) {
+		return productdao.getColorList(pid);
+	}
+	public ProductListDto getMatchingCloth(String pid, String color) {
+		return productdao.getMatchingCloth(pid, color);
+	}
 }

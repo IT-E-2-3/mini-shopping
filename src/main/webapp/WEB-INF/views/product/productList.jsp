@@ -47,7 +47,7 @@
 						<div class="product-content">
 							<div class="size">${product.size_code}</div>
 							<div class="size">${product.pbrand}</div>
-							<div class="title"><a href="detail">${product.pname}</a></div>
+							<div class="title"><a href="detail?pid=${product.pid}&co=${product.color_code}">${product.pname}</a></div>
 							<div class="tag">NEW</div>
 							<div class="price">₩&nbsp;${product.pprice}</div>
 							<div>
