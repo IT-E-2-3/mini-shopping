@@ -374,7 +374,7 @@
 									</select>
 
 								</div> <span class="orecipent_email-error text-danger"></span>
-								<div class="form-group  w-25 d-inline-block m-b-10">
+								<div class="form-group  w-25 d-inline-block m-b-10" id="orecipent_email-error-scroll">
 									<label for="exampleSelect1" class="form-label"></label>
 								</div>
 							</th>
@@ -404,22 +404,20 @@
 								<fieldset class="form-group" name="payment">
 									<div class="form-check d-inline-flex">
 										<label class="form-check-label"> <input type="radio"
-											class="form-check-input " name="optionsRadiospayment"
-											id="card" value="1" checked="" onchange="setDisplay()">
-											신용카드
+											class="form-check-input " name="opayment" id="card" value="1"
+											checked="" onchange="setDisplay()"> 신용카드
 										</label>
 									</div>
 									<div class="form-check d-inline-flex">
 										<label class="form-check-label"> <input type="radio"
-											class="form-check-input" name="optionsRadiospayment"
-											id="mileage" value="2" onchange="setDisplay()"> 마일리지
+											class="form-check-input" name="opayment" id="mileage"
+											value="2" onchange="setDisplay()"> 마일리지
 										</label>
 									</div>
 									<div class="form-check disabled d-inline-flex">
 										<label class="form-check-label"> <input type="radio"
-											class="form-check-input" name="optionsRadiospayment"
-											id="virtualAccount" value="3" onchange="setDisplay()">
-											가상계좌
+											class="form-check-input" name="opayment" id="virtualAccount"
+											value="3" onchange="setDisplay()"> 가상계좌
 										</label>
 									</div>
 									<div></div>
@@ -443,149 +441,248 @@
 							</tr>
 						</thead>
 						<tbody>
-							
-						
-							
-							<tr class="table-secondary">
+
+
+
+							<tr class="table-secondary ">
 								<!-- 행 -->
 								<th class="col-sm-3 text-center text-black"
-									style="border-right: 0.3px solid #cabfbf; ">
-									<fieldset class="form-group2" name="ocard_name">
+									style="border-right: 0.3px solid #cabfbf;">
+									<fieldset class="form-group2" name="1">
 										<div class="form-check d-inline-flex">
 											<label class="form-check-label"> <input type="radio"
-												class="form-check-input " name="optionsRadios" id="현대카드"
-												value="현대카드" checked=""> 현대카드
+												class="hyundai form-check-input" name="ocard_name"
+												id="ocard_name" value="현대카드" onchange="javascript:send()">
+												현대카드
 											</label>
 										</div>
 										<img alt="현대카드"
 											src="https://www.thehandsome.com/medias/HYUNDAI.jpg?context=bWFzdGVyfHJvb3R8MjYxMHxpbWFnZS9qcGVnfGg1ZC9oN2MvODgxNDE4MTcxMTkwMi5qcGd8YmM5ZWY0ZjlhODlkMzdmMjYyNmY4NjQ4OWU5NWVjOWFlMGY4ODIwYzZlNjA0MjBlNDkwNWI0ZDllYThjMWE5Mw">
 									</fieldset>
 								</th>
+
+
 								<!-- 행 -->
 								<th class="col-sm-5 text-center text-black"
-									style="border-right: 0.3px solid #cabfbf; ">
-									현대카드 5만원 이상 결제시
-									2~7개월 무이자 할부
-									<input type="text" hidden="" name="ocard_installmentrate" value="5">
-									</th>
-							
+									style="border-right: 0.3px solid #cabfbf;">현대카드 5만원 이상 결제시
+									2~7개월 무이자 할부 <input type="text" hidden=""
+									id="ocard_installmentrate" name="ocard_installmentrate"
+									class="hyundai" value="5">
+								</th>
 
-								<th class="col-sm-4 text-center text-black">
-									<label for="exampleInputEmail1" class="form-label mt-4"></label>
-									<input type="text" class="form-control text-center"
-										placeholder="3" id="ocard_installmentrate_period" name="ocard_installmentrate_period" value="3"
-										maxlength="2"></th>
+
+								<th class="col-sm-4 text-center text-black"><label
+									for="exampleInputEmail1" class="form-label mt-4"></label> <select
+									 id="ocard_installmentrate_period"
+									name="ocard_installmentrate_period"
+									class="hyundai form-select  text-center" onchange="javascript:send()">
+										<option value="0" selected="selected">일시불</option>
+										<option value="1">1개월</option>
+										<option value="2">2개월</option>
+										<option value="3">3개월</option>
+										<option value="3">3개월</option>
+										<option value="4">4개월</option>
+										<option value="5">5개월</option>
+
+								</select></th>
 							</tr>
-							
-							<tr class="table-secondary">
+
+
+							<tr class="table-secondary ">
 								<!-- 행 -->
 								<th class="col-sm-3 text-center text-black"
-									style="border-right: 0.3px solid #cabfbf; ">
-									<fieldset class="form-group2" name="ocard_name">
+									style="border-right: 0.3px solid #cabfbf;">
+									<fieldset class="form-group2" name="1">
 										<div class="form-check d-inline-flex">
 											<label class="form-check-label"> <input type="radio"
-												class="form-check-input " name="optionsRadios" id="현대카드"
-												value="현대카드" checked=""> 현대카드
+												class="BC form-check-input" name="ocard_name"
+												id="ocard_name" value="BC카드" onchange="javascript:send()">
+												BC카드
 											</label>
 										</div>
 										<img alt="현대카드"
 											src="https://www.thehandsome.com/medias/HYUNDAI.jpg?context=bWFzdGVyfHJvb3R8MjYxMHxpbWFnZS9qcGVnfGg1ZC9oN2MvODgxNDE4MTcxMTkwMi5qcGd8YmM5ZWY0ZjlhODlkMzdmMjYyNmY4NjQ4OWU5NWVjOWFlMGY4ODIwYzZlNjA0MjBlNDkwNWI0ZDllYThjMWE5Mw">
 									</fieldset>
 								</th>
+
+
 								<!-- 행 -->
 								<th class="col-sm-5 text-center text-black"
-									style="border-right: 0.3px solid #cabfbf; ">
-									현대카드 5만원 이상 결제시
-									2~7개월 무이자 할부
-									<input type="text" hidden="" name="ocard_installmentrate" value="5">
-									</th>
-							
-
-								<th class="col-sm-4 text-center text-black">
-									<label for="exampleInputEmail1" class="form-label mt-4"></label>
-									<input type="text" class="form-control text-center"
-										placeholder="3" id="ocard_installmentrate_period" name="ocard_installmentrate_period" value="3"
-										maxlength="2"></th>
-							</tr>
-							
-							<tr class="table-secondary">
-								<!-- 행 -->
-								<th class="col-sm-3 text-center text-black"
-									style="border-right: 0.3px solid #cabfbf; ">
-									<fieldset class="form-group2" name="ocard_name">
-										<div class="form-check d-inline-flex">
-											<label class="form-check-label"> <input type="radio"
-												class="form-check-input " name="optionsRadios" id="현대카드"
-												value="현대카드" checked=""> 현대카드
-											</label>
-										</div>
-										<img alt="현대카드"
-											src="https://www.thehandsome.com/medias/HYUNDAI.jpg?context=bWFzdGVyfHJvb3R8MjYxMHxpbWFnZS9qcGVnfGg1ZC9oN2MvODgxNDE4MTcxMTkwMi5qcGd8YmM5ZWY0ZjlhODlkMzdmMjYyNmY4NjQ4OWU5NWVjOWFlMGY4ODIwYzZlNjA0MjBlNDkwNWI0ZDllYThjMWE5Mw">
-									</fieldset>
+									style="border-right: 0.3px solid #cabfbf;">현대카드 5만원 이상 결제시
+									2~7개월 무이자 할부 <input type="text" hidden=""
+									id="ocard_installmentrate" name="ocard_installmentrate"
+									class="BC" value="5">
 								</th>
-								<!-- 행 -->
-								<th class="col-sm-5 text-center text-black"
-									style="border-right: 0.3px solid #cabfbf; ">
-									현대카드 5만원 이상 결제시
-									2~7개월 무이자 할부
-									<input type="text" hidden="" name="ocard_installmentrate" value="5">
-									</th>
-							
 
-								<th class="col-sm-4 text-center text-black">
-									<label for="exampleInputEmail1" class="form-label mt-4"></label>
-									<input type="text" class="form-control text-center"
-										placeholder="3" id="ocard_installmentrate_period" name="ocard_installmentrate_period" value="3"
-										maxlength="2"></th>
+
+								<th class="col-sm-4 text-center text-black"><label
+									for="exampleInputEmail1" class="form-label mt-4"></label> <select
+									 id="ocard_installmentrate_period"
+									name="ocard_installmentrate_period"
+									class="BC form-select  text-center" onchange="javascript:send()">
+										<option value="0" selected="selected">일시불</option>
+										<option value="1">1개월</option>
+										<option value="2">2개월</option>
+										<option value="3">3개월</option>
+										<option value="3">3개월</option>
+										<option value="4">4개월</option>
+										<option value="5">5개월</option>
+
+								</select> <!--  <input
+									type="text" class="form-control text-center BC" placeholder="3"
+									id="ocard_installmentrate_period"
+									name="ocard_installmentrate_period" value="3" maxlength="2"> -->
+								</th>
 							</tr>
-							
-							
-							
-							
-							
-					
-							
-
-							<!--  
-										<div class="form-check d-inline-flex">
-											<label class="form-check-label"> <input type="radio"
-												class="form-check-input" name="optionsRadios" id="삼성카드"
-												value="삼성카드" > 삼성카드
-											</label>
-										</div>
-										<div class="form-check disabled d-inline-flex">
-											<label class="form-check-label"> <input type="radio"
-												class="form-check-input" name="optionsRadios"
-												id="비씨카드" value="비씨카드" >
-												비씨카드
-											</label>
-										</div>
-									
-									-->
-
-
 
 						</tbody>
 					</table>
 					<!-- 공 테이블 끝 -->
 				</div>
 
+				<div id="mileageView">
+
+					<h3>마일리지</h3>
+					<table class="table m-b-77" style="width: 100%">
+						<thead class=" h-25 ">
+							<tr>
+								<th class="col-sm-2 text-center text-black"></th>
+								<th class="col-sm-10 text-left text-black"></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr class="table-secondary">
+								<!-- 행 -->
+								<th class="col-sm-2 text-center text-black table-active"
+									style="border-right: 0.3px solid #cabfbf; border-bottom: 0.3px solid #a5a3a3">
+									<div class="">사용 마일리지</div>
+								</th>
+								<!-- 행 -->
+								<th class="col-sm-10 text-left text-black">
+
+									<div class="form-check d-inline-flex">
+										<h3>사용 예정 마일리지는 ${total_amount} 포인트 입니다.</h3>
+									</div>
+								</th>
+							</tr>
+
+						</tbody>
+					</table>
 
 
 
+				</div>
+				<div id="virtualAccountView">
+					<h3>가상계좌</h3>
+					<table class="table m-b-77" style="width: 100%">
+						<thead class=" h-25 ">
+							<tr>
+								<th class="col-sm-2 text-center text-black"></th>
+								<th class="col-sm-10 text-left text-black"></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr class="table-secondary">
+								<!-- 행 -->
+								<th class="col-sm-2 text-center text-black table-active"
+									style="border-right: 0.3px solid #cabfbf; border-bottom: 0.3px solid #a5a3a3">
+									<div class="">입금 위치</div>
+								</th>
+								<!-- 행 -->
+								<th class="col-sm-10 text-left text-black">
+
+									<div class="form-check d-inline-flex">
+										<h3>우체국 102345-678-91011</h3>
+									</div>
+								</th>
+							</tr>
+							
+							<tr class="table-secondary">
+								<!-- 행 -->
+								<th class="col-sm-2 text-center text-black table-active"
+									style="border-right: 0.3px solid #cabfbf; border-bottom: 0.3px solid #a5a3a3">
+									<div class="">입금 기한</div>
+								</th>
+								<!-- 행 -->
+								<th class="col-sm-10 text-left text-black">
+
+									<div class="form-check d-inline-flex" >
+										<h3> ${order.odeposit_deadline} 까지 입금하지 않을 시 주문이 자동 취소 됩니다.</h3>
+										<input hidden="hidden" id="odeposit_deadline" name="odeposit_deadline" >
+									</div>
+								</th>
+							</tr>
+
+						</tbody>
+					</table>
+
+				</div>
+
+
+<!-- 
 				<script>
-				function setDisplay(){
-				    if($('input:radio[id=card]').is(':checked')){
-				        $('#cardView').show();
-				    }else{
-				        $('#cardView').hide();
-				    }
-				}
+				$(document).ready(function(){
+					 if($('input:radio[id=card]').is(':checked')){
+					        $('#cardView').show();
+					    }else{
+					        $('#cardView').hide();
+					    }
+					    
+					    if($('input:radio[id=mileage]').is(':checked')){
+					        $('#mileageView').show();
+					    }else{
+					        $('#mileageView').hide();
+					    }
+					    
+					    if($('input:radio[id=virtualAccount]').is(':checked')){
+					        $('#virtualAccountView').show();
+					    }else{
+					        $('#virtualAccountView').hide();
+					    }
+				});
+				
+					function setDisplay(){
+					    if($('input:radio[id=card]').is(':checked')){
+					        $('#cardView').show();
+					    }else{
+					        $('#cardView').hide();
+					    }
+					    
+					    if($('input:radio[id=mileage]').is(':checked')){
+					        $('#mileageView').show();
+					    }else{
+					        $('#mileageView').hide();
+					    }
+					    
+					    if($('input:radio[id=virtualAccount]').is(':checked')){
+					        $('#virtualAccountView').show();
+					    }else{
+					        $('#virtualAccountView').hide();
+					    }
+					}
+					
+					function send(){
+						console.log("send")
+						if($('input:radio[id=card]').is(':checked')){
+							var className = $('input:radio[name=ocard_name]:checked').attr('class')
+							//var className2 =document.querySelector('input[name="ocard_name"]:checked').value;
+							console.log(className); //hyundai
+							var strArray=className.split(' ');
+							console.log(strArray[0]);
+							var elementsall = document.querySelectorAll('.' +strArray[0]);
+							console.log(elementsall);
+						
+					      const	Ocard_name = elementsall[0].value;
+					      const	Ocard_installmentrate  = elementsall[1].value;
+					      const	Ocard_installmentrate_period = elementsall[2].value;
+						     
+						}
+					}
 				 
 				 
 				</script>
 
-
+ -->
 			</div>
 			<!-- 왼쪽 끝  -->
 			<!-- 오른쪽 시작 -->
@@ -598,7 +695,9 @@
 						<div class="flex-w flex-t p-b-13 justify-content-between">
 							<b style="color: black;"> 상품금액</b>
 							<div>
-								<span id="totalNormalAmt">${total_amount}</span>원
+								<span id="totalNormalAmt" name="totalNormalAmt">${total_amount}</span>원
+								<input hidden="hidden" id="totalprice" name="totalprice"
+									value="${total_amount}">
 							</div>
 						</div>
 						<div class="flex-w flex-t bor12 p-b-13 justify-content-between">
@@ -630,6 +729,71 @@
 
 </div>
 <script>
+let	Ocard_name=7; //default
+let	Ocard_installmentrate=7; //default
+let	Ocard_installmentrate_period=7; //default
+let Ototal_price= totalprice.value;
+$(document).ready(function(){
+	 if($('input:radio[id=card]').is(':checked')){
+	        $('#cardView').show();
+	    }else{
+	        $('#cardView').hide();
+	    }
+	    
+	    if($('input:radio[id=mileage]').is(':checked')){
+	        $('#mileageView').show();
+	    }else{
+	        $('#mileageView').hide();
+	    }
+	    
+	    if($('input:radio[id=virtualAccount]').is(':checked')){
+	        $('#virtualAccountView').show();
+	    }else{
+	        $('#virtualAccountView').hide();
+	    }
+});
+
+	function setDisplay(){
+	    if($('input:radio[id=card]').is(':checked')){
+	        $('#cardView').show();
+	    }else{
+	        $('#cardView').hide();
+	    }
+	    
+	    if($('input:radio[id=mileage]').is(':checked')){
+	        $('#mileageView').show();
+	    }else{
+	        $('#mileageView').hide();
+	    }
+	    
+	    if($('input:radio[id=virtualAccount]').is(':checked')){
+	        $('#virtualAccountView').show();
+	    }else{
+	        $('#virtualAccountView').hide();
+	    }
+	}
+	
+	
+	
+	function send(){
+		console.log("send")
+		if($('input:radio[id=card]').is(':checked')){
+			let className = $('input:radio[name=ocard_name]:checked').attr('class')
+			//var className2 =document.querySelector('input[name="ocard_name"]:checked').value;
+			console.log(className); //hyundai
+			let strArray=className.split(' ');
+			console.log(strArray[0]);
+			let elementsall = document.querySelectorAll('.' +strArray[0]);
+			console.log(elementsall);
+		
+			Ocard_name= elementsall[0].value;
+			Ocard_installmentrate= elementsall[1].value;
+			Ocard_installmentrate_period= elementsall[2].value;
+		     
+		}
+	}
+	
+	
    function requestPost() {
       
       event.preventDefault();
@@ -644,6 +808,15 @@
       const Oaddtional_tel = tel7.value +  "-" + tel8.value +  "-" + tel9.value;
       const Orecipent_email = orecipent_email1.value + "@" + orecipent_email2.value;
       
+      const Opayment=document.querySelector('input[name="opayment"]:checked').value;
+    /*   for (var i=0; i<Opayment_len; i++) {
+          if (document.getElementsByName("opayment")[i].checked == true) {
+        	//  alert(document.getElementsByName("opayment")[i].value);
+        	  opayment.value
+          }
+      } */
+      
+      
       /*
       브라우저 유효성 검사
       */
@@ -657,6 +830,9 @@
       ozipcodeError.innerHTML = "";
       if(Ozip_code == "" || Ozip_code.trim() == "" ) {
          ozipcodeError.innerHTML = "필수 입력 사항";
+         //스크롤이동시키기 
+         document.getElementById("ozip_code").scrollIntoView(false);
+   	
          checkResult = false;
       }else{         
          ozipcodeError.innerHTML = "";
@@ -714,8 +890,11 @@
       
       // 수령인 이메일
       const orecipent_emailError = document.querySelector(".orecipent_email-error");
-      console.log("orecipent_email2", orecipent_email2);
+      console.log("orecipent_email2", orecipent_email2.value);
+      console.log("orecipent_email1", orecipent_email1.value);
       if(orecipent_email1.value == "" || orecipent_email1.value.trim() == "") {
+    	  document.getElementById("orecipent_email-error-scroll").scrollIntoView(false);
+    	  //스크롤이동시키기 
          orecipent_emailError.innerHTML = "필수 입력 사항";
          checkResult = false;
       }else if(orecipent_email2.value == "" || orecipent_email2.value.trim() ==""){
@@ -735,7 +914,7 @@
       // 배송 요청 사항
       const orequestError = document.querySelector(".orequest-error");
       if(Orequest != "" && Orequest.length > 20 ){
-         orequestError.innerHTML ="배송 길이가 초과했습니다."
+         orequestError.innerHTML ="배송 길이가 초과되었습니다."
       }else {
          const pattern = /[\{\}\[\]\/?.,;:|\)*~`!^\-+<>@\#$%&\\\=\(\'\"]/gi;
          
@@ -769,18 +948,20 @@
             odetail_address: Odetail_address,
             orecipent: Orecipent,
             orecipent_tel: Orecipent_tel,
-            ototal_price: 0,
+            ototal_price: Ototal_price,
+            //ototal_price = totalprice.value;
             ochannel: "the handsome",
-            ocard_name: null, 
-            ocard_installmentrate: 0, 
-            ocard_installmentrate_period: 0,
-            oaccountholder: null,
+            ocard_name: Ocard_name, 
+            ocard_installmentrate: Ocard_installmentrate, 
+            ocard_installmentrate_period: Ocard_installmentrate_period,
+            oaccountholder: "우체국 102345-678-91011",
             odeposit_deadline: null,
             order_tel: Oorder_tel,
             oaddtional_tel: Oaddtional_tel, 
             orequest: Orequest,
             orecipent_email: Orecipent_email,
-            opayment: 1
+            opayment: Opayment,
+           
          },
          contentType: "application/x-www-form-urlencoded; charset=UTF-8;"
       })
