@@ -214,7 +214,7 @@
 
 		<ul class="category-list"
 			style="display: flex; flex-direction: column">
-			<div class="largecategory"><a href="product/list?c=0403">아우터</a></div>
+			<div class="largecategory"><a href="${pageContext.request.contextPath}/product/list?c=0403">아우터</a></div>
 			<li>가디건/베스트</li>
 			<li>코트</li>
 			<li>다운/패딩</li>
@@ -224,7 +224,7 @@
 		</ul>
 
 		<ul class="category-list">
-			<div class="largecategory">팬츠</div>
+			<div class="largecategory"><a href="${pageContext.request.contextPath}/product/list?c=0404">팬츠</a></div>
 			<li>캐주얼</li>
 			<li>데님</li>
 			<li>포멀</li>
@@ -232,7 +232,7 @@
 		</ul>
 		<ul class="category-list"
 			style="display: flex; flex-direction: column">
-			<div class="largecategory">스커트</div>
+			<div class="largecategory"><a href="${pageContext.request.contextPath}/product/list?c=0405">스커트</a></div>
 			<li>플레어 스커트</li>
 			<li>롱/맥시 스커트</li>
 			<li>미니 스커트</li>
