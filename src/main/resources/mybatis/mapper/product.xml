@@ -11,7 +11,7 @@
 	
 	<!-- 현 카테고리 이름 출력 -->
 	<select id="currentCategory" parameterType="string" resultType="category">
-		select category_name
+		select category_name, category_code, top_category_code
 		from category
 		where category_code = #{cateCode}
 	</select>
@@ -22,5 +22,47 @@
 		from category a, category b
 		where a.category_code = #{cateCode}
 		and a.top_category_code = b.category_code
+	</select>
+	
+	<!-- 상품 리스트 가져오기 -->
+	<!-- <select id="getproductList" parameterType="string" resultType="plist">
+		select p.pid, p.pname, p.pbrand, p.pprice, p.category_code, c.product_detail_url1, c.product_detail_url2, c.color_chip_url, s.size_code
+		from product p
+		join color_url c
+		on p.pid = c.pid
+		join stock s
+		on c.pid = s.pid and c.color_code=s.color_code
+		where p.category_code like #{cateCode}||'%'
+	</select> -->
+	
+	<select id="getproductList" parameterType="pager" resultType="plist">
+		SELECT rnum, pid, pname, pbrand, pprice, category_code, product_detail_url1, product_detail_url2, color_chip_url, size_code
+		FROM(
+			SELECT ROWNUM as rnum, pid, pname, pbrand, pprice, category_code, product_detail_url1, product_detail_url2, color_chip_url, size_code
+			FROM(
+			    select p.pid as pid, p.pname as pname, p.pbrand as pbrand, p.pprice as pprice, p.category_code as category_code,
+			     c.product_detail_url1 as product_detail_url1, c.product_detail_url2 as product_detail_url2, c.color_chip_url as color_chip_url, s.size_code as size_code
+				from product p
+				join color_url c
+				on p.pid = c.pid
+				join stock s
+				on c.pid = s.pid and c.color_code=s.color_code
+				where p.category_code like #{cateCode}||'%'
+				)
+			WHERE ROWNUM &lt;= #{pager.endRowNo}
+			)
+		WHERE rnum &gt;= #{pager.startRowNo}
+		
+	</select>
+	
+	<!-- 상품 리스트의 개수 가져오기(페이징 처리를 위함) -->
+	<select id="getCountRows" parameterType="string" resultType="int">
+		select count(*)
+		from product p
+		join color_url c
+		on p.pid = c.pid
+		join stock s
+		on c.pid = s.pid and c.color_code=s.color_code
+		where p.category_code like #{cateCode}||'%'
 	</select>
 </mapper>

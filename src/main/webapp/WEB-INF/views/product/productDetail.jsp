@@ -17,13 +17,11 @@
                     data-thumb="http://newmedia.thehandsome.com/IL/2B/FW/IL2B9WJC412W_DG_W01.jpg"
                   >
                     <div class="wrap-pic-w pos-relative">
-                      <img
-                        src="http://newmedia.thehandsome.com/IL/2B/FW/IL2B9WJC412W_DG_W01.jpg"
+                      <img src="http://newmedia.thehandsome.com/IL/2B/FW/IL2B9WJC412W_DG_W01.jpg"
                         alt="IMG-PRODUCT"
                       />
 
-                      <a
-                        class="
+                      <a class="
                           flex-c-m
                           size-108
                           how-pos1

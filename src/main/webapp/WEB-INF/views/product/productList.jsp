@@ -35,175 +35,66 @@
 		</div>
 		<div id="products" class="container">
 			<div class="row">
+			<c:forEach var="product" items="${plist}" varStatus="s">
 				<div class="col-md-4 col-sm-6">
 					<div class="product-grid2">
 						<div class="product-image2">
-							<a href="product-detail.html">
-								<img class="pic-1"src="${pageContext.request.contextPath}/resources/img/product1/instagram_video_thumb_283.jpg" />
-								<img class="pic-2" src="${pageContext.request.contextPath}/resources/img/product1/MN2BAKTO664W_LB_T02.jpg" />
+							<a href="detail">
+								<img class="pic-1" src="${product.product_detail_url1}" />
+								<img class="pic-2" src="${product.product_detail_url2}" />
 							</a>
 						</div>
 						<div class="product-content">
-							<div class="size">
-								<a href="product-detail.html">S M</a>
-							</div>
-							<div class="size">FORUM THE STORE</div>
-							<div class="title">벌룬 슬리브 티셔츠</div>
+							<div class="size">${product.size_code}</div>
+							<div class="size">${product.pbrand}</div>
+							<div class="title"><a href="detail">${product.pname}</a></div>
 							<div class="tag">NEW</div>
-							<div class="price">195,000</div>
+							<div class="price">₩&nbsp;${product.pprice}</div>
 							<div>
 								<div class="color"
-									style="background-color: brown; width: 15px; height: 15px; margin: auto;"></div>
+									style="width: 15px; height: 15px; margin: auto;"><img src="${product.color_chip_url}" style="width: 15px; height: 15px; margin: auto;"/></div>
 							</div>
 						</div>
 					</div>
 				</div>
-				<div class="col-md-4 col-sm-6">
-					<div class="product-grid2">
-						<div class="product-image2">
-							<a href="product-detail.html"> <img class="pic-1"
-								src="${pageContext.request.contextPath}/resources/img/product2/MN2B9WTO542W_BG_T01.jpg" />
-								<img class="pic-2" src="${pageContext.request.contextPath}/resources/img/product2/MN2B9WTO542W_BG_T02.jpg" />
-							</a>
-						</div>
-						<div class="product-content">
-							<div class="size">
-								<a href="product-detail.html">S M</a>
-							</div>
-							<div class="size">FORUM THE STORE</div>
-							<div class="title">벌룬 슬리브 티셔츠</div>
-							<div class="tag">NEW</div>
-							<div class="price">195,000</div>
-							<div>
-								<div class="color"
-									style="background-color: brown; width: 15px; height: 15px; margin: auto;"></div>
-							</div>
-						</div>
+				<c:if test="${s.count%3==0}">
 					</div>
-				</div>
-				<div class="col-md-4 col-sm-6">
-					<div class="product-grid2">
-						<div class="product-image2">
-							<a href="product-detail.html"> <img class="pic-1"
-								src="${pageContext.request.contextPath}/resources/img/product3/O22B9TTO575W_LG_T01.jpg" />
-								<img class="pic-2" src="${pageContext.request.contextPath}/resources/img/product3/O22B9TTO575W_LG_T02.jpg" />
-							</a>
-						</div>
-						<div class="product-content">
-							<div class="size">
-								<a href="product-detail.html">S M</a>
-							</div>
-							<div class="size">FORUM THE STORE</div>
-							<div class="title">
-								<a href="product-detail.html">벌룬 슬리브 티셔츠</a>
-							</div>
-							<div class="tag">NEW</div>
-							<div class="price">195,000</div>
-							<div>
-								<div class="color"
-									style="background-color: brown; width: 15px; height: 15px; margin: auto;"></div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-4 col-sm-6">
-					<div class="product-grid2">
-						<div class="product-image2">
-							<a href="#"> <img class="pic-1"
-								src="${pageContext.request.contextPath}/resources/img/product1/instagram_video_thumb_283.jpg" />
-								<img class="pic-2" src="${pageContext.request.contextPath}/resources/img/product1/MN2BAKTO664W_LB_T02.jpg" />
-							</a>
-						</div>
-						<div class="product-content">
-							<div class="size">
-								<a href="#">S M</a>
-							</div>
-							<div class="size">FORUM THE STORE</div>
-							<div class="title">벌룬 슬리브 티셔츠</div>
-							<div class="tag">NEW</div>
-							<div class="price">195,000</div>
-							<div>
-								<div class="color"
-									style="background-color: brown; width: 15px; height: 15px; margin: auto;"></div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4 col-sm-6">
-					<div class="product-grid2">
-						<div class="product-image2">
-							<a href="product-detail.html"> <img class="pic-1"
-								src="${pageContext.request.contextPath}/resources/img/product2/MN2B9WTO542W_BG_T01.jpg" />
-								<img class="pic-2" src="${pageContext.request.contextPath}/resources/img/product2/MN2B9WTO542W_BG_T02.jpg" />
-							</a>
-						</div>
-						<div class="product-content">
-							<div class="size">
-								<a href="#">S M</a>
-							</div>
-							<div class="size">FORUM THE STORE</div>
-							<div class="title">벌룬 슬리브 티셔츠</div>
-							<div class="tag">NEW</div>
-							<div class="price">195,000</div>
-							<div>
-								<div class="color"
-									style="background-color: brown; width: 15px; height: 15px; margin: auto;"></div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4 col-sm-6">
-					<div class="product-grid2">
-						<div class="product-image2">
-							<a href="product-detail.html"> <img class="pic-1"
-								src="${pageContext.request.contextPath}/resources/img/product3/O22B9TTO575W_LG_T01.jpg" />
-								<img class="pic-2" src="${pageContext.request.contextPath}/resources/img/product3/O22B9TTO575W_LG_T02.jpg" />
-							</a>
-						</div>
-						<div class="product-content">
-							<div class="size">
-								<a href="#">S M</a>
-							</div>
-							<div class="size">FORUM THE STORE</div>
-							<div class="title">
-								<a href="product-detail.html">벌룬 슬리브 티셔츠</a>
-							</div>
-							<div class="tag">NEW</div>
-							<div class="price">195,000</div>
-							<div>
-								<div class="color"
-									style="background-color: brown; width: 15px; height: 15px; margin: auto;"></div>
-							</div>
-						</div>
-					</div>
+					<div class="row">
+				</c:if>
+				<!--<c:if test="${s.end}"></div></div></c:if>-->
+			</c:forEach>
 				</div>
 			</div>
 		</div>
-	</div>
 	<div class="m-r-200 m-l-200">
 		<div class="m-r-300 m-l-300">
 			<div class="m-r-200 m-l-200">
 				<div class="btn-toolbar" role="toolbar"
 					aria-label="Toolbar with button groups"
 					style="justify-content: center">
-					<div class="btn-group me-2" role="group" aria-label="First group">
-						<button type="button" class="btn btn-secondary"><<</button>
-						<button type="button" class="btn btn-secondary">1</button>
-						<button type="button" class="btn btn-secondary">2</button>
-						<button type="button" class="btn btn-secondary">3</button>
-						<button type="button" class="btn btn-secondary">4</button>
-					</div>
-					<div class="btn-group me-2" role="group" aria-label="Second group">
-						<button type="button" class="btn btn-secondary">5</button>
-						<button type="button" class="btn btn-secondary">6</button>
-						<button type="button" class="btn btn-secondary">7</button>
-					</div>
-					<div class="btn-group" role="group" aria-label="Third group">
-						<button type="button" class="btn btn-secondary">8</button>
-						<button type="button" class="btn btn-secondary">>></button>
-					</div>
+					<div class="btn-group me-2" role="group" aria-label="group">
+	         			<a class="btn btn-outline-primary btn-sm" href="list?c=${current.category_code}&pageNo=1">처음</a>
+	         			<!-- 현재 그룹번호가 1이상일 경우에만 나타나게 함 -->
+	         			<c:if test="${pager.groupNo>1}">
+	         				<a class="btn btn-outline-info btn-sm" href="list?c=${current.category_code}&pageNo=${pager.startPageNo-1}">이전</a>
+	         			</c:if>
+	         			
+	         			<c:forEach var="i" begin="${pager.startPageNo}" end="${pager.endPageNo}">
+	         				<c:if test="${pager.pageNo!= i}">
+	         					<a class="btn btn-link" href="list?c=${current.category_code}&pageNo=${i}">${i}</a>
+	         				</c:if>
+	         				<c:if test="${pager.pageNo== i}">
+	         					<a class="btn btn-outline-danger" href="list?c=${current.category_code}&pageNo=${i}">${i}</a>
+	         				</c:if>
+	         			</c:forEach>
+	         			
+	         			<!-- 현재 그룹번호가 전체 그룹 수보다 작을 경우에만 나타나게 함 -->
+	         			<c:if test="${pager.groupNo<pager.totalGroupNo}">
+	         				<a class="btn btn-outline-info btn-sm" href="list?c=${current.category_code}&pageNo=${pager.endPageNo+1}">이후</a>
+	         			</c:if>
+	         			
+	         			<a class="btn btn-outline-primary btn-sm" href="list?c=${current.category_code}&pageNo=${pager.totalPageNo}">맨끝</a>
+	         		</div>
 				</div>
 			</div>
 		</div>

@@ -7,11 +7,12 @@
 		<typeAlias alias="category" type="com.team3.shopping.dto.CategoryDto" />
 		<typeAlias alias="product" type="com.team3.shopping.dto.ProductDto" />
 		<typeAlias type="com.team3.shopping.dto.ProductDto" alias="product"/>
-    <typeAlias alias="order" type="com.team3.shopping.dto.OrderDto" />
+    	<typeAlias alias="order" type="com.team3.shopping.dto.OrderDto" />
 		<typeAlias alias="orderItem" type="com.team3.shopping.dto.OrderItemDto" />
 		<typeAlias alias="orderRowDetail" type="com.team3.shopping.dto.OrderRowDetailDto" />
 		<typeAlias alias="MemberInfo" type="com.team3.shopping.dto.MemberInfoDto" />
 <!-- 경무 		<typeAlias alias="OrderRowDetail" type="com.team3.shopping.dto.OrderRowDetailDto" /> -->
-
+		<typeAlias alias="plist" type="com.team3.shopping.dto.ProductListDto" />
+		<typeAlias alias="pager" type="com.team3.shopping.dto.Pager" />		
 	</typeAliases>	
 </configuration>
