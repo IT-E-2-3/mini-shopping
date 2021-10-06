@@ -17,13 +17,22 @@
 <link rel="icon" type="image/jpg"
 	href="${pageContext.request.contextPath}/resources/images/icons/hansome.jpg" />
 <!--===============================================================================================-->
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/vendor/bootstrap/css/bootstrap.min.css" />
-<script	src="${pageContext.request.contextPath}/resources/vendor/jquery/jquery-3.2.1.min.js"></script>
 <script
-	src="${pageContext.request.contextPath}/resources/bootstrap-4.6.0-dist/js/bootstrap.bundle.min.js"></script>
+	src="${pageContext.request.contextPath}/resources/jquery/jquery-3.2.1.min.js"></script>
+<script
+	src="${pageContext.request.contextPath}/resources/bootstrap/js/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/bootstrap/js/popper.js"></script>
+<script
+	src="${pageContext.request.contextPath}/resources/bootstrap/js/popper.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/sweetalert/sweetalert.min.js"></script>
+ <!-- Air datepicker -->
+<script src="${pageContext.request.contextPath}/resources/_dist/js/datepicker.js"></script> 
+<script src="${pageContext.request.contextPath}/resources/_dist/js/i18n/datepicker.ko.js"></script> <!-- 달력 한글 추가를 위해 커스텀 -->
 
 <!--===============================================================================================-->
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/bootstrap/css/bootstrap.min.css" />
+
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/fonts/font-awesome-4.7.0/css/font-awesome.min.css" />
 <!--===============================================================================================-->
@@ -34,31 +43,30 @@
 	href="${pageContext.request.contextPath}/resources/fonts/linearicons-v1.0.0/icon-font.min.css" />
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/resources/vendor/animate/animate.css" />
+	href="${pageContext.request.contextPath}/resources/animate/animate.css" />	
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/resources/vendor/css-hamburgers/hamburgers.min.css" />
+	href="${pageContext.request.contextPath}/resources/css-hamburgers/hamburgers.min.css" />
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/resources/vendor/animsition/css/animsition.min.css" />
+	href="${pageContext.request.contextPath}/resources/animsition/css/animsition.min.css" />
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/resources/vendor/select2/select2.min.css" />
+	href="${pageContext.request.contextPath}/resources/select2/select2.min.css" />
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/resources/vendor/perfect-scrollbar/perfect-scrollbar.css" />
+	href="${pageContext.request.contextPath}/resources/perfect-scrollbar/perfect-scrollbar.css" />
+	
 <link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/resources/css/util.css" />
+	href="${pageContext.request.contextPath}/resources/css/_util.css" />
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/css/main.css" />
+	
 <link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/resources/css/style.css" />
+	href="${pageContext.request.contextPath}/resources/css/_style.css" />
 
-<link href="${pageContext.request.contextPath}/resources/dist/css/datepicker.min.css" rel="stylesheet" type="text/css" media="all">
-  <!-- Air datepicker css -->
- <script src="${pageContext.request.contextPath}/resources/dist/js/datepicker.js"></script> <!-- Air datepicker js -->
- <script src="${pageContext.request.contextPath}/resources/dist/js/i18n/datepicker.ko.js"></script> <!-- 달력 한글 추가를 위해 커스텀 -->
-</head>
+<link href="${pageContext.request.contextPath}/resources/_dist/css/datepicker.min.css" rel="stylesheet" type="text/css" media="all" />
+ </head>
 <body>
 	<!-- Header -->
 	<nav id="header-fixed"
@@ -92,7 +100,7 @@
 						<li class="nav-item"><a class="nav-link" href="/logout">로그아웃</a>
 						</li>
 					</sec:authorize>
-					<li class="nav-item"><a class="nav-link" href="#">쇼핑백(2)</a></li>
+					<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/cart/2">쇼핑백(숫자)</a></li>
 					<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/order/orderList">주문조회</a></li>
 				</ul>
 			</div>

@@ -80,22 +80,32 @@ public class OrderService {
 		for (OrderRowDetailDto orderRowDetailDto : orderRowList) {
 			//재고 조회
 			int stock = orderDao.selectStockByPidColor(orderRowDetailDto);
-			// 장바구니 조회
+			// 장바구니 로 만든 주문에서 몇개 골랐는지 조회
 			int amount = orderDao.selectAmountByPidColor(orderRowDetailDto);
 			
 			int stock_after = stock-amount;
 			if(stock_after<0) {
-				throw new ProductSoldOutException("상품 재고 소진");
+				throw new ProductSoldOutException("상품명 : " +orderRowDetailDto.getPname()+": 색상 : "+orderRowDetailDto.getColor_code()+": 사이즈 : "+orderRowDetailDto.getSize_code() +"상품 재고 소진");
 			}
 		
-			//재고 변경 객체와 인자를 동시에 보내는 코드 적용
+			//재고 변경 객체와 변경할 값을 동시에 보내는 코드 적용
 			orderDao.updateStock(orderRowDetailDto, stock_after);
-			// 장바구니 변경
+				
 			
+			// 장바구니 변경
+			// 장바구니에 담긴 수량보다 많거나 같게사면 삭제
+			// 장바구니에 담긴 수량보다 적게사면 장바구니의 값 변경
+			
+			//장바구니에 담긴 특정 상품의 수량
+			/*
+			 * int cart_amount = orderDao.SelectCartAmountByPid(orderRowDetailDto);
+			 * if(cart_amount-amount>0) { // cart_amount-amount로 장바구니 수량 변경 }else {
+			 * orderDao.DeleteProductFromCart(orderRowDetailDto); }
+			 */
 			
 			
 			orderDao.DeleteProductFromCart(orderRowDetailDto);
-			//장바구니의 (사실은 orderRowList)의 모든 상품을 order_items 테이블로 이동
+			//장바구니로 만든 (orderRowList)의 모든 상품을 order_items 테이블로 이동
 			orderDao.intertOrderItems(orderRowDetailDto, oid);
 			
 			
@@ -103,10 +113,7 @@ public class OrderService {
 		
 	}
 
-	private int orderDaoselectStockByPidColor(OrderRowDetailDto orderRowDetailDto) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+
 
 	public String getImageUrl(String pid, String pcolor) {
 		logger.info("실행");

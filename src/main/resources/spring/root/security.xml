@@ -24,7 +24,7 @@
 		-->
 		
 		<security:form-login
-			login-page="/loginForm"
+			login-page="/loginform"
 			username-parameter="mid"
 			password-parameter="mpassword"
 			login-processing-url="/login"
@@ -46,7 +46,13 @@
 		<security:csrf disabled="true"/>
 		
 		<!-- 요청 URL 권한 설정 -->
+		
+		<security:intercept-url pattern="/cart/**" access="isAuthenticated()"/>
+		<security:intercept-url pattern="/order/**" access="isAuthenticated()"/>
+		
 		<security:intercept-url pattern="/**" access="permitAll"/>
+		
+		
 		
 		<!-- 권한 없음일 경우 보여줄 페이지 설정 -->
 		<security:access-denied-handler error-page="/error/403"/>
@@ -114,7 +120,7 @@
 	<bean id="authenticationFailureHandler" 
 		  class="com.team3.shopping.security.AuthenticationFailureHandler">
 		<!-- 로그인 실패후 리다이렉트로 이동할 경로 -->
-		<property name="defaultFailureUrl" value="/loginForm"/>
+		<property name="defaultFailureUrl" value="/loginform"/>
 	</bean>
 	
 	<bean id="logoutSuccessHandler"
@@ -123,7 +129,7 @@
 		<property name="defaultTargetUrl" value="/"/>
 	</bean>
 </beans>
-
+	
 
 
 

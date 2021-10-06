@@ -2,11 +2,11 @@
 
 <%@ include file="/WEB-INF/views/common/header-nocategory.jsp"%>
 
-<div class="m-r-200 m-l-200">
+<div class="m-r-200 m-l-200" style="display: flex; flex-direction:column; align-contents: center">
 	<h4 class="text-center text-black m-b-25">상품 주문 목록</h4>
 	<div class="m-r-300 m-l-300">
 		
-		<ul class="p-t-10 p-b-10" style="display: flex; width: 100%; align-items: center;  background-color: #d9ead3">
+		<ul class="p-t-10 p-b-10" style="display: flex; width: 720px; align-items: center;  background-color: #d9ead3">
 			<h5 class="col-sm-3" >상품/배송 조회</h5>
 			<li 
 				style="display: flex; justify-content: space-between; align-items: center;">
@@ -14,22 +14,17 @@
 				<label class="col-sm-3" for="term">조회기간<!-- 조회기간 --></label>
 
 				<div class="calendar_wrap mr5 col-sm-8">
-					<input type="text" id="datepicker" onchange="javascript:onchange()"
+					<input type="text" id="datepicker" 
 						data-range="true" data-multiple-dates-separator=" - "
 						data-language="ko" class="datepicker-here"
-						style="border: 1px solid black">
+						style="border: 1px solid black" value=" ${startDate} - ${endDate}">
 				</div>
 
-				<!-- <div class="tab_c">
-					<ul class="clearfix" style="display: flex">
-						<li><a href="javascript:void(0);" id="setDateBtn1" class="on">1주일1주일</a></li>
-						<li><a href="javascript:void(0);" id="setDateBtn2">1개월1개월</a></li>
-						<li><a href="javascript:void(0);" id="setDateBtn3">3개월3개월</a></li>
-					</ul>
-				</div> -->
-				<form action="orderList" onsubmit="return requestPost()" class="col-sm-2">
+				
+				<form class="col-sm-2" action="orderList" onsubmit="return requestPost()" >
 					<input type="submit"  type="button" id="searchBtn"
-						class="btn_search p-t-5 p-b-5" value="조회하기"> <input type="hidden"
+						class="btn_search p-t-5 p-b-5" value="조회하기"> 
+						<input type="hidden"
 						id="startDate" name="startDate"> <input type="hidden"
 						id="endDate" name="endDate">
 				</form>
@@ -61,10 +56,10 @@
 							style="color: var(- -bs-gray-800)">${order.odate.split(" ")[0] }</th>
 						<th class="col-sm-3 text-center"
 							style="color: var(- -bs-gray-800)"><a
-							href="orderDetail?oid=${order.oid}" class="basket_tlt"
+							href="orderDetail?oid=${order.oid}" 
 							style="color: black"
-							onclick="javascript:setEcommerceData('0', 'Click ADD');GA_Event('쇼핑백','상품','울 셋업 재킷');">
-								<p class="sb_tlt">
+							>
+								<p>
 									${order.mainItem} <span class="text-right">
 										${(order.productKindNum - 1) != 0 ? "외 " += order.productKindNum - 1 += "건" : ""}</span>
 								</p>
@@ -91,9 +86,9 @@
 							style="color: var(- -bs-gray-800)">${order.odate.split(" ")[0] }</th>
 						<th class="col-sm-3 text-center"
 							style="color: var(- -bs-gray-800)"><a
-							href="orderDetail?oid=${order.oid}" class="basket_tlt"
+							href="orderDetail?oid=${order.oid}"
 							style="color: black"
-							onclick="javascript:setEcommerceData('0', 'Click ADD');GA_Event('쇼핑백','상품','울 셋업 재킷');">
+							>
 								<p class="sb_tlt">
 									${order.mainItem} <span class="text-right">
 										${(order.productKindNum - 1) != 0 ? "외 " += order.productKindNum - 1 += "건" : ""}</span>
