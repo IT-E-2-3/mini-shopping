@@ -173,6 +173,11 @@
 
                 <div class="flex-w flex-r-m p-b-10">
                   <div class="size-204 flex-w flex-m respon6-next">
+                  	<sec:authorize access="isAnonymous()">
+					   <a class="flex-c-m stext-101 cl0 size-101 bg3 bor14 hov-btn3 p-lr-15 trans-04" href="/loginform" style="text-decoration:none;">
+ 	                      Add to cart
+	                    </a>
+					</sec:authorize>
                     <sec:authorize access="hasRole('ROLE_USER')">
 	                    <button
 	                      class="flex-c-m stext-101 cl0 size-101 bg3 bor14 hov-btn3 p-lr-15 trans-04 js-addcart-detail">
