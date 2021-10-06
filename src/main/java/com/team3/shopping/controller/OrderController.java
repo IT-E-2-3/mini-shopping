@@ -12,10 +12,10 @@ import java.util.Date;
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.time.LocalTime;
+import java.util.List;
+import java.util.UUID;
 import java.util.Calendar;
 import java.util.Iterator;
-
-import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -45,6 +45,7 @@ import com.team3.shopping.dto.MemberInfoDto;
 import com.team3.shopping.dto.OrderDto;
 import com.team3.shopping.dto.OrderItemDto;
 import com.team3.shopping.dto.OrderRowDetailDto;
+import com.team3.shopping.exception.ProductSoldOutException;
 import com.team3.shopping.service.OrderService;
 import com.team3.shopping.validator.OrderFormValidator;
 
@@ -52,128 +53,134 @@ import com.team3.shopping.validator.OrderFormValidator;
 @RequestMapping("/order")
 @SessionAttributes({ "inputForm" })
 public class OrderController {
-	private static final Logger logger = LoggerFactory.getLogger(OrderController.class);
+   private static final Logger logger = LoggerFactory.getLogger(OrderController.class);
 
-	/*
-	 * principal 로그인아이디 알기위해 사용
-	 */
+   /*
+    * principal 로그인아이디 알기위해 사용
+    */
 
-	@Resource
-	OrderService orderService;
+   @Resource
+   OrderService orderService;
 
-	int total_amount = 0;
-	List<OrderRowDetailDto> OrderRowList;
-  
-	@GetMapping("/")
-	public String content(Model model, Principal principal, HttpSession session) {
-		logger.info("실행");
-		total_amount = 0;
-		MemberInfoDto member = orderService.getMid(principal.getName());
-    //		logger.info(mid);
+   int total_amount = 0;
+   List<OrderRowDetailDto> OrderRowList;
 
-		// cart의 내용 받아오기
-    //		OrderRowList = orderService.getMyCart(member.getMid());
-		
-		OrderRowList = (List<OrderRowDetailDto>) session.getAttribute("OrderRowList");
-		DecimalFormat decFormat = new DecimalFormat("###,###");
-		for (OrderRowDetailDto orderRowDetailDto : OrderRowList) {
-			int price = (orderRowDetailDto.getPprice());
-			total_amount += price * orderRowDetailDto.getOamount();
-
-		}
-    //		logger.info(total_amount+" ");
-
-		String decimal_total_amount = decFormat.format(total_amount);
-
-		model.addAttribute("OrderRowList", OrderRowList);
-		model.addAttribute("total_amount", total_amount);
-		String mname = member.getMname();
-		StringBuilder sb = new StringBuilder();
-		sb.append(mname.charAt(0));
-		for (int i = 0; i < mname.length() - 2; i++) {
-			sb.append("*");
-		}
-		sb.append(mname.charAt(mname.length() - 1));
-		member.setMname(sb.toString());
-		model.addAttribute("member", member);
-
-		return "order/order";
-	}
-  
-	@InitBinder("orderForm")
-	public void joinFormSetValidator(WebDataBinder binder) {
-		logger.info("실행");
-
-		binder.addValidators(new OrderFormValidator());
-	}
-	/*
-	 * public String orderComplete( @ModelAttribute("orderForm") @Valid OrderDto
-	 * order, BindingResult bindingResult) {
-	 * 
-	 * if(bindingResult.hasErrors()) { logger.info("다시 입력폼 제공 + 에러 메시지"); //forward
-	 * return "redirect:/order/"; } else { logger.info("정상 요청 처러후 응답 제공");
-	 * //redirect return "redirect:/"; } }
-	 */
-
-	@GetMapping(value = "order", produces = "application/json'; charset=UTF-8")
-	@ResponseBody
-	public String orderForm(@ModelAttribute("orderForm") @Valid OrderDto order, Errors errors, Principal principal,
-			HttpSession session) {
-		logger.info("실행");
-
-		if (errors.hasErrors()) {
-			logger.info(errors.toString());
-			logger.info("다시 입력폼 제공 + 에러 메시지");
-
-			JSONObject jsonObject = new JSONObject();
-			jsonObject.put("result", "fail");
-			String json = jsonObject.toString(); // result : successs
-
-			return json;
-		}
-    
-      logger.info(order.toString());
-      logger.info("---------CARD--------");
-      logger.info("getOpayment : "+ order.getOpayment());
-      logger.info("getOcard_installmentrate : " + order.getOcard_installmentrate());
-      logger.info("getOcard_installmentrate_period : "+order.getOcard_installmentrate_period());
-      logger.info("getOcard_name :"+order.getOcard_name());
-      logger.info("---------CARD--------");
+   @GetMapping("/")
+   public String content(Model model, Principal principal, HttpSession session) {
+      logger.info("실행");
+      total_amount = 0;
       MemberInfoDto member = orderService.getMid(principal.getName());
-      //		logger.info(mid);
+      // cart의 내용 받아오기
+    //      OrderRowList = orderService.getMyCart(member.getMid());
+      
+      OrderRowList = (List<OrderRowDetailDto>) session.getAttribute("OrderRowList");
+      DecimalFormat decFormat = new DecimalFormat("###,###");
+      for (OrderRowDetailDto orderRowDetailDto : OrderRowList) {
+         int price = (orderRowDetailDto.getPprice());
+         total_amount += price * orderRowDetailDto.getOamount();
 
-		  // cart의 내용 받아오기
-	
-      String mid = member.getMid();
-      // 주문에 대한 트랜젝션 - 재고가 없으면 실패
-      Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-      SimpleDateFormat sdf = new SimpleDateFormat ("yyyy-MM-dd hh:mm:ss");
-      order.setOdate(sdf.toString());
-      
-      
-      LocalTime currentTime = LocalTime.now();
-      // LocalTime targetTime = LocalTime.of(int hour, int minute, int second, int
-      // nanoOfSecond);
-      String oid = currentTime.toString();
-      order.setMid(mid);
+      }
+    
+      String decimal_total_amount = decFormat.format(total_amount);
+
+      model.addAttribute("OrderRowList", OrderRowList);
+      model.addAttribute("total_amount", total_amount);
+      String mname = member.getMname();
+      StringBuilder sb = new StringBuilder();
+      sb.append(mname.charAt(0));
+      for (int i = 0; i < mname.length() - 2; i++) {
+         sb.append("*");
+      }
+      sb.append(mname.charAt(mname.length() - 1));
+      member.setMname(sb.toString());
+      model.addAttribute("member", member);
+
+      return "order/order";
+   }
+
+   @InitBinder("orderForm")
+   public void joinFormSetValidator(WebDataBinder binder) {
+      logger.info("실행");
+
+      binder.addValidators(new OrderFormValidator());
+   }
+   /*
+    * public String orderComplete( @ModelAttribute("orderForm") @Valid OrderDto
+    * order, BindingResult bindingResult) {
+    * 
+    * if(bindingResult.hasErrors()) { logger.info("다시 입력폼 제공 + 에러 메시지"); //forward
+    * return "redirect:/order/"; } else { logger.info("정상 요청 처러후 응답 제공");
+    * //redirect return "redirect:/"; } }
+    */
+
+   @GetMapping(value = "order", produces = "application/json'; charset=UTF-8")
+   @ResponseBody
+   public String orderForm(@ModelAttribute("orderForm") @Valid OrderDto order, Errors errors, Principal principal,
+         HttpSession session) {
+      logger.info("실행");
+
+      if (errors.hasErrors()) {
+         logger.info(errors.toString());
+         logger.info("다시 입력폼 제공 + 에러 메시지");
+
+         JSONObject jsonObject = new JSONObject();
+         jsonObject.put("result", "fail");
+         String json = jsonObject.toString(); // result : successs
+
+         return json;
+      }
+
+      UUID temp = UUID.randomUUID();
+      String oid = Long.toHexString(temp.getMostSignificantBits());
       order.setOid(oid);
       
-      order.setOtotal_price(total_amount);
-      
       session.removeAttribute(oid);
-     
-
-      logger.info(order.toString());
+      session.setAttribute("oid", oid);
       
-      logger.info("성공");
+    logger.info(order.toString());
+    logger.info("---------CARD--------");
+    logger.info("getOpayment : "+ order.getOpayment());
+    logger.info("getOcard_installmentrate : " + order.getOcard_installmentrate());
+    logger.info("getOcard_installmentrate_period : "+order.getOcard_installmentrate_period());
+    logger.info("getOcard_name :"+order.getOcard_name());
+    logger.info("---------CARD--------");
+    MemberInfoDto member = orderService.getMid(principal.getName());
+     //      logger.info(mid);
+    
+    String mid = member.getMid();
+    order.setMid(mid);
+    Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+    SimpleDateFormat sdf = new SimpleDateFormat ("yyyy-MM-dd hh:mm:ss");
+    order.setOdate(sdf.toString());
+    LocalTime currentTime = LocalTime.now();
+    // LocalTime targetTime = LocalTime.of(int hour, int minute, int second, int
+    // nanoOfSecond);
+    
+   
+    order.setOtotal_price(total_amount);
+    
+    session.removeAttribute(oid);
+    
+   
       OrderRowList = (List<OrderRowDetailDto>) session.getAttribute("OrderRowList");
       for (OrderRowDetailDto orderRowDetailDto : OrderRowList) {
         logger.info("orderRowDetailDto.toString() : "+orderRowDetailDto.toString());
         orderRowDetailDto.setMid(mid);
         logger.info("orderRowDetailDto.toString() : "+orderRowDetailDto.toString());
       }
-      //		session.removeAttribute("OrderRowList");
-      orderService.makeOrder(OrderRowList, oid, order);
+      //      session.removeAttribute("OrderRowList");
+    
+      try {
+        orderService.makeOrder(OrderRowList, oid, order);
+      } catch (ProductSoldOutException e) {
+        logger.error(e.getMessage());
+
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("result", "outofstock");
+        String json = jsonObject.toString(); // result : successs
+
+        return json;
+      }
       logger.info(order.toString());
       // 성공시
       JSONObject jsonObject = new JSONObject();
@@ -184,171 +191,170 @@ public class OrderController {
       return json;
    }
 
-	@RequestMapping("/ordersuccess")
-	public String ordersuccess(Model model, HttpSession session) {
-		logger.info("실행");
-		OrderDto order= (OrderDto) session.getAttribute("order");
-		session.removeAttribute("order");
-		String oid = order.getOid();
-//		OrderDto order = (OrderDto) orderService.getOrder(oid);
-		List<OrderRowDetailDto> orderItems = orderService.getProductInfo(oid);
+   @RequestMapping("/ordersuccess")
+   public String ordersuccess(Model model, HttpSession session) {
+      logger.info("실행");
+      OrderDto order= (OrderDto) session.getAttribute("order");
+      session.removeAttribute("order");
+      String oid = order.getOid();
+//      OrderDto order = (OrderDto) orderService.getOrder(oid);
+      List<OrderRowDetailDto> orderItems = orderService.getProductInfo(oid);
 
-		model.addAttribute("order", order);
-		model.addAttribute("orderItems", orderItems);
-		logger.info(orderItems.toString());
-		
-		long cardCost = (order.getOtotal_price())/(Integer.parseInt(order.getOcard_installmentrate_period()) )*(100-Integer.parseInt(order.getOcard_installmentrate()) );
-		model.addAttribute("cardCost", orderItems);
-		
-		//odate를 기반으로 2일 후까지 입금시켜야 하는 입금기한을 주려고 했으나 실패
-//		Timestamp ts= Timestamp.valueOf(order.getOdate());
-//		Calendar cal = Calendar.getInstance();
-//		cal.setTime(ts);
-//		cal.add(Calendar.DATE, 2);
-//		ts.setTime(cal.getTime().getTime());
-//		
-//		 SimpleDateFormat sdf = new SimpleDateFormat ("yyyy-MM-dd hh:mm:ss");
-//	      order.setOdate(sdf.toString());
-	      
-		
-//		Date date = Date.valueOf(order.getOdate());
-//		model.addAttribute("deadline", date.toString());
-		return "order/orderSuccess";
-	}
-  
-	@GetMapping("/searchOrder")
-	public String getSelectedOrders(@RequestParam String startDate, @RequestParam String endDate) {
-		logger.info("실행 searchOrder");
-		logger.info(startDate + " " + endDate);
+      model.addAttribute("order", order);
+      model.addAttribute("orderItems", orderItems);
 
-		return "redirect:/order/orderList?startDate=" + startDate + "&endDate=" + endDate;
-	}
-	
-	/*
-	 * @InitBinder public void initBinder(WebDataBinder binder) throws Exception {
-	 * final DateFormat df = new SimpleDateFormat("yyyy-MM-dd"); final
-	 * CustomDateEditor dateEditor = new CustomDateEditor(df, true) {
-	 * 
-	 * @Override public void setAsText(String text) throws IllegalArgumentException
-	 * { if ("today".equals(text)) { SimpleDateFormat dateFormat = new
-	 * SimpleDateFormat("yyyy-MM-dd"); String currentDate = dateFormat.format(new
-	 * Date()); setValue(currentDate.toString()); } else { super.setAsText(text); }
-	 * } }; binder.registerCustomEditor(Date.class, dateEditor); }
-	 */
+      logger.info(orderItems.toString());
+      
+      long cardCost = (order.getOtotal_price())/(Integer.parseInt(order.getOcard_installmentrate_period()) )*(100-Integer.parseInt(order.getOcard_installmentrate()) );
+      model.addAttribute("cardCost", orderItems);
+      
+      //odate를 기반으로 2일 후까지 입금시켜야 하는 입금기한을 주려고 했으나 실패
+//      Timestamp ts= Timestamp.valueOf(order.getOdate());
+//      Calendar cal = Calendar.getInstance();
+//      cal.setTime(ts);
+//      cal.add(Calendar.DATE, 2);
+//      ts.setTime(cal.getTime().getTime());
+//      
+//       SimpleDateFormat sdf = new SimpleDateFormat ("yyyy-MM-dd hh:mm:ss");
+//         order.setOdate(sdf.toString());
+         
+      
+//      Date date = Date.valueOf(order.getOdate());
+//      model.addAttribute("deadline", date.toString());
+      return "order/orderSuccess";
+   }
 
-	@GetMapping("/orderList")
-	public String orderList(Model model, Principal principal, HttpSession session, 
-			@RequestParam(required = false, defaultValue = "2000-01-01") @DateTimeFormat(pattern = "yyyy-MM-dd") String startDate,
-			@RequestParam(required = false, defaultValue = "today") @DateTimeFormat(pattern = "yyyy-MM-dd") String endDate)
-			throws ParseException {
-		logger.info("실행");
-		logger.info("startDate" + startDate);
-		logger.info("endDate" + endDate);
+   @GetMapping("/searchOrder")
+   public String getSelectedOrders(@RequestParam String startDate, @RequestParam String endDate) {
+      logger.info("실행 searchOrder");
+      logger.info(startDate + " " + endDate);
 
-		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+      return "redirect:/order/orderList?startDate=" + startDate + "&endDate=" + endDate;
+   }
+   
+   /*
+    * @InitBinder public void initBinder(WebDataBinder binder) throws Exception {
+    * final DateFormat df = new SimpleDateFormat("yyyy-MM-dd"); final
+    * CustomDateEditor dateEditor = new CustomDateEditor(df, true) {
+    * 
+    * @Override public void setAsText(String text) throws IllegalArgumentException
+    * { if ("today".equals(text)) { SimpleDateFormat dateFormat = new
+    * SimpleDateFormat("yyyy-MM-dd"); String currentDate = dateFormat.format(new
+    * Date()); setValue(currentDate.toString()); } else { super.setAsText(text); }
+    * } }; binder.registerCustomEditor(Date.class, dateEditor); }
+    */
 
-		Date beforeDate = null;
-		Date afterDate = null;	
-		
-		if (startDate != null && endDate != null) {
-			logger.info("date로 변환");
-			if(endDate.equals("today")) {
-				SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-				String date = formatter.format(new Date());
-				beforeDate = dateFormat.parse(date);
-			}else {
-				beforeDate = dateFormat.parse(endDate);
-			}
-			afterDate = dateFormat.parse(startDate);
-			session.removeAttribute("orderList");
-		}
+   @GetMapping("/orderList")
+   public String orderList(Model model, Principal principal, HttpSession session, 
+         @RequestParam(required = false, defaultValue = "2000-01-01") @DateTimeFormat(pattern = "yyyy-MM-dd") String startDate,
+         @RequestParam(required = false, defaultValue = "today") @DateTimeFormat(pattern = "yyyy-MM-dd") String endDate)
+         throws ParseException {
+      logger.info("실행");
+      logger.info("startDate" + startDate);
+      logger.info("endDate" + endDate);
 
-		MemberInfoDto member = orderService.getMid(principal.getName());
-		String mid = member.getMid();
-		logger.info("mid " + mid);
+      SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
-		List<OrderDto> orders = new ArrayList<OrderDto>();
-		
-		//이미 세션에 모든 리스트를 저장해두고 있음
-		if(session.getAttribute("orders") != null) {
-			orders = (List<OrderDto>) session.getAttribute("orders");
-			logger.info("orders " + orders.toString());
-		}
-		
-		// 리스트 새로 받기
-		if (orders.size() == 0) {
-			logger.info("새로운 orders");
-			orders = orderService.getOrderList(mid);
-			// session.removeAttribute("orders");
+      Date beforeDate = null;
+      Date afterDate = null;   
+      
+      if (startDate != null && endDate != null) {
+         logger.info("date로 변환");
+         if(endDate.equals("today")) {
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+            String date = formatter.format(new Date());
+            beforeDate = dateFormat.parse(date);
+         }else {
+            beforeDate = dateFormat.parse(endDate);
+         }
+         afterDate = dateFormat.parse(startDate);
+         session.removeAttribute("orderList");
+      }
 
-			for (OrderDto order : orders) {
-				String OID = order.getOid();
-				logger.info("oid " + OID);
+      MemberInfoDto member = orderService.getMid(principal.getName());
+      String mid = member.getMid();
+      logger.info("mid " + mid);
 
-				List<OrderItemDto> orderitems = orderService.getOrderItems(OID);
-				order.setOrderItems(orderitems);
-				order.setProductKindNum(orderitems.size());
+      List<OrderDto> orders = new ArrayList<OrderDto>();
+      
+      //이미 세션에 모든 리스트를 저장해두고 있음
+      if(session.getAttribute("orders") != null) {
+         orders = (List<OrderDto>) session.getAttribute("orders");
+         logger.info("orders " + orders.toString());
+      }
+      
+      // 리스트 새로 받기
+      if (orders.size() == 0) {
+         logger.info("새로운 orders");
+         orders = orderService.getOrderList(mid);
+         // session.removeAttribute("orders");
 
-				logger.info(orderitems.toString());
-				// 1개의 주문 이름 -- 최소 1개의 product name
-				if (orderitems.size() > 0) {
-					String PID = orderitems.get(0).getPid();
-					String pname = orderService.getPname(PID);
-					logger.info("pname " + pname);
-					order.setMainItem(pname);
-				}
-			}
-			
-			model.addAttribute("orderList", orders);
-			session.setAttribute("orders", orders);
-			return "order/orderList";
-		}
-		
-		//이미 orders가 있는 경우
-		logger.info("이미 orders가 있는 경우 " + "beforeDate " + beforeDate + "afterDate " + afterDate);
-		List<OrderDto> selectedOrders = new ArrayList<OrderDto>();
-		
-		// 조회 기준 -- 날짜
-		if (beforeDate != null && afterDate != null) {
-			logger.info("조회 기준 -- 날짜");
-			for (OrderDto order : orders) {
-				Date orderDate = dateFormat.parse(order.getOdate());
-				
-				if ((orderDate.after(afterDate)||orderDate.equals(afterDate)) && (orderDate.before(beforeDate) || orderDate.equals(beforeDate))) {
-					logger.info("조회 " + order.getOdate());
-					selectedOrders.add(order);
-				}
-			}
-		}else {
-			selectedOrders = orders;
-		}
-		
-		
-		if(model.containsAttribute("orderList")) {
-			logger.info("contains orderList");
-		}
-		model.addAttribute("neworderList", selectedOrders);
-		model.addAttribute("hello", "hello");
-		model.addAttribute("startDate", startDate);
-		model.addAttribute("endDate", endDate);
-		logger.info("선택된 주문 " + selectedOrders.size());
-		return "order/orderList";
-		
-	}
-	
+         for (OrderDto order : orders) {
+            String OID = order.getOid();
+            logger.info("oid " + OID);
 
-	@GetMapping("/orderDetail")
-	public String orderDetail(@RequestParam String oid, Model model, HttpSession session) {
-		logger.info("실행");
-		OrderDto order = (OrderDto) orderService.getOrder(oid);
-		List<OrderRowDetailDto> orderItems = orderService.getProductInfo(oid);
+            List<OrderItemDto> orderitems = orderService.getOrderItems(OID);
+            order.setOrderItems(orderitems);
+            order.setProductKindNum(orderitems.size());
 
-		model.addAttribute("order", order);
-		model.addAttribute("orderItems", orderItems);
+            logger.info(orderitems.toString());
+            // 1개의 주문 이름 -- 최소 1개의 product name
+            if (orderitems.size() > 0) {
+               String PID = orderitems.get(0).getPid();
+               String pname = orderService.getPname(PID);
+               logger.info("pname " + pname);
+               order.setMainItem(pname);
+            }
+         }
+         
+         model.addAttribute("orderList", orders);
+         session.setAttribute("orders", orders);
+         return "order/orderList";
+      }
+      
+      //이미 orders가 있는 경우
+      logger.info("이미 orders가 있는 경우 " + "beforeDate " + beforeDate + "afterDate " + afterDate);
+      List<OrderDto> selectedOrders = new ArrayList<OrderDto>();
+      
+      // 조회 기준 -- 날짜
+      if (beforeDate != null && afterDate != null) {
+         logger.info("조회 기준 -- 날짜");
+         for (OrderDto order : orders) {
+            Date orderDate = dateFormat.parse(order.getOdate());
+            
+            if ((orderDate.after(afterDate)||orderDate.equals(afterDate)) && (orderDate.before(beforeDate) || orderDate.equals(beforeDate))) {
+               logger.info("조회 " + order.getOdate());
+               selectedOrders.add(order);
+            }
+         }
+      }else {
+         selectedOrders = orders;
+      }
+      
+      
+      if(model.containsAttribute("orderList")) {
+         logger.info("contains orderList");
+      }
+      model.addAttribute("neworderList", selectedOrders);
+      model.addAttribute("hello", "hello");
+      model.addAttribute("startDate", startDate);
+      model.addAttribute("endDate", endDate);
+      logger.info("선택된 주문 " + selectedOrders.size());
+      return "order/orderList";
+      
+   }
 
-		logger.info(order.toString());
-		logger.info(orderItems.toString());
-		return "order/orderDetail";
-	}
+   @GetMapping("/orderDetail")
+   public String orderDetail(@RequestParam String oid, Model model, HttpSession session) {
+      logger.info("실행");
+      OrderDto order = (OrderDto) orderService.getOrder(oid);
+      List<OrderRowDetailDto> orderItems = orderService.getProductInfo(oid);
 
+      model.addAttribute("order", order);
+      model.addAttribute("orderItems", orderItems);
+
+      logger.info(order.toString());
+      logger.info(orderItems.toString());
+      return "order/orderDetail";
+   }
 }
