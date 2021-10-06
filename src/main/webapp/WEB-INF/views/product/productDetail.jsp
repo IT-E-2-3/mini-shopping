@@ -1,10 +1,13 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <%@ include file="/WEB-INF/views/common/header-category.jsp"%>
-	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/vendor/animsition/css/animsition.min.css"/>
-   	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/vendor/daterangepicker/daterangepicker.css"/>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/vendor/slick/slick.css" />
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/vendor/MagnificPopup/magnific-popup.css"/>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/vendor/animsition/css/animsition.min.css"/>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/vendor/daterangepicker/daterangepicker.css"/>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/vendor/slick/slick.css" />
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/vendor/MagnificPopup/magnific-popup.css"/>
+<script src="${pageContext.request.contextPath}/resources/vendor/sweetalert/sweetalert.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/vendor/select2/select2.min.js"></script>
+
 <!-- Product Detail -->
     <section class="sec-product-detail bg0 p-t-65 p-b-60">
       <div class="container">
@@ -19,6 +22,7 @@
                 	<!-- 첫 번째 사진 -->
 					<div class="product-slick3" data-thumb="${product.product_detail_url1}">
 					  <div class="wrap-pic-w pos-relative">
+					  
 					    <img src="${product.product_detail_url1}"
 					      alt="IMG-PRODUCT"/>
 					
@@ -65,9 +69,11 @@
               <h5 class="brand-name">${product.pbrand}</h5>
               <h4 class="mtext-105 cl2 js-name-detail p-b-14">${product.pname}</h4>
 
-              <span class="mtext-101 cl2"> ₩&nbsp;${product.pprice}</span>
+              <span class="mtext-101 cl2"> ₩&nbsp;<span id="productprice">${product.pprice}</span></span>
 
               <div class="prod-detail-box mt-3">
+              	<input type="hidden" id="productid" value="${product.pid}"/>
+              	<input type="hidden" id="pcolor" value="${product.color_code}"/>
                 <span class="number-code" style="font-size: 12px">
                   상품품번 : <span>${product.pid}_${product.color_code}</span>
                 </span>
@@ -83,13 +89,11 @@
 
                   <div class="size-204 respon6-next">
                     <div class="rs1-select2 bor8 bg0">
-                      <select class="js-select2" name="time">
+                      <select class="js-select2" name="size" id="size">
                         <option>옵션을 선택해주세요.</option>
                         <c:forEach var="size" items="${sizelist}">
-                        	<option>${size.size_code}</option>
+                        	<option value="${size.size_code}">${size.size_code}</option>
                         </c:forEach>
-                        <!-- <option>82(55)</option>
-                        <option>88(66)</option>-->
                       </select>
                       <div class="dropDownSelect2"></div>
                     </div>
@@ -108,22 +112,6 @@
                     		</a>
                     	</li>
                     </c:forEach>
-                      <!-- <li id="IL2B9WJC412W_DG">
-                        <button type="button" class="ee_btn-color on" style="">
-                          <img
-                            src="images/color-IL2B9WJC412W_DG.jpeg"
-                            alt="다크그레이"
-                          />
-                        </button>
-                      </li>
-                      <li id="IL2B9WJC412W_GE" class="ml-2">
-                        <button type="button" class="ee_btn-color on" style="">
-                          <img
-                            src="images/color-IL2B9WJC412W_GE.jpeg"
-                            alt="라이트그레이"
-                          />
-                        </button>
-                      </li> -->
                     </ul>
                   </div>
                   <span class="cl_name" id="colorNameContent"></span>
@@ -134,25 +122,15 @@
 
                   <div class="size-204 respon6-next">
                     <div class="wrap-num-product flex-w m-r-20 m-tb-10">
-                      <div
-                        class="
-                          btn-num-product-down
-                          cl8
-                          hov-btn3
-                          trans-04
-                          flex-c-m
-                        "
-                      >
+                      <div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
                         <i class="fs-16 zmdi zmdi-minus"></i>
                       </div>
-
-                      <input
-                        class="mtext-104 cl3 txt-center num-product"
+                      <input class="mtext-104 cl3 txt-center num-product"
                         type="number"
                         name="num-product"
+                        id = "productnum"
                         value="1"
                       />
-
                       <div
                         class="
                           btn-num-product-up
@@ -167,33 +145,40 @@
                     </div>
                   </div>
                 </div>
+                <script>
+					$('.btn-num-product-down').on('click', function(){
+						var numProduct = Number($(this).next().val());
+					    if(numProduct > 1) $(this).next().val(numProduct - 1);
+					    
+					    var productprice = document.querySelector('#productprice').textContent;
+			        	document.querySelector('#totalprice').textContent = productprice * productnum.value;
+					});
+					
+					$('.btn-num-product-up').on('click', function(){
+					    var numProduct = Number($(this).prev().val());
+					    $(this).prev().val(numProduct + 1);
+					    
+					    var productprice = document.querySelector('#productprice').textContent;
+			        	document.querySelector('#totalprice').textContent = productprice * productnum.value;
+					});
+				</script>
 
                 <hr />
                 <div class="total_price d-flex justify-content-between m-4">
                   <div class="title mtext-101" style="width: auto">총 합계</div>
                   <div class="price">
-                    <span id="sumPrice" class="mtext-101">₩&nbsp;745,000</span>
+                    <span id="sumPrice" class="mtext-101">₩&nbsp;<span id="totalprice" class="mtext-101">${product.pprice}</span></span>
                   </div>
                 </div>
 
                 <div class="flex-w flex-r-m p-b-10">
                   <div class="size-204 flex-w flex-m respon6-next">
-                    <button
-                      class="
-                        flex-c-m
-                        stext-101
-                        cl0
-                        size-101
-                        bg3
-                        bor14
-                        hov-btn3
-                        p-lr-15
-                        trans-04
-                        js-addcart-detail
-                      "
-                    >
-                      Add to cart
-                    </button>
+                    <sec:authorize access="hasRole('ROLE_USER')">
+	                    <button
+	                      class="flex-c-m stext-101 cl0 size-101 bg3 bor14 hov-btn3 p-lr-15 trans-04 js-addcart-detail">
+	                      Add to cart
+	                    </button>
+                    </sec:authorize>
                   </div>
                 </div>
               </div>
@@ -231,49 +216,39 @@
                       <div class="howToWash renew1907" id="newHowToWash">
                         <ul class="d-flex">
                           <li>
-                            <img
-                              src="http://cdn.thehandsome.com/pc/laundryMark/pc_ko1/003.png"
+                            <img src="http://cdn.thehandsome.com/pc/laundryMark/pc_ko1/003.png"
                               onmouseover="this.src='http://cdn.thehandsome.com/pc/laundryMark/pc_ko2/003_.png'"
                               onmouseout="this.src='http://cdn.thehandsome.com/pc/laundryMark/pc_ko1/003.png'"
                               onerror="javascript:onErrorImg(this);"
-                              alt="003"
-                            />
+                              alt="003"/>
                           </li>
                           <li>
-                            <img
-                              src="http://cdn.thehandsome.com/pc/laundryMark/pc_ko1/016.png"
+                            <img src="http://cdn.thehandsome.com/pc/laundryMark/pc_ko1/016.png"
                               onmouseover="this.src='http://cdn.thehandsome.com/pc/laundryMark/pc_ko2/016_.png'"
                               onmouseout="this.src='http://cdn.thehandsome.com/pc/laundryMark/pc_ko1/016.png'"
                               onerror="javascript:onErrorImg(this);"
-                              alt="019"
-                            />
+                              alt="019"/>
                           </li>
                           <li>
-                            <img
-                              src="http://cdn.thehandsome.com/pc/laundryMark/pc_ko1/049.png"
+                            <img src="http://cdn.thehandsome.com/pc/laundryMark/pc_ko1/049.png"
                               onmouseover="this.src='http://cdn.thehandsome.com/pc/laundryMark/pc_ko2/049_.png'"
                               onmouseout="this.src='http://cdn.thehandsome.com/pc/laundryMark/pc_ko1/049.png'"
                               onerror="javascript:onErrorImg(this);"
-                              alt="049"
-                            />
+                              alt="049"/>
                           </li>
                           <li>
-                            <img
-                              src="http://cdn.thehandsome.com/pc/laundryMark/pc_ko1/008.png"
+                            <img src="http://cdn.thehandsome.com/pc/laundryMark/pc_ko1/008.png"
                               onmouseover="this.src='http://cdn.thehandsome.com/pc/laundryMark/pc_ko2/008_.png'"
                               onmouseout="this.src='http://cdn.thehandsome.com/pc/laundryMark/pc_ko1/008.png'"
                               onerror="javascript:onErrorImg(this);"
-                              alt="008"
-                            />
+                              alt="008"/>
                           </li>
                           <li>
-                            <img
-                              src="http://cdn.thehandsome.com/pc/laundryMark/pc_ko1/029.png"
+                            <img src="http://cdn.thehandsome.com/pc/laundryMark/pc_ko1/029.png"
                               onmouseover="this.src='http://cdn.thehandsome.com/pc/laundryMark/pc_ko2/029_.png'"
                               onmouseout="this.src='http://cdn.thehandsome.com/pc/laundryMark/pc_ko1/029.png'"
                               onerror="javascript:onErrorImg(this);"
-                              alt="029"
-                            />
+                              alt="029"/>
                           </li>
                         </ul>
                       </div>
@@ -333,12 +308,12 @@
 					<div class="product-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
 						<!-- Block2 -->
 						<div class="block2">
-							<div class="block2-pic hov-img0">
-								<img src="${matching_cloth.product_detail_url3}" alt="IMG-PRODUCT">
+							<div class="block2-pic hov-img0 text-center">
+								<img src="${matching_cloth.product_detail_url3}" alt="IMG-PRODUCT" style="width:200px;">
 							</div>
 
-							<div class="block2-txt flex-w flex-t p-t-14">
-								<div class="block2-txt-child1 flex-col-l ">
+							<div class="block2-txt flex-w flex-t p-t-14 text-center">
+								<div class="block2-txt-child1 flex-col-l align-items-center">
 									<span class="stext-104">${matching_cloth.pbrand}</span>
 									<a href="${pageContext.request.contextPath}/product/detail?pid=${matching_cloth.pid}&co=${matching_cloth.color_code}"
 									class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
@@ -346,7 +321,7 @@
 									</a>
 
 									<span class="stext-105 cl3">
-										 ₩&nbsp;${matching_cloth.pprice}
+										 ₩&nbsp;${matching_cloth.pprice}</span>
 									</span>
 								</div>
 							</div>
@@ -364,16 +339,6 @@
         <i class="zmdi zmdi-chevron-up"></i>
       </span>
     </div>
-
-    <!--===============================================================================================-->
-    <script src="${pageContext.request.contextPath}/resources/vendor/jquery/jquery-3.2.1.min.js"></script>
-    <!--===============================================================================================-->
-    <script src="${pageContext.request.contextPath}/resources/vendor/animsition/js/animsition.min.js"></script>
-    <!--===============================================================================================-->
-    <script src="${pageContext.request.contextPath}/resources/vendor/bootstrap/js/popper.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/vendor/bootstrap/js/bootstrap.min.js"></script>
-    <!--===============================================================================================-->
-    <script src="${pageContext.request.contextPath}/resources/vendor/select2/select2.min.js"></script>
     <script>
       $(".js-select2").each(function () {
         $(this).select2({
@@ -382,19 +347,7 @@
         });
       });
     </script>
-    <!--===============================================================================================-->
-    <script src="${pageContext.request.contextPath}/resources/vendor/daterangepicker/moment.min.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/vendor/daterangepicker/daterangepicker.js"></script>
-    <!--===============================================================================================-->
-    <script src="${pageContext.request.contextPath}/resources/vendor/slick/slick.min.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/js/slick-custom.js"></script>
-    <!--===============================================================================================-->
-    <script src="${pageContext.request.contextPath}/resources/vendor/parallax100/parallax100.js"></script>
-    <script>
-      $(".parallax100").parallax100();
-    </script>
-    <!--===============================================================================================-->
-    <script src="${pageContext.request.contextPath}/resources/vendor/MagnificPopup/jquery.magnific-popup.min.js"></script>
+  
     <script>
       $(".gallery-lb").each(function () {
         // the containers for all your galleries
@@ -408,45 +361,81 @@
         });
       });
     </script>
-    <!--===============================================================================================-->
-    <script src="${pageContext.request.contextPath}/resources/vendor/isotope/isotope.pkgd.min.js"></script>
-    <!--===============================================================================================-->
-    <script src="${pageContext.request.contextPath}/resources/vendor/sweetalert/sweetalert.min.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/js/main.js"></script>
+    
     <script>
-      $(".js-addcart-detail").each(function () {
-        var nameProduct = $(this)
-          .parent()
-          .parent()
-          .parent()
-          .parent()
-          .find(".js-name-detail")
-          .html();
-        $(this).on("click", function () {
-          // swal(nameProduct, "장바구니에 담았습니다.", "success");
-          swal({
-            title: nameProduct,
-            text: "장바구니에 담았습니다.",
-            icon: "success",
-            buttons: {
-              cancle: {
-                text: "계속 쇼핑하기",
-                value: false,
-                className: "swal_confirm",
-              },
-              confirm: {
-                text: "쇼핑백으로 가기",
-                value: true,
-              },
-            },
-          }).then((result) => {
-            if (result) window.location.href = "shoping-cart.html";
-          });
-        });
-      });
+	    $(".js-addcart-detail").each(function () {
+	        var nameProduct = $(this)
+	          .parent()
+	          .parent()
+	          .parent()
+	          .parent()
+	          .find(".js-name-detail")
+	          .html();
+	        $(this).on("click", function () {
+	        	const p_pid = productid.value; //상품 id
+	        	const p_color_code = pcolor.value; // member가 선택한 색상 = 현재product의 color 
+	        	const p_size_code = $("#size option:selected").val(); // member가 선택한 사이즈
+	        	const p_camount = productnum.value; //수량
+	      		
+	        	console.log(p_pid);
+	        	console.log(p_color_code);
+	        	console.log(p_size_code);
+	        	console.log(p_camount); 
+	        	
+	        	let checkResult = true;
+	        	
+	        	//수량 필수 입력
+	        	if(p_size_code=='옵션을 선택해주세요.'){
+	        		checkResult = false;
+	        		swal("수량 선택 안함", "수량을 선택해주세요!", "warning");
+	        	}
+	        	
+	        	//서버로 제출할지 말지 결정
+	        	if(!checkResult) {
+			         return false;
+			    }
+	        	
+	        	<!--ajax 시작-->
+	        	$.ajax({
+	        		url : "/cart/insert",
+	        		method:"get",
+	        		data : {
+	        			mid : null,
+	        			pid : p_pid,
+	        			color_code : p_color_code,
+	        			size_code : p_size_code,
+	        			camount : p_camount
+	        		},
+	                contentType: "application/x-www-form-urlencoded; charset=UTF-8;"
+	        	}).done((data)=>{
+	        		console.log(data);
+	        		if(data.result =="success"){
+			        	<!--swal 시작 -->
+						swal({
+						  title: nameProduct,
+						  text: "장바구니에 담았습니다.",
+						  icon: "success",
+						  buttons: {
+						    cancle: {
+						      text: "계속 쇼핑하기",
+						      value: false,
+						      className: "swal_confirm",
+						    },
+						    confirm: {
+						      text: "쇼핑백으로 가기",
+						      value: true,
+						    },
+						  },
+						}).then((result) => {
+						  if (result) window.location.href = "/cart/";
+						});
+						<!--swal 끝-->
+	        		}
+	        	});
+	        	<!--ajax 끝 -->
+	        });
+	      });
     </script>
-    <!--===============================================================================================-->
-    <script src="${pageContext.request.contextPath}/resources/vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
     <script>
       $(".js-pscroll").each(function () {
         $(this).css("position", "relative");
@@ -462,5 +451,4 @@
         });
       });
     </script>
-    <!--===============================================================================================-->
 <%@ include file="/WEB-INF/views/common/footer.jsp"%>
