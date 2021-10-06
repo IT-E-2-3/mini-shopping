@@ -31,11 +31,14 @@ public class HomeController {
 		return "member/loginForm2";
 	}
 	
-	@GetMapping("/login")
-	public String login() {
-		logger.info("실행123");
-		return "member/loginForm2";
+
+	
+	@GetMapping("/coupon")
+	public String coupon() {
+		logger.info("실행coupon");
+		return "event/coupon";
 	}
+	
 	
 	
 }  

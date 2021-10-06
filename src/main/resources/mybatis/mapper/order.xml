@@ -34,6 +34,7 @@
 		ORECIPIENT_EMAIL, OPAYMENT
 		FROM ORDERS
 		where MID=#{mid}
+		order by ODATE desc
 	</select>
 
 	<select id="selectOrderbyOid" parameterType="String"

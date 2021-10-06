@@ -64,7 +64,7 @@ public class OrderDto {
 	그로부터 선택하는 값
 	private String ocard_name;
 	private String ocard_installmentrate;
-	private String ocard_installmentrate_period;
+	private String ;
 	
 	어떤 결제수단을 고르냐에 따라 html 의 hide 속성값이 변하여
 	 * 추가로 선택하는 화면이 나오고

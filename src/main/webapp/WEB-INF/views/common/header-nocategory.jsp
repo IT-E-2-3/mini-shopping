@@ -48,15 +48,16 @@
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/vendor/perfect-scrollbar/perfect-scrollbar.css" />
 <link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/resources/css/app.css" />
-<link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/css/util.css" />
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/css/main.css" />
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/css/style.css" />
-	
-	
+
+<link href="${pageContext.request.contextPath}/resources/dist/css/datepicker.min.css" rel="stylesheet" type="text/css" media="all">
+  <!-- Air datepicker css -->
+ <script src="${pageContext.request.contextPath}/resources/dist/js/datepicker.js"></script> <!-- Air datepicker js -->
+ <script src="${pageContext.request.contextPath}/resources/dist/js/i18n/datepicker.ko.js"></script> <!-- 달력 한글 추가를 위해 커스텀 -->
 </head>
 <body>
 	<!-- Header -->
@@ -91,7 +92,7 @@
 						<li class="nav-item"><a class="nav-link" href="/logout">로그아웃</a>
 						</li>
 					</sec:authorize>
-					<li class="nav-item"><a class="nav-link" href="#">쇼핑백(2)</a></li>
+					<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/cart/">쇼핑백(숫자)</a></li>
 					<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/order/orderList">주문조회</a></li>
 				</ul>
 			</div>
