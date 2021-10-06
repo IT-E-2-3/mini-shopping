@@ -755,7 +755,7 @@
     
     
 }
-/* 
+
 // 숫자 3자리 콤마찍기
 Number.prototype.formatNumber = function(){
     if(this==0) return 0;
@@ -763,7 +763,7 @@ Number.prototype.formatNumber = function(){
     let nstr = (this + '');
     while (regex.test(nstr)) nstr = nstr.replace(regex, '$1' + ',' + '$2');
     return nstr;
-}; */
+};
 
     </script>
 </head>
@@ -929,6 +929,91 @@ Number.prototype.formatNumber = function(){
 	src="${pageContext.request.contextPath}/resources/vendor/parallax100/parallax100.js"></script>
 <script>
       $(".parallax100").parallax100();
+    </script>
+<!--===============================================================================================-->
+<script
+	src="${pageContext.request.contextPath}/resources/vendor/MagnificPopup/jquery.magnific-popup.min.js"></script>
+<script>
+      $(".gallery-lb").each(function () {
+        // the containers for all your galleries
+        $(this).magnificPopup({
+          delegate: "a", // the selector for gallery product
+          type: "image",
+          gallery: {
+            enabled: true,
+          },
+          mainClass: "mfp-fade",
+        });
+      });
+    </script>
+<!--===============================================================================================-->
+<script
+	src="${pageContext.request.contextPath}/resources/vendor/isotope/isotope.pkgd.min.js"></script>
+<!--===============================================================================================-->
+<script
+	src="${pageContext.request.contextPath}/resources/vendor/sweetalert/sweetalert.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/main.js"></script>
+<script>
+      $(".js-addcart-detail").each(function () {
+        var nameProduct = $(this)
+          .parent()
+          .parent()
+          .parent()
+          .parent()
+          .find(".js-name-detail")
+          .html();
+        $(this).on("click", function () {
+          // swal(nameProduct, "장바구니에 담았습니다.", "success");
+          swal({
+            title: nameProduct,
+            text: "장바구니에 담았습니다.",
+            icon: "success",
+            buttons: {
+              cancle: {
+                text: "계속 쇼핑하기",
+                value: false,
+                className: "swal_confirm",
+              },
+              confirm: {
+                text: "쇼핑백으로 가기",
+                value: true,
+              },
+            },
+          }).then((result) => {
+            if (result) window.location.href = "shoping-cart.html";
+          });
+        });
+      });
+    </script>
+<!--===============================================================================================-->
+<script
+	src="${pageContext.request.contextPath}/resources/vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+<script>
+      $(".js-pscroll").each(function () {
+        $(this).css("position", "relative");
+        $(this).css("overflow", "hidden");
+        var ps = new PerfectScrollbar(this, {
+          wheelSpeed: 1,
+          scrollingThreshold: 1000,
+          wheelPropagation: false,
+        });
+
+        $(window).on("resize", function () {
+          ps.update();
+        });
+      });
+    </script>
+
+<script type="text/javascript">
+    //시작하자마자 업데이트
+   
+    $(document).ready(function(){
+    	document.querySelector('#sum_p_num').textContent = '상품갯수: ' + this.totalCount.formatNumber() + '개';
+        document.querySelector('#sum_p_price').textContent = '합계금액: ' + this.totalPrice.formatNumber() + '원';
+    }); 
+</script>
+<%@ include file="/WEB-INF/views/common/footer.jsp"%>
+   $(".parallax100").parallax100();
     </script>
 <!--===============================================================================================-->
 <script
