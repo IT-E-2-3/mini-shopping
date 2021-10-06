@@ -120,7 +120,7 @@
 	<bean id="authenticationFailureHandler" 
 		  class="com.team3.shopping.security.AuthenticationFailureHandler">
 		<!-- 로그인 실패후 리다이렉트로 이동할 경로 -->
-		<property name="defaultFailureUrl" value="/loginForm"/>
+		<property name="defaultFailureUrl" value="/loginform"/>
 	</bean>
 	
 	<bean id="logoutSuccessHandler"
@@ -129,7 +129,7 @@
 		<property name="defaultTargetUrl" value="/"/>
 	</bean>
 </beans>
-
+	
 
 
 

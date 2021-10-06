@@ -966,13 +966,16 @@ $(document).ready(function(){
       })
       .done((data) => {
          console.log(data);
+         const regex = new RegExp("상품명.+", "g");
          if(data.result == "success"){
             //console.log(data);
             window.location.href = "/order/ordersuccess";
-         }else if(data.result == "outofstock"){
+         }else if(regex.test(data.result)){
             console.log("outofstock")
-            swal("상품 재고부족", "재고가 부족합니다.", "error");
-
+            var soldOutItem = data.result.split(":")[1];
+            console.log(data.result.split(":")[1]);
+            console.log(data.result);
+            swal("상품 재고부족", 	soldOutItem + " 상품 재고가 부족합니다.", "error");
          }
          return false;
       }); 

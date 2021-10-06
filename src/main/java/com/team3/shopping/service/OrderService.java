@@ -85,12 +85,12 @@ public class OrderService {
 			
 			int stock_after = stock-amount;
 			if(stock_after<0) {
-				throw new ProductSoldOutException("상품명 : " +orderRowDetailDto.getPname()+"색상 : "+orderRowDetailDto.getColor_code()+"사이즈 : "+orderRowDetailDto.getSize_code() +"상품 재고 소진");
+				throw new ProductSoldOutException("상품명 : " +orderRowDetailDto.getPname()+": 색상 : "+orderRowDetailDto.getColor_code()+": 사이즈 : "+orderRowDetailDto.getSize_code() +"상품 재고 소진");
 			}
 		
 			//재고 변경 객체와 변경할 값을 동시에 보내는 코드 적용
 			orderDao.updateStock(orderRowDetailDto, stock_after);
-			
+				
 			
 			// 장바구니 변경
 			// 장바구니에 담긴 수량보다 많거나 같게사면 삭제

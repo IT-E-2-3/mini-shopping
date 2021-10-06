@@ -9,7 +9,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Date;
-import java.sql.Date;
+//import java.sql.Date;
 import java.sql.Timestamp;
 import java.time.LocalTime;
 import java.util.List;
@@ -174,9 +174,10 @@ public class OrderController {
         orderService.makeOrder(OrderRowList, oid, order);
       } catch (ProductSoldOutException e) {
         logger.error(e.getMessage());
+        
 
         JSONObject jsonObject = new JSONObject();
-        jsonObject.put("result", "outofstock");
+        jsonObject.put("result", e.getMessage());
         String json = jsonObject.toString(); // result : successs
 
         return json;

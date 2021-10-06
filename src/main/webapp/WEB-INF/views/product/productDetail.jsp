@@ -432,7 +432,7 @@
 						    },
 						  },
 						}).then((result) => {
-						  if (result) window.location.href = "/cart/";
+						  if (result) window.location.href = "/cart/2";
 						});
 						<!--swal 끝-->
 	        		}
