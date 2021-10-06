@@ -2,17 +2,26 @@ package com.team3.shopping.controller;
 
 import java.security.Principal;
 import java.text.DecimalFormat;
+import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 
 import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -25,7 +34,8 @@ import com.team3.shopping.service.OrderService;
 @Controller
 @RequestMapping("/cart")
 public class CartController {
-	private static final Logger logger = LoggerFactory.getLogger(CartController.class);
+
+	 private static final Logger logger = LoggerFactory.getLogger(CartController.class);
 	
 	@Resource
 	OrderService orderService;
@@ -103,6 +113,7 @@ public class CartController {
 //		logger.info(mid);
 		
 		//cart의 내용 받아오기
+	      //지금은 cart 전체를 받아오지만 
 		OrderRowList = orderService.getMyCart(mid);
 		
 		DecimalFormat decFormat = new DecimalFormat("###,###");
@@ -121,4 +132,41 @@ public class CartController {
 		
 		return "cart/cart2";
 	}
+	
+	////json으로 장바구니에서 주문한 내용을 받아서 세션에 주문리스트를 저장한다.
+	   @PostMapping("jsonTest")
+	   public String orderForm2( @RequestBody List<Map<String, String>> attributeMap, HttpSession session) {
+	      logger.info("실행");
+
+	      System.out.println(attributeMap);
+	      logger.info("json 결과 " + attributeMap.toString());
+	      
+	      List<OrderRowDetailDto> OrderRowList = new LinkedList<OrderRowDetailDto>();
+	      
+	      
+	      for (Map<String, String> map : attributeMap) {
+	    	  OrderRowDetailDto orderRowDetailDto = new OrderRowDetailDto();
+	    	  orderRowDetailDto.setColor_code(map.get("color_code")); 
+	    	  orderRowDetailDto.setOamount(Integer.parseInt(map.get("oamount"))); 
+	    	  orderRowDetailDto.setPbrand(map.get("pbrand")); 
+	    	  orderRowDetailDto.setPname(map.get("pname")); 
+	    	  orderRowDetailDto.setPprice(Integer.parseInt(map.get("pprice"))); 
+	    	  orderRowDetailDto.setProduct_detail_url1(map.get("product_detail_url1")); 
+	    	  orderRowDetailDto.setSize_code(map.get("size_code")); 
+  	  
+	    	  OrderRowList.add(orderRowDetailDto);
+	    	  
+		}
+	      session.removeAttribute("OrderRowList");
+	      session.setAttribute("OrderRowList", OrderRowList);
+	      
+	      
+	      JSONObject jsonObject = new JSONObject();
+	      jsonObject.put("result", "success");
+	      String json = jsonObject.toString(); // result : successs
+
+	      return json;
+
+	   }
+	   
 }

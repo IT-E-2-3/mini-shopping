@@ -1,10 +1,15 @@
 package com.team3.shopping.controller;
 
 import java.security.Principal;
+import java.sql.Date;
+import java.sql.Timestamp;
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.time.LocalTime;
+import java.util.Calendar;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
@@ -20,6 +25,8 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -49,18 +56,19 @@ public class OrderController {
 	int total_amount = 0;
 	List<OrderRowDetailDto> OrderRowList;
 
-
+	
 
 	@GetMapping("/")
-	public String content(Model model, Principal principal) {
+	public String content(Model model, Principal principal, HttpSession session) {
 		logger.info("실행");
 		total_amount = 0;
 		MemberInfoDto member = orderService.getMid(principal.getName());
 //		logger.info(mid);
 
 		// cart의 내용 받아오기
-		OrderRowList = orderService.getMyCart(member.getMid());
-
+//		OrderRowList = orderService.getMyCart(member.getMid());
+		
+		OrderRowList = (List<OrderRowDetailDto>) session.getAttribute("OrderRowList");
 		DecimalFormat decFormat = new DecimalFormat("###,###");
 		for (OrderRowDetailDto orderRowDetailDto : OrderRowList) {
 			int price = (orderRowDetailDto.getPprice());
@@ -72,7 +80,7 @@ public class OrderController {
 		String decimal_total_amount = decFormat.format(total_amount);
 
 		model.addAttribute("OrderRowList", OrderRowList);
-		model.addAttribute("total_amount", decimal_total_amount);
+		model.addAttribute("total_amount", total_amount);
 		String mname = member.getMname();
 		StringBuilder sb = new StringBuilder();
 		sb.append(mname.charAt(0));
@@ -87,6 +95,8 @@ public class OrderController {
 
       return "order/order";
    }
+	
+
 
    /*
     * public String orderComplete( @ModelAttribute("orderForm") @Valid OrderDto
@@ -126,12 +136,18 @@ public class OrderController {
          
          JSONObject jsonObject = new JSONObject();
          jsonObject.put("result", "fail");
-         String json = jsonObject.toString(); // result : successs
+         String json = jsonObject.toString(); // result : fail
          
          return json;
       }
       
       logger.info(order.toString());
+      logger.info("---------CARD--------");
+      logger.info("getOpayment : "+ order.getOpayment());
+      logger.info("getOcard_installmentrate : " + order.getOcard_installmentrate());
+      logger.info("getOcard_installmentrate_period : "+order.getOcard_installmentrate_period());
+      logger.info("getOcard_name :"+order.getOcard_name());
+      logger.info("---------CARD--------");
       MemberInfoDto member = orderService.getMid(principal.getName());
 //		logger.info(mid);
 
@@ -139,24 +155,33 @@ public class OrderController {
 	
       String mid = member.getMid();
       // 주문에 대한 트랜젝션 - 재고가 없으면 실패
-      // Timestamp timesteamp = new Timestamp(System.currentTimeMillis());
-      // timesteamp = timesteamp.
-
+      Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+      SimpleDateFormat sdf = new SimpleDateFormat ("yyyy-MM-dd hh:mm:ss");
+      order.setOdate(sdf.toString());
+      
+      
       LocalTime currentTime = LocalTime.now();
       // LocalTime targetTime = LocalTime.of(int hour, int minute, int second, int
       // nanoOfSecond);
       String oid = currentTime.toString();
       order.setMid(mid);
       order.setOid(oid);
-      order.setOdate("21/10/01 18:15:17.000000000");
+      
       order.setOtotal_price(total_amount);
       
       session.removeAttribute(oid);
-      session.setAttribute("oid", oid);
+     
 
       logger.info(order.toString());
       
       logger.info("성공");
+      OrderRowList = (List<OrderRowDetailDto>) session.getAttribute("OrderRowList");
+      for (OrderRowDetailDto orderRowDetailDto : OrderRowList) {
+		logger.info("orderRowDetailDto.toString() : "+orderRowDetailDto.toString());
+		orderRowDetailDto.setMid(mid);
+		logger.info("orderRowDetailDto.toString() : "+orderRowDetailDto.toString());
+	}
+//		session.removeAttribute("OrderRowList");
       orderService.makeOrder(OrderRowList, oid, order);
       logger.info(order.toString());
       // 성공시
@@ -168,11 +193,15 @@ public class OrderController {
       
       JSONObject jsonObject = new JSONObject();
       jsonObject.put("result", "success");
+      session.setAttribute("order", order);
       String json = jsonObject.toString(); // result : successs
       
       return json;
    }
 
+   
+
+   
 
 
    
@@ -180,15 +209,34 @@ public class OrderController {
 	@RequestMapping("/ordersuccess")
 	public String ordersuccess(Model model, HttpSession session) {
 		logger.info("실행");
-		String oid = (String) session.getAttribute("oid");
-		OrderDto order = (OrderDto) orderService.getOrder(oid);
+		OrderDto order= (OrderDto) session.getAttribute("order");
+		session.removeAttribute("order");
+		String oid = order.getOid();
+//		OrderDto order = (OrderDto) orderService.getOrder(oid);
 		List<OrderRowDetailDto> orderItems = orderService.getProductInfo(oid);
 
 		model.addAttribute("order", order);
 		model.addAttribute("orderItems", orderItems);
-
-	
+		
+		
 		logger.info(orderItems.toString());
+		
+		long cardCost = (order.getOtotal_price())/(Integer.parseInt(order.getOcard_installmentrate_period()) )*(100-Integer.parseInt(order.getOcard_installmentrate()) );
+		model.addAttribute("cardCost", orderItems);
+		
+		//odate를 기반으로 2일 후까지 입금시켜야 하는 입금기한을 주려고 했으나 실패
+//		Timestamp ts= Timestamp.valueOf(order.getOdate());
+//		Calendar cal = Calendar.getInstance();
+//		cal.setTime(ts);
+//		cal.add(Calendar.DATE, 2);
+//		ts.setTime(cal.getTime().getTime());
+//		
+//		 SimpleDateFormat sdf = new SimpleDateFormat ("yyyy-MM-dd hh:mm:ss");
+//	      order.setOdate(sdf.toString());
+	      
+		
+//		Date date = Date.valueOf(order.getOdate());
+//		model.addAttribute("deadline", date.toString());
 		return "order/orderSuccess";
 	}
    
