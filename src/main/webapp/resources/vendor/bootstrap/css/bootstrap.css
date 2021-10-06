@@ -5083,6 +5083,11 @@ button.close {
           transform: translateX(-100%);
 }
 
+carousel-control-center {
+	 -webkit-transform: translateX(-50%);
+     transform: translateX(-50%);
+}
+
 @supports ((-webkit-transform-style: preserve-3d) or (transform-style: preserve-3d)) {
   .carousel-item-prev,
   .active.carousel-item-left {
@@ -5092,7 +5097,8 @@ button.close {
 }
 
 .carousel-control-prev,
-.carousel-control-next {
+.carousel-control-next, 
+.carousel-control-center  {
   position: absolute;
   top: 0;
   bottom: 0;
@@ -5107,6 +5113,23 @@ button.close {
   text-align: center;
   opacity: 0.5;
 }
+
+.carousel-control-center {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+      align-items: center;
+  -ms-flex-pack: center;
+      justify-content: center;
+  width: 50%;
+  color: #fff;
+  text-align: center;
+  left: 25%;
+}
+
 
 .carousel-control-prev:focus, .carousel-control-prev:hover,
 .carousel-control-next:focus,
