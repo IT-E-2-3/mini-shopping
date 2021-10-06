@@ -14,10 +14,10 @@
 				<label class="col-sm-3" for="term">조회기간<!-- 조회기간 --></label>
 
 				<div class="calendar_wrap mr5 col-sm-8">
-					<input type="text" id="datepicker" onchange="javascript:onchange()"
+					<input type="text" id="datepicker" 
 						data-range="true" data-multiple-dates-separator=" - "
 						data-language="ko" class="datepicker-here"
-						style="border: 1px solid black">
+						style="border: 1px solid black" value=" ${startDate} - ${endDate}">
 				</div>
 
 				<!-- <div class="tab_c">
@@ -27,7 +27,7 @@
 						<li><a href="javascript:void(0);" id="setDateBtn3">3개월3개월</a></li>
 					</ul>
 				</div> -->
-				<form action="orderList" onsubmit="return requestPost()" class="col-sm-2">
+				<form class="col-sm-2" action="orderList" onsubmit="return requestPost()" >
 					<input type="submit"  type="button" id="searchBtn"
 						class="btn_search p-t-5 p-b-5" value="조회하기"> <input type="hidden"
 						id="startDate" name="startDate"> <input type="hidden"

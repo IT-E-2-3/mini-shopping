@@ -49,7 +49,7 @@
         role="button"
         data-slide="prev"
       >
-        <span style="font-size: 4em; color: 'white'; opacity: 1; font-weight: 'bold';  " >선착순 쿠폰 이벤트</span>
+        <span style="font-size: 4em; color: 'white'; opacity: 1; font-weight: bold; font-family: 'Arial'; " >| 선착순 쿠폰 이벤트 |</span>
         <span class="sr-only">Previous</span>
       </a>
       <a
@@ -62,6 +62,8 @@
         <span class="sr-only">Next</span>
       </a>
     </div>
+    
+    <div class="page-title"></div>
 
     
      <!--===============================================================================================-->

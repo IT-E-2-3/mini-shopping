@@ -5083,9 +5083,9 @@ button.close {
           transform: translateX(-100%);
 }
 
-carousel-control-center {
-	 -webkit-transform: translateX(-50%);
-     transform: translateX(-50%);
+.carousel-control-center a:hover {
+	color:  white;
+	text-decoration: none;
 }
 
 @supports ((-webkit-transform-style: preserve-3d) or (transform-style: preserve-3d)) {
@@ -5097,8 +5097,7 @@ carousel-control-center {
 }
 
 .carousel-control-prev,
-.carousel-control-next, 
-.carousel-control-center  {
+.carousel-control-next  {
   position: absolute;
   top: 0;
   bottom: 0;

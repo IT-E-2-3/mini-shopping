@@ -305,6 +305,8 @@ public class OrderController {
 		}
 		model.addAttribute("neworderList", selectedOrders);
 		model.addAttribute("hello", "hello");
+		model.addAttribute("startDate", startDate);
+		model.addAttribute("endDate", endDate);
 		logger.info("선택된 주문 " + selectedOrders.size());
 		return "order/orderList";
 //		
