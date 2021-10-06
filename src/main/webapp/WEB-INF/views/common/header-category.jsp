@@ -24,6 +24,9 @@
 <script
 	src="${pageContext.request.contextPath}/resources/vendor/bootstrap/js/bootstrap.min.js"></script>
 <script
+	src="${pageContext.request.contextPath}/resources/vendor/bootstrap/js/popper.min.js"></script>
+
+<script
 	src="${pageContext.request.contextPath}/resources/bootstrap-4.6.0-dist/js/bootstrap.bundle.min.js"></script>
 
 <!--===============================================================================================-->
