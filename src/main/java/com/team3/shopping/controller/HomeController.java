@@ -33,5 +33,12 @@ public class HomeController {
 	
 
 	
+	@GetMapping("/coupon")
+	public String coupon() {
+		logger.info("실행coupon");
+		return "event/coupon";
+	}
+	
+	
 	
 }  

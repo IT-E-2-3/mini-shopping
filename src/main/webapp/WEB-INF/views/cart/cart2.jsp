@@ -755,6 +755,7 @@
     
     
 }
+
 /* 
 // 숫자 3자리 콤마찍기
 Number.prototype.formatNumber = function(){
