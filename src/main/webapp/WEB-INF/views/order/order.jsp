@@ -476,8 +476,8 @@
 									 id="ocard_installmentrate_period"
 									name="ocard_installmentrate_period"
 									class="hyundai form-select  text-center" onchange="javascript:send()">
-										<option value="0" selected="selected">일시불</option>
-										<option value="1">1개월</option>
+										<option value="1" selected="selected">일시불</option>
+										
 										<option value="2">2개월</option>
 										<option value="3">3개월</option>
 										<option value="3">3개월</option>
@@ -500,8 +500,8 @@
 												BC카드
 											</label>
 										</div>
-										<img alt="현대카드"
-											src="https://www.thehandsome.com/medias/HYUNDAI.jpg?context=bWFzdGVyfHJvb3R8MjYxMHxpbWFnZS9qcGVnfGg1ZC9oN2MvODgxNDE4MTcxMTkwMi5qcGd8YmM5ZWY0ZjlhODlkMzdmMjYyNmY4NjQ4OWU5NWVjOWFlMGY4ODIwYzZlNjA0MjBlNDkwNWI0ZDllYThjMWE5Mw">
+										<img alt="BC카드"
+											src="/medias/BC.jpg?context=bWFzdGVyfHJvb3R8MjQ1OHxpbWFnZS9qcGVnfGhmMi9oMGQvODgxNDE4MTIyMDM4Mi5qcGd8MjZlZGU2ZGQyNDBkYzU5YmY2NWY0MDU3NDc1OTA0YWI5NmM4NDJjMDFiYjBiYjBjY2FhZjhmMzg3ZmE5NGU5Yw">
 									</fieldset>
 								</th>
 
@@ -520,8 +520,8 @@
 									 id="ocard_installmentrate_period"
 									name="ocard_installmentrate_period"
 									class="BC form-select  text-center" onchange="javascript:send()">
-										<option value="0" selected="selected">일시불</option>
-										<option value="1">1개월</option>
+										<option value="1" selected="selected">일시불</option>
+										
 										<option value="2">2개월</option>
 										<option value="3">3개월</option>
 										<option value="3">3개월</option>
