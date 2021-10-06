@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.team3.shopping.dao.CartDao">
+
+	<!-- pk가 같은 제품이 있는지 확인 -->
+	<select id="checkCart" parameterType="cart" resultType="int">
+		select count(pid)
+		from mycart
+		where mid=#{mid} and pid=#{pid} and color_code=#{color_code} and size_code=#{size_code}
+	</select>
+	
+	<!-- 같은 제품이 장바구니에 없다면 insert -->
+	<insert id="insertProduct" parameterType="cart">
+		insert into mycart values(#{mid}, #{pid}, #{color_code}, #{size_code}, #{camount})
+	</insert>
+	
+	<!-- 같은 제품이 장바구니에 있다면 기존 수량 + 선택한 수량으로 update -->
+	<update id="updateCount" parameterType="cart">
+		update mycart
+		set camount = camount + #{camount}
+		where mid=#{mid} and pid=#{pid} and color_code=#{color_code} and size_code=#{size_code}
+	</update>
+</mapper>

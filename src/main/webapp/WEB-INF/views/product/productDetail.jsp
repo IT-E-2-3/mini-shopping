@@ -1,6 +1,13 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <%@ include file="/WEB-INF/views/common/header-category.jsp"%>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/vendor/animsition/css/animsition.min.css"/>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/vendor/daterangepicker/daterangepicker.css"/>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/vendor/slick/slick.css" />
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/vendor/MagnificPopup/magnific-popup.css"/>
+<script src="${pageContext.request.contextPath}/resources/vendor/sweetalert/sweetalert.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/vendor/select2/select2.min.js"></script>
+
 <!-- Product Detail -->
     <section class="sec-product-detail bg0 p-t-65 p-b-60">
       <div class="container">
@@ -12,90 +19,46 @@
                 <div class="wrap-slick3-arrows flex-sb-m flex-w"></div>
 
                 <div class="slick3 gallery-lb">
-                  <div
-                    class="product-slick3"
-                    data-thumb="http://newmedia.thehandsome.com/IL/2B/FW/IL2B9WJC412W_DG_W01.jpg"
-                  >
-                    <div class="wrap-pic-w pos-relative">
-                      <img src="http://newmedia.thehandsome.com/IL/2B/FW/IL2B9WJC412W_DG_W01.jpg"
-                        alt="IMG-PRODUCT"
-                      />
+                	<!-- 첫 번째 사진 -->
+					<div class="product-slick3" data-thumb="${product.product_detail_url1}">
+					  <div class="wrap-pic-w pos-relative">
+					  
+					    <img src="${product.product_detail_url1}"
+					      alt="IMG-PRODUCT"/>
+					
+					    <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hovbtn3 trans-04"
+					      href="${product.product_detail_url1}">
+					      <i class="fa fa-expand"></i>
+					    </a>
+					  </div>
+					</div>
+					
+					<!-- 두 번째 사진 -->
+					<div class="product-slick3" data-thumb="${product.product_detail_url2}">
+					  <div class="wrap-pic-w pos-relative">
+					    <img src="${product.product_detail_url2}" alt="IMG-PRODUCT"/>
+					
+					    <a class="flex-c-m size-108 how-pos1 bor0 s-16 cl10 bg0 hov-btn3 trans-04"
+					      href="${product.product_detail_url2}">
+					      <i class="fa fa-expand"></i>
+					    </a>
+					  </div>
+					</div>
+					
+					<!-- 세 번째 사진 -->
+   					<div class="product-slick3" data-thumb="${product.product_detail_url3}">
+     					<div class="wrap-pic-w pos-relative">
+							<img
+						        src="${product.product_detail_url3}"
+						        alt="IMG-PRODUCT"
+						      />
 
-                      <a class="
-                          flex-c-m
-                          size-108
-                          how-pos1
-                          bor0
-                          fs-16
-                          cl10
-                          bg0
-                          hovbtn3
-                          trans-04
-                        "
-                        href="http://newmedia.thehandsome.com/IL/2B/FW/IL2B9WJC412W_DG_W01.jpg"
-                      >
-                        <i class="fa fa-expand"></i>
-                      </a>
-                    </div>
-                  </div>
-
-                  <div
-                    class="product-slick3"
-                    data-thumb="http://newmedia.thehandsome.com/IL/2B/FW/IL2B9WJC412W_DG_W02.jpg/dims/resize/684x1032/"
-                  >
-                    <div class="wrap-pic-w pos-relative">
-                      <img
-                        src="http://newmedia.thehandsome.com/IL/2B/FW/IL2B9WJC412W_DG_W02.jpg/dims/resize/684x1032/"
-                        alt="IMG-PRODUCT"
-                      />
-
-                      <a
-                        class="
-                          flex-c-m
-                          size-108
-                          how-pos1
-                          bor0
-                          fs-16
-                          cl10
-                          bg0
-                          hov-btn3
-                          trans-04
-                        "
-                        href="http://newmedia.thehandsome.com/IL/2B/FW/IL2B9WJC412W_DG_W02.jpg/dims/resize/684x1032/"
-                      >
-                        <i class="fa fa-expand"></i>
-                      </a>
-                    </div>
-                  </div>
-
-                  <div
-                    class="product-slick3"
-                    data-thumb="http://newmedia.thehandsome.com/IL/2B/FW/IL2B9WJC412W_DG_W03.jpg"
-                  >
-                    <div class="wrap-pic-w pos-relative">
-                      <img
-                        src="http://newmedia.thehandsome.com/IL/2B/FW/IL2B9WJC412W_DG_W03.jpg"
-                        alt="IMG-PRODUCT"
-                      />
-
-                      <a
-                        class="
-                          flex-c-m
-                          size-108
-                          how-pos1
-                          bor0
-                          fs-16
-                          cl10
-                          bg0
-                          hov-btn3
-                          trans-04
-                        "
-                        href="http://newmedia.thehandsome.com/IL/2B/FW/IL2B9WJC412W_DG_W03.jpg"
-                      >
-                        <i class="fa fa-expand"></i>
-                      </a>
-                    </div>
-                  </div>
+							<a class="flex-c-m size-108 how-pos1 bor0 s-16 cl10 bg0 hov-btn3 trans-04"
+							   href="${product.product_detail_url3}">
+         						<i class="fa fa-expand"></i>
+       						</a>
+     					</div>
+  					 </div>
                 </div>
               </div>
             </div>
@@ -103,20 +66,19 @@
 
           <div class="col-md-6 col-lg-5 p-b-30">
             <div class="p-r-50 p-t-5 p-lr-0-lg">
-              <h5 class="brand-name">LÄTT</h5>
-              <h4 class="mtext-105 cl2 js-name-detail p-b-14">울 셋업 재킷</h4>
+              <h5 class="brand-name">${product.pbrand}</h5>
+              <h4 class="mtext-105 cl2 js-name-detail p-b-14">${product.pname}</h4>
 
-              <span class="mtext-101 cl2"> ₩&nbsp;745,000 </span>
+              <span class="mtext-101 cl2"> ₩&nbsp;<span id="productprice">${product.pprice}</span></span>
 
               <div class="prod-detail-box mt-3">
+              	<input type="hidden" id="productid" value="${product.pid}"/>
+              	<input type="hidden" id="pcolor" value="${product.color_code}"/>
                 <span class="number-code" style="font-size: 12px">
-                  상품품번 : <span>IL2B9WJC412W_DG</span>
+                  상품품번 : <span>${product.pid}_${product.color_code}</span>
                 </span>
                 <p class="stext-102 cl3 p-t-23">
-                  래트만의 고급스러운 퀄리티가 돋보이는 이 재킷은 각이 잡힌
-                  어깨로 형태감이 무너지지 않아 단정한 느낌을 전해줍니다. 동일한
-                  소재의 팬츠와 함께 포멀한 무드의 셋업으로 스타일링하기
-                  좋습니다.
+                  ${product.pdetail}
                 </p>
               </div>
 
@@ -127,10 +89,11 @@
 
                   <div class="size-204 respon6-next">
                     <div class="rs1-select2 bor8 bg0">
-                      <select class="js-select2" name="time">
+                      <select class="js-select2" name="size" id="size">
                         <option>옵션을 선택해주세요.</option>
-                        <option>82(55)</option>
-                        <option>88(66)</option>
+                        <c:forEach var="size" items="${sizelist}">
+                        	<option value="${size.size_code}">${size.size_code}</option>
+                        </c:forEach>
                       </select>
                       <div class="dropDownSelect2"></div>
                     </div>
@@ -141,23 +104,14 @@
                   <div class="size-203 flex-c-m respon6">색상</div>
 
                   <div class="size-204">
-                    <ul class="color_chip d-flex">
-                      <li id="IL2B9WJC412W_DG">
-                        <button type="button" class="ee_btn-color on" style="">
-                          <img
-                            src="images/color-IL2B9WJC412W_DG.jpeg"
-                            alt="다크그레이"
-                          />
-                        </button>
-                      </li>
-                      <li id="IL2B9WJC412W_GE" class="ml-2">
-                        <button type="button" class="ee_btn-color on" style="">
-                          <img
-                            src="images/color-IL2B9WJC412W_GE.jpeg"
-                            alt="라이트그레이"
-                          />
-                        </button>
-                      </li>
+                    <ul class="color_chip d-flex" style="padding-left:0px;">
+                    <c:forEach var="color" items="${colorlist}">
+                    	<li id="${color.pid}_${color.color_code}" style="margin-right:8px;">
+                    		<a href="${pageContext.request.contextPath}/product/detail?pid=${product.pid}&co=${color.color_code}">
+	                    		<img src="${color.color_chip_url}" style="width: 20px; height: 20px;"/>
+                    		</a>
+                    	</li>
+                    </c:forEach>
                     </ul>
                   </div>
                   <span class="cl_name" id="colorNameContent"></span>
@@ -168,25 +122,15 @@
 
                   <div class="size-204 respon6-next">
                     <div class="wrap-num-product flex-w m-r-20 m-tb-10">
-                      <div
-                        class="
-                          btn-num-product-down
-                          cl8
-                          hov-btn3
-                          trans-04
-                          flex-c-m
-                        "
-                      >
+                      <div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
                         <i class="fs-16 zmdi zmdi-minus"></i>
                       </div>
-
-                      <input
-                        class="mtext-104 cl3 txt-center num-product"
+                      <input class="mtext-104 cl3 txt-center num-product"
                         type="number"
                         name="num-product"
+                        id = "productnum"
                         value="1"
                       />
-
                       <div
                         class="
                           btn-num-product-up
@@ -201,33 +145,40 @@
                     </div>
                   </div>
                 </div>
+                <script>
+					$('.btn-num-product-down').on('click', function(){
+						var numProduct = Number($(this).next().val());
+					    if(numProduct > 1) $(this).next().val(numProduct - 1);
+					    
+					    var productprice = document.querySelector('#productprice').textContent;
+			        	document.querySelector('#totalprice').textContent = productprice * productnum.value;
+					});
+					
+					$('.btn-num-product-up').on('click', function(){
+					    var numProduct = Number($(this).prev().val());
+					    $(this).prev().val(numProduct + 1);
+					    
+					    var productprice = document.querySelector('#productprice').textContent;
+			        	document.querySelector('#totalprice').textContent = productprice * productnum.value;
+					});
+				</script>
 
                 <hr />
                 <div class="total_price d-flex justify-content-between m-4">
                   <div class="title mtext-101" style="width: auto">총 합계</div>
                   <div class="price">
-                    <span id="sumPrice" class="mtext-101">₩&nbsp;745,000</span>
+                    <span id="sumPrice" class="mtext-101">₩&nbsp;<span id="totalprice" class="mtext-101">${product.pprice}</span></span>
                   </div>
                 </div>
 
                 <div class="flex-w flex-r-m p-b-10">
                   <div class="size-204 flex-w flex-m respon6-next">
-                    <button
-                      class="
-                        flex-c-m
-                        stext-101
-                        cl0
-                        size-101
-                        bg3
-                        bor14
-                        hov-btn3
-                        p-lr-15
-                        trans-04
-                        js-addcart-detail
-                      "
-                    >
-                      Add to cart
-                    </button>
+                    <sec:authorize access="hasRole('ROLE_USER')">
+	                    <button
+	                      class="flex-c-m stext-101 cl0 size-101 bg3 bor14 hov-btn3 p-lr-15 trans-04 js-addcart-detail">
+	                      Add to cart
+	                    </button>
+                    </sec:authorize>
                   </div>
                 </div>
               </div>
@@ -261,63 +212,43 @@
                 <div class="how-pos2 p-lr-15-md">
                   <p class="stext-102 cl6">
                     <dd style="display: block">
-                      <strong>상품품번 :</strong> IL2B9WJC412W<br />
-                      <strong>품목 :</strong> 의류<br />
-                      <strong>소재 :</strong> 겉감 모 100%, 배색 폴리에스터 50%,
-                      모 50%, 안감1 면 35%, 폴리에스터 65%, 안감2 레이온
-                      100%(DG,GE)<br />
-                      <strong>색상 :</strong> DG(DARK GREY), GE(GREIGE)<br />
-                      <strong>사이즈 :</strong> 82, 88<br />
-                      <strong>제조국 :</strong> 한국<br />
-                      <strong>제조사 :</strong> (주)한섬<br />
-                      <strong>제조연월 :</strong> 202108<br />
                       <strong>세탁방법 및 취급 시 주의사항</strong>
                       <div class="howToWash renew1907" id="newHowToWash">
                         <ul class="d-flex">
                           <li>
-                            <img
-                              src="http://cdn.thehandsome.com/pc/laundryMark/pc_ko1/003.png"
+                            <img src="http://cdn.thehandsome.com/pc/laundryMark/pc_ko1/003.png"
                               onmouseover="this.src='http://cdn.thehandsome.com/pc/laundryMark/pc_ko2/003_.png'"
                               onmouseout="this.src='http://cdn.thehandsome.com/pc/laundryMark/pc_ko1/003.png'"
                               onerror="javascript:onErrorImg(this);"
-                              alt="003"
-                            />
+                              alt="003"/>
                           </li>
                           <li>
-                            <img
-                              src="http://cdn.thehandsome.com/pc/laundryMark/pc_ko1/016.png"
+                            <img src="http://cdn.thehandsome.com/pc/laundryMark/pc_ko1/016.png"
                               onmouseover="this.src='http://cdn.thehandsome.com/pc/laundryMark/pc_ko2/016_.png'"
                               onmouseout="this.src='http://cdn.thehandsome.com/pc/laundryMark/pc_ko1/016.png'"
                               onerror="javascript:onErrorImg(this);"
-                              alt="019"
-                            />
+                              alt="019"/>
                           </li>
                           <li>
-                            <img
-                              src="http://cdn.thehandsome.com/pc/laundryMark/pc_ko1/049.png"
+                            <img src="http://cdn.thehandsome.com/pc/laundryMark/pc_ko1/049.png"
                               onmouseover="this.src='http://cdn.thehandsome.com/pc/laundryMark/pc_ko2/049_.png'"
                               onmouseout="this.src='http://cdn.thehandsome.com/pc/laundryMark/pc_ko1/049.png'"
                               onerror="javascript:onErrorImg(this);"
-                              alt="049"
-                            />
+                              alt="049"/>
                           </li>
                           <li>
-                            <img
-                              src="http://cdn.thehandsome.com/pc/laundryMark/pc_ko1/008.png"
+                            <img src="http://cdn.thehandsome.com/pc/laundryMark/pc_ko1/008.png"
                               onmouseover="this.src='http://cdn.thehandsome.com/pc/laundryMark/pc_ko2/008_.png'"
                               onmouseout="this.src='http://cdn.thehandsome.com/pc/laundryMark/pc_ko1/008.png'"
                               onerror="javascript:onErrorImg(this);"
-                              alt="008"
-                            />
+                              alt="008"/>
                           </li>
                           <li>
-                            <img
-                              src="http://cdn.thehandsome.com/pc/laundryMark/pc_ko1/029.png"
+                            <img src="http://cdn.thehandsome.com/pc/laundryMark/pc_ko1/029.png"
                               onmouseover="this.src='http://cdn.thehandsome.com/pc/laundryMark/pc_ko2/029_.png'"
                               onmouseout="this.src='http://cdn.thehandsome.com/pc/laundryMark/pc_ko1/029.png'"
                               onerror="javascript:onErrorImg(this);"
-                              alt="029"
-                            />
+                              alt="029"/>
                           </li>
                         </ul>
                       </div>
@@ -352,7 +283,6 @@
                       <br /><br />
                       위 내용은 상품정보제공 고시에 따라 작성되었습니다.
                     </dd>
-                  </p>
                 </div>
               </div>
             </div>
@@ -360,23 +290,55 @@
         </div>
       </div>
     </section>
+	
+	<!-- 함께 코디된 옷이 있을 경우에만 표시 -->
+	<c:if test="${not empty matching_cloth}">
+	<!-- Related Products -->
+	<section class="sec-relate-product bg0 p-t-45 p-b-105">
+		<div class="container">
+			<div class="p-b-45">
+				<h3 class="ltext-106 cl5 txt-center">
+					Related Products
+				</h3>
+			</div>
 
+			<!-- Slide2 -->
+			<div class="wrap-slick2">
+				<div class="slick2">
+					<div class="product-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
+						<!-- Block2 -->
+						<div class="block2">
+							<div class="block2-pic hov-img0 text-center">
+								<img src="${matching_cloth.product_detail_url3}" alt="IMG-PRODUCT" style="width:200px;">
+							</div>
+
+							<div class="block2-txt flex-w flex-t p-t-14 text-center">
+								<div class="block2-txt-child1 flex-col-l align-items-center">
+									<span class="stext-104">${matching_cloth.pbrand}</span>
+									<a href="${pageContext.request.contextPath}/product/detail?pid=${matching_cloth.pid}&co=${matching_cloth.color_code}"
+									class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+										${matching_cloth.pname}
+									</a>
+
+									<span class="stext-105 cl3">
+										 ₩&nbsp;${matching_cloth.pprice}</span>
+									</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	</c:if>
+	
     <!-- Back to top -->
     <div class="btn-back-to-top" id="myBtn">
       <span class="symbol-btn-back-to-top">
         <i class="zmdi zmdi-chevron-up"></i>
       </span>
     </div>
-
-    <!--===============================================================================================-->
-    <script src="${pageContext.request.contextPath}/resources/vendor/jquery/jquery-3.2.1.min.js"></script>
-    <!--===============================================================================================-->
-    <script src="${pageContext.request.contextPath}/resources/vendor/animsition/js/animsition.min.js"></script>
-    <!--===============================================================================================-->
-    <script src="${pageContext.request.contextPath}/resources/vendor/bootstrap/js/popper.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/vendor/bootstrap/js/bootstrap.min.js"></script>
-    <!--===============================================================================================-->
-    <script src="${pageContext.request.contextPath}/resources/vendor/select2/select2.min.js"></script>
     <script>
       $(".js-select2").each(function () {
         $(this).select2({
@@ -385,19 +347,7 @@
         });
       });
     </script>
-    <!--===============================================================================================-->
-    <script src="${pageContext.request.contextPath}/resources/vendor/daterangepicker/moment.min.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/vendor/daterangepicker/daterangepicker.js"></script>
-    <!--===============================================================================================-->
-    <script src="${pageContext.request.contextPath}/resources/vendor/slick/slick.min.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/js/slick-custom.js"></script>
-    <!--===============================================================================================-->
-    <script src="${pageContext.request.contextPath}/resources/vendor/parallax100/parallax100.js"></script>
-    <script>
-      $(".parallax100").parallax100();
-    </script>
-    <!--===============================================================================================-->
-    <script src="${pageContext.request.contextPath}/resources/vendor/MagnificPopup/jquery.magnific-popup.min.js"></script>
+  
     <script>
       $(".gallery-lb").each(function () {
         // the containers for all your galleries
@@ -411,76 +361,81 @@
         });
       });
     </script>
-    <!--===============================================================================================-->
-    <script src="${pageContext.request.contextPath}/resources/vendor/isotope/isotope.pkgd.min.js"></script>
-    <!--===============================================================================================-->
-    <script src="${pageContext.request.contextPath}/resources/vendor/sweetalert/sweetalert.min.js"></script>
+    
     <script>
-      $(".js-addwish-b2, .js-addwish-detail").on("click", function (e) {
-        e.preventDefault();
-      });
-
-      $(".js-addwish-b2").each(function () {
-        var nameProduct = $(this).parent().parent().find(".js-name-b2").html();
-        $(this).on("click", function () {
-          swal(nameProduct, "is added to wishlist !", "success");
-
-          $(this).addClass("js-addedwish-b2");
-          $(this).off("click");
-        });
-      });
-
-      $(".js-addwish-detail").each(function () {
-        var nameProduct = $(this)
-          .parent()
-          .parent()
-          .parent()
-          .find(".js-name-detail")
-          .html();
-
-        $(this).on("click", function () {
-          swal(nameProduct, "is added to wishlist !", "success");
-
-          $(this).addClass("js-addedwish-detail");
-          $(this).off("click");
-        });
-      });
-
-      /*---------------------------------------------*/
-
-      $(".js-addcart-detail").each(function () {
-        var nameProduct = $(this)
-          .parent()
-          .parent()
-          .parent()
-          .parent()
-          .find(".js-name-detail")
-          .html();
-        $(this).on("click", function () {
-          // swal(nameProduct, "장바구니에 담았습니다.", "success");
-          swal({
-            title: nameProduct,
-            text: "장바구니에 담았습니다.",
-            icon: "success",
-            buttons: {
-              cancle: {
-                text: "계속 쇼핑하기",
-                value: false,
-                className: "swal_confirm",
-              },
-              confirm: {
-                text: "쇼핑백으로 가기",
-                value: true,
-              },
-            },
-          }).then((result) => {
-            if (result) window.location.href = "shoping-cart.html";
-          });
-        });
-      });
+	    $(".js-addcart-detail").each(function () {
+	        var nameProduct = $(this)
+	          .parent()
+	          .parent()
+	          .parent()
+	          .parent()
+	          .find(".js-name-detail")
+	          .html();
+	        $(this).on("click", function () {
+	        	const p_pid = productid.value; //상품 id
+	        	const p_color_code = pcolor.value; // member가 선택한 색상 = 현재product의 color 
+	        	const p_size_code = $("#size option:selected").val(); // member가 선택한 사이즈
+	        	const p_camount = productnum.value; //수량
+	      		
+	        	console.log(p_pid);
+	        	console.log(p_color_code);
+	        	console.log(p_size_code);
+	        	console.log(p_camount); 
+	        	
+	        	let checkResult = true;
+	        	
+	        	//수량 필수 입력
+	        	if(p_size_code=='옵션을 선택해주세요.'){
+	        		checkResult = false;
+	        		swal("수량 선택 안함", "수량을 선택해주세요!", "warning");
+	        	}
+	        	
+	        	//서버로 제출할지 말지 결정
+	        	if(!checkResult) {
+			         return false;
+			    }
+	        	
+	        	<!--ajax 시작-->
+	        	$.ajax({
+	        		url : "/cart/insert",
+	        		method:"get",
+	        		data : {
+	        			mid : null,
+	        			pid : p_pid,
+	        			color_code : p_color_code,
+	        			size_code : p_size_code,
+	        			camount : p_camount
+	        		},
+	                contentType: "application/x-www-form-urlencoded; charset=UTF-8;"
+	        	}).done((data)=>{
+	        		console.log(data);
+	        		if(data.result =="success"){
+			        	<!--swal 시작 -->
+						swal({
+						  title: nameProduct,
+						  text: "장바구니에 담았습니다.",
+						  icon: "success",
+						  buttons: {
+						    cancle: {
+						      text: "계속 쇼핑하기",
+						      value: false,
+						      className: "swal_confirm",
+						    },
+						    confirm: {
+						      text: "쇼핑백으로 가기",
+						      value: true,
+						    },
+						  },
+						}).then((result) => {
+						  if (result) window.location.href = "/cart/";
+						});
+						<!--swal 끝-->
+	        		}
+	        	});
+	        	<!--ajax 끝 -->
+	        });
+	      });
     </script>
-    <!--===============================================================================================-->
-    <script src="${pageContext.request.contextPath}/resources/vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
     <script>
       $(".js-pscroll").each(function () {
         $(this).css("position", "relative");
@@ -496,6 +451,4 @@
         });
       });
     </script>
-    <!--===============================================================================================-->
-    <script src="${pageContext.request.contextPath}/resources/js/main.js"></script>
 <%@ include file="/WEB-INF/views/common/footer.jsp"%>

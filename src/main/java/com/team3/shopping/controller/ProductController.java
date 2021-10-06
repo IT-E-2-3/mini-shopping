@@ -57,7 +57,18 @@ public class ProductController {
 	}
 	
 	@GetMapping("/detail")
-	public String getDetailView() {
+	public String getDetailView(@RequestParam("pid") String pid, @RequestParam("co") String color, Model model) {
+		logger.info("실행");
+		ProductListDto product = productService.getproductDetail(pid, color);
+		List<ProductListDto> sizelist = productService.getSizeList(pid, color);
+		List<ProductListDto> colorlist = productService.getColorList(pid);
+		model.addAttribute("product", product);
+		model.addAttribute("sizelist", sizelist);
+		model.addAttribute("colorlist", colorlist);
+		
+		ProductListDto matching_cloth = productService.getMatchingCloth(pid, color);
+		model.addAttribute("matching_cloth", matching_cloth);
+//		System.out.println("#########매칭 컬러코드 : " + matching_cloth.getColor_code());
 		return "product/productDetail";
 	}
 }

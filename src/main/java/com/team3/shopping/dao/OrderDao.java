@@ -54,4 +54,6 @@ public interface OrderDao {
 	
 	public OrderDto selectOrderbyOid(String oid);
 
+	public int SelectCartAmountByPid(OrderRowDetailDto orderRowDetailDto);
+
 }

@@ -17,4 +17,8 @@ public interface ProductDao {
 	public CategoryDto parentCategory(String cateCode);
 	public List<ProductListDto> getproductList(@Param("pager") Pager pager, @Param("cateCode") String catecode);
 	public int getCountRows(String cateCode);
+	public ProductListDto getproductDetail(@Param("pid")String pid, @Param("color") String color);
+	public List<ProductListDto> getSizeList(@Param("pid")String pid, @Param("color") String color);
+	public List<ProductListDto> getColorList(String pid);
+	public ProductListDto getMatchingCloth(@Param("pid") String pid, @Param("color") String color);
 }

@@ -1,5 +1,7 @@
 package com.team3.shopping.dto;
 
+import java.util.List;
+
 import lombok.Data;
 
 @Data
@@ -12,6 +14,8 @@ public class OrderRowDetailDto {
 	private String pname;
 	private Integer pprice;
 	private Integer oamount;
+	
+
 }
 /*	mid 로 cart 접근하고 pid, color_code, size_code camount 얻어옴
   		
