@@ -1,7 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 
 <%@ include file="/WEB-INF/views/common/header-nocategory.jsp"%>
-
+<script src="${pageContext.request.contextPath}/resources/vendor/sweetalert/sweetalert.min.js"></script>
 <div class="card m-2">
 	<form>
 		<div class="row">
@@ -629,7 +629,9 @@
 	</form>
 
 </div>
+
 <script>
+
    function requestPost() {
       
       event.preventDefault();
@@ -787,9 +789,12 @@
       .done((data) => {
          console.log(data);
          if(data.result == "success"){
-            console.log(data);
-            //redirect
+            //console.log(data);
             window.location.href = "/order/ordersuccess";
+         }else if(data.result == "outofstock"){
+        	 console.log("outofstock")
+        	 swal("상품 재고부족", "재고가 부족합니다.", "error");
+
          }
          return false;
       }); 

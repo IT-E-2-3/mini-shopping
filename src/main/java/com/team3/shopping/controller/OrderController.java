@@ -29,6 +29,7 @@ import com.team3.shopping.dto.MemberInfoDto;
 import com.team3.shopping.dto.OrderDto;
 import com.team3.shopping.dto.OrderItemDto;
 import com.team3.shopping.dto.OrderRowDetailDto;
+import com.team3.shopping.exception.ProductSoldOutException;
 import com.team3.shopping.service.OrderService;
 import com.team3.shopping.validator.OrderFormValidator;
 
@@ -119,6 +120,7 @@ public class OrderController {
    public String orderForm(@ModelAttribute("orderForm") @Valid OrderDto order, Errors errors, Principal principal, HttpSession session) {
       logger.info("실행");
       
+      //입력폼이 유효하지 않음
       if (errors.hasErrors()) {
          logger.info(errors.toString());
          logger.info("다시 입력폼 제공 + 에러 메시지");   
@@ -133,9 +135,9 @@ public class OrderController {
       
       logger.info(order.toString());
       MemberInfoDto member = orderService.getMid(principal.getName());
-//		logger.info(mid);
+      //		logger.info(mid);
 
-		// cart의 내용 받아오기
+      // cart의 내용 받아오기
 	
       String mid = member.getMid();
       // 주문에 대한 트랜젝션 - 재고가 없으면 실패
@@ -145,6 +147,7 @@ public class OrderController {
       LocalTime currentTime = LocalTime.now();
       // LocalTime targetTime = LocalTime.of(int hour, int minute, int second, int
       // nanoOfSecond);
+      // OID 생성
       String oid = currentTime.toString();
       order.setMid(mid);
       order.setOid(oid);
@@ -157,11 +160,23 @@ public class OrderController {
       logger.info(order.toString());
       
       logger.info("성공");
-      orderService.makeOrder(OrderRowList, oid, order);
+      
+      try {
+    	  orderService.makeOrder(OrderRowList, oid, order);
+      }catch(ProductSoldOutException e) {
+    	  logger.error(e.getMessage());
+    	  
+    	  JSONObject jsonObject = new JSONObject();
+          jsonObject.put("result", "outofstock");
+          String json = jsonObject.toString(); // result : successs
+          
+    	  return json;
+      }
+      
       logger.info(order.toString());
       // 성공시
 
-//       List<OrderRowDetailDto> OrderRowList = orderService.getMyCart(mid);
+      //       List<OrderRowDetailDto> OrderRowList = orderService.getMyCart(mid);
       //
 
       // BeanUtils.copyProperties(mid, timesteamp);
