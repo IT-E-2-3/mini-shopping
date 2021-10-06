@@ -5,7 +5,7 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/vendor/daterangepicker/daterangepicker.css"/>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/vendor/slick/slick.css" />
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/vendor/MagnificPopup/magnific-popup.css"/>
-<script src="${pageContext.request.contextPath}/resources/vendor/sweetalert/sweetalert.min.js"></script>
+
 <script src="${pageContext.request.contextPath}/resources/vendor/select2/select2.min.js"></script>
 
 <!-- Product Detail -->
@@ -368,7 +368,7 @@
     </script>
     
     <script>
-	    $(".js-addcart-detail").each(function () {
+	    $("js-addcart-detail").each(function () {
 	        var nameProduct = $(this)
 	          .parent()
 	          .parent()
@@ -441,19 +441,5 @@
 	        });
 	      });
     </script>
-    <script>
-      $(".js-pscroll").each(function () {
-        $(this).css("position", "relative");
-        $(this).css("overflow", "hidden");
-        var ps = new PerfectScrollbar(this, {
-          wheelSpeed: 1,
-          scrollingThreshold: 1000,
-          wheelPropagation: false,
-        });
-
-        $(window).on("resize", function () {
-          ps.update();
-        });
-      });
-    </script>
+    
 <%@ include file="/WEB-INF/views/common/footer.jsp"%>

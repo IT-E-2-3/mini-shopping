@@ -18,17 +18,15 @@
 	href="${pageContext.request.contextPath}/resources/images/icons/hansome.jpg" />
 <!--===============================================================================================-->
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/vendor/bootstrap/css/bootstrap.min.css" />
+	href="${pageContext.request.contextPath}/resources/bootstrap/css/bootstrap.min.css" />
 <script
-	src="${pageContext.request.contextPath}/resources/vendor/jquery/jquery-3.2.1.min.js"></script>
+	src="${pageContext.request.contextPath}/resources/jquery/jquery-3.2.1.min.js"></script>
 <script
-	src="${pageContext.request.contextPath}/resources/vendor/bootstrap/js/bootstrap.min.js"></script>
+	src="${pageContext.request.contextPath}/resources/bootstrap/js/bootstrap.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/bootstrap/js/popper.js"></script>
 <script
-	src="${pageContext.request.contextPath}/resources/vendor/bootstrap/js/popper.min.js"></script>
-
-<script
-	src="${pageContext.request.contextPath}/resources/bootstrap-4.6.0-dist/js/bootstrap.bundle.min.js"></script>
-
+	src="${pageContext.request.contextPath}/resources/bootstrap/js/popper.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/sweetalert/sweetalert.min.js"></script>
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/fonts/font-awesome-4.7.0/css/font-awesome.min.css" />
@@ -42,15 +40,15 @@
 
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/resources/vendor/css-hamburgers/hamburgers.min.css" />
+	href="${pageContext.request.contextPath}/resources/css-hamburgers/hamburgers.min.css" />
 <!--===============================================================================================-->
 
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/resources/vendor/select2/select2.min.css" />
+	href="${pageContext.request.contextPath}/resources/select2/select2.min.css" />
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/resources/vendor/perfect-scrollbar/perfect-scrollbar.css" />
+	href="${pageContext.request.contextPath}/resources/perfect-scrollbar/perfect-scrollbar.css" />
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/css/app.css" />
 <link rel="stylesheet" type="text/css"
