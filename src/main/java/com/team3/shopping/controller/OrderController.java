@@ -3,8 +3,8 @@ package com.team3.shopping.controller;
 import java.security.Principal;
 import java.text.DecimalFormat;
 import java.time.LocalTime;
-import java.util.Iterator;
 import java.util.List;
+import java.util.UUID;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
@@ -37,27 +37,24 @@ import com.team3.shopping.validator.OrderFormValidator;
 @RequestMapping("/order")
 @SessionAttributes({ "inputForm" })
 public class OrderController {
-   private static final Logger logger = LoggerFactory.getLogger(OrderController.class);
+	private static final Logger logger = LoggerFactory.getLogger(OrderController.class);
 
-   /*
-    * principal 로그인아이디 알기위해 사용
-    */
+	/*
+	 * principal 로그인아이디 알기위해 사용
+	 */
 
-   @Resource
-   OrderService orderService;
-
+	@Resource
+	OrderService orderService;
 
 	int total_amount = 0;
 	List<OrderRowDetailDto> OrderRowList;
-
-
 
 	@GetMapping("/")
 	public String content(Model model, Principal principal) {
 		logger.info("실행");
 		total_amount = 0;
 		MemberInfoDto member = orderService.getMid(principal.getName());
-//		logger.info(mid);
+		// logger.info(mid);
 
 		// cart의 내용 받아오기
 		OrderRowList = orderService.getMyCart(member.getMid());
@@ -66,9 +63,9 @@ public class OrderController {
 		for (OrderRowDetailDto orderRowDetailDto : OrderRowList) {
 			int price = (orderRowDetailDto.getPprice());
 			total_amount += price * orderRowDetailDto.getOamount();
-		
+
 		}
-//		logger.info(total_amount+" ");
+		// logger.info(total_amount+" ");
 
 		String decimal_total_amount = decFormat.format(total_amount);
 
@@ -77,33 +74,16 @@ public class OrderController {
 		String mname = member.getMname();
 		StringBuilder sb = new StringBuilder();
 		sb.append(mname.charAt(0));
-		for (int i = 0; i < mname.length()-2; i++) {
+		for (int i = 0; i < mname.length() - 2; i++) {
 			sb.append("*");
 		}
-		sb.append(mname.charAt(mname.length()-1));
+		sb.append(mname.charAt(mname.length() - 1));
 		member.setMname(sb.toString());
 		model.addAttribute("member", member);
-		
 
+		return "order/order";
+	}
 
-      return "order/order";
-   }
-
-   /*
-    * public String orderComplete( @ModelAttribute("orderForm") @Valid OrderDto
-    * order, BindingResult bindingResult) {
-    * 
-    * if(bindingResult.hasErrors()) { logger.info("다시 입력폼 제공 + 에러 메시지"); //forward
-    * return "redirect:/order/"; } else { logger.info("정상 요청 처러후 응답 제공");
-    * //redirect return "redirect:/"; } }
-    */
-
-   @InitBinder("orderForm")
-   public void joinFormSetValidator(WebDataBinder binder) {
-      logger.info("실행");
-
-      binder.addValidators(new OrderFormValidator());
-   }
 	/*
 	 * public String orderComplete( @ModelAttribute("orderForm") @Valid OrderDto
 	 * order, BindingResult bindingResult) {
@@ -113,84 +93,92 @@ public class OrderController {
 	 * //redirect return "redirect:/"; } }
 	 */
 
+	@InitBinder("orderForm")
+	public void joinFormSetValidator(WebDataBinder binder) {
+		logger.info("실행");
 
+		binder.addValidators(new OrderFormValidator());
+	}
+	/*
+	 * public String orderComplete( @ModelAttribute("orderForm") @Valid OrderDto
+	 * order, BindingResult bindingResult) {
+	 * 
+	 * if(bindingResult.hasErrors()) { logger.info("다시 입력폼 제공 + 에러 메시지"); //forward
+	 * return "redirect:/order/"; } else { logger.info("정상 요청 처러후 응답 제공");
+	 * //redirect return "redirect:/"; } }
+	 */
 
-   @GetMapping(value="order", produces = "application/json'; charset=UTF-8")
-   @ResponseBody
-   public String orderForm(@ModelAttribute("orderForm") @Valid OrderDto order, Errors errors, Principal principal, HttpSession session) {
-      logger.info("실행");
-      
-      //입력폼이 유효하지 않음
-      if (errors.hasErrors()) {
-         logger.info(errors.toString());
-         logger.info("다시 입력폼 제공 + 에러 메시지");   
-         
-         
-         JSONObject jsonObject = new JSONObject();
-         jsonObject.put("result", "fail");
-         String json = jsonObject.toString(); // result : successs
-         
-         return json;
-      }
-      
-      logger.info(order.toString());
-      MemberInfoDto member = orderService.getMid(principal.getName());
-      //		logger.info(mid);
+	@GetMapping(value = "order", produces = "application/json'; charset=UTF-8")
+	@ResponseBody
+	public String orderForm(@ModelAttribute("orderForm") @Valid OrderDto order, Errors errors, Principal principal,
+			HttpSession session) {
+		logger.info("실행");
 
-      // cart의 내용 받아오기
-	
-      String mid = member.getMid();
-      // 주문에 대한 트랜젝션 - 재고가 없으면 실패
-      // Timestamp timesteamp = new Timestamp(System.currentTimeMillis());
-      // timesteamp = timesteamp.
+		if (errors.hasErrors()) {
+			logger.info(errors.toString());
+			logger.info("다시 입력폼 제공 + 에러 메시지");
 
-      LocalTime currentTime = LocalTime.now();
-      // LocalTime targetTime = LocalTime.of(int hour, int minute, int second, int
-      // nanoOfSecond);
-      // OID 생성
-      String oid = currentTime.toString();
-      order.setMid(mid);
-      order.setOid(oid);
-      order.setOdate("21/10/01 18:15:17.000000000");
-      order.setOtotal_price(total_amount);
-      
-      session.removeAttribute(oid);
-      session.setAttribute("oid", oid);
+			JSONObject jsonObject = new JSONObject();
+			jsonObject.put("result", "fail");
+			String json = jsonObject.toString(); // result : successs
 
-      logger.info(order.toString());
-      
-      logger.info("성공");
-      
-      try {
-    	  orderService.makeOrder(OrderRowList, oid, order);
-      }catch(ProductSoldOutException e) {
-    	  logger.error(e.getMessage());
-    	  
-    	  JSONObject jsonObject = new JSONObject();
-          jsonObject.put("result", "outofstock");
-          String json = jsonObject.toString(); // result : successs
-          
-    	  return json;
-      }
-      
-      logger.info(order.toString());
-      // 성공시
+			return json;
+		}
 
-      //       List<OrderRowDetailDto> OrderRowList = orderService.getMyCart(mid);
-      //
+		logger.info(order.toString());
+		MemberInfoDto member = orderService.getMid(principal.getName()); // logger.info(mid);
 
-      // BeanUtils.copyProperties(mid, timesteamp);
-      
-      JSONObject jsonObject = new JSONObject();
-      jsonObject.put("result", "success");
-      String json = jsonObject.toString(); // result : successs
-      
-      return json;
-   }
+		// cart의 내용 받아오기
+		String mid = member.getMid();
+		
+		/*
+		 * 주문에 대한 트랜젝션 - 재고가 없으면 실패
+		 * */ 
+		// Timestamp timesteamp = new Timestamp(System.currentTimeMillis());
+		// timesteamp = timesteamp.
 
+		LocalTime currentTime = LocalTime.now();
+		// LocalTime targetTime = LocalTime.of(int hour, int minute, int second, int
+		// nanoOfSecond);
+		// OID 생성 
+		UUID temp = UUID.randomUUID();
+		String oid = Long.toHexString(temp.getMostSignificantBits()); 
+		order.setMid(mid);
+		order.setOid(oid);
+		
+		order.setOdate("21/10/01 18:15:17.000000000");
+		order.setOtotal_price(total_amount);
 
+		session.removeAttribute(oid);
+		session.setAttribute("oid", oid);
 
-   
+		logger.info(order.toString());
+
+		logger.info("성공");
+
+		try {
+			orderService.makeOrder(OrderRowList, oid, order);
+		} catch (ProductSoldOutException e) {
+			logger.error(e.getMessage());
+
+			JSONObject jsonObject = new JSONObject();
+			jsonObject.put("result", "outofstock");
+			String json = jsonObject.toString(); // result : successs
+
+			return json;
+		}
+
+		logger.info(order.toString()); // 성공시
+
+		// List<OrderRowDetailDto> OrderRowList = orderService.getMyCart(mid); //
+		// BeanUtils.copyProperties(mid, timesteamp);
+
+		JSONObject jsonObject = new JSONObject();
+		jsonObject.put("result", "success");
+		String json = jsonObject.toString(); // result : successs
+
+		return json;
+	}
 
 	@RequestMapping("/ordersuccess")
 	public String ordersuccess(Model model, HttpSession session) {
@@ -202,45 +190,44 @@ public class OrderController {
 		model.addAttribute("order", order);
 		model.addAttribute("orderItems", orderItems);
 
-	
 		logger.info(orderItems.toString());
 		return "order/orderSuccess";
 	}
-   
-   @RequestMapping("/error/403")
-   public String error403() {
-      logger.info("실행");
-      return "error/403";
-   }
 
-   @RequestMapping("/orderList")
-   public String orderList(Model model, Principal principal) {
-      logger.info("실행");
-      MemberInfoDto member = orderService.getMid(principal.getName());
+	@RequestMapping("/error/403")
+	public String error403() {
+		logger.info("실행");
+		return "error/403";
+	}
 
-      String mid = member.getMid();
+	@RequestMapping("/orderList")
+	public String orderList(Model model, Principal principal) {
+		logger.info("실행");
+		MemberInfoDto member = orderService.getMid(principal.getName());
+
+		String mid = member.getMid();
 //      String mid = "M1"; // test
-      List<OrderDto> orders = orderService.getOrderList(mid);
+		List<OrderDto> orders = orderService.getOrderList(mid);
 
-      for (OrderDto order : orders) {
-         String OID = order.getOid();
-         logger.info("oid " + OID);
-         List<OrderItemDto> orderitems = orderService.getOrderItems(OID);
-         order.setOrderItems(orderitems);
-         order.setProductKindNum(orderitems.size());
+		for (OrderDto order : orders) {
+			String OID = order.getOid();
+			logger.info("oid " + OID);
+			List<OrderItemDto> orderitems = orderService.getOrderItems(OID);
+			order.setOrderItems(orderitems);
+			order.setProductKindNum(orderitems.size());
 
-         logger.info(orderitems.toString());
-         // 1개의 주문 이름 -- 1개의 product name
-         String PID = orderitems.get(0).getPid();
-         String pname = orderService.getPname(PID);
-         logger.info("pname " + pname);
-         order.setMainItem(pname);
-      }
+			logger.info(orderitems.toString());
+			// 1개의 주문 이름 -- 1개의 product name
+			String PID = orderitems.get(0).getPid();
+			String pname = orderService.getPname(PID);
+			logger.info("pname " + pname);
+			order.setMainItem(pname);
+		}
 
-      model.addAttribute("orderList", orders);
+		model.addAttribute("orderList", orders);
 
-      return "order/orderList";
-   }
+		return "order/orderList";
+	}
 
 	@GetMapping("/orderDetail")
 	public String orderDetail(@RequestParam String oid, Model model, HttpSession session) {
@@ -256,7 +243,3 @@ public class OrderController {
 		return "order/orderDetail";
 	}
 }
-
-
-
-
