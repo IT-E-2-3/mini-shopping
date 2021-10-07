@@ -4,21 +4,33 @@
 
 <div class="m-r-200 m-l-200">
 	<div class="m-r-300 m-l-300">
+<<<<<<< HEAD
+		<div class="m-t-25 m-b-25 p-t-10 p-b-10 row" style="width: 100%; background-color: #d9ead3"> 
+			<h4 class="col-sm-7 ">주문번호 : ${order.oid} </h4> 
+			<div class="col-sm-5" style="text-align: right" >(주문일시 : ${order.odate})</div>
+=======
 		<div class="row m-t-25 m-b-25 p-t-10  p-b-10"
 			style="width: 100%; background-color: #d9ead3">
 			<h4 class="col-sm-7 ">주문번호 : ${order.oid}</h4>
 			<div class="col-sm-5" style="text-align: right">(주문일시 :
 				${order.odate})</div>
+>>>>>>> main
 		</div>
 		<h3 class="text-black m-b-25">주문상품</h3>
 		<table class="table-shopping-cart m-b-77" style="width: 100%">
 			<thead class="table_head  h-25">
 				<tr>
+<<<<<<< HEAD
+					<th class="col-sm-6 text-center text-black" >상품 정보</th>
+					<th class="col-sm-1 text-center text-black">판매가</th>
+					<th class="col-sm-2 text-center text-black">수량</th>
+=======
 
 					<th class="col-sm-6 text-center text-black">상품 정보</th>
 					<th class="col-sm-1 text-center text-black">판매가</th>
 					<th class="col-sm-2 text-center text-black">수량</th>
 
+>>>>>>> main
 				</tr>
 			</thead>
 			<tbody>
@@ -186,15 +198,43 @@
 			<tbody>
 				<tr class="table-secondary">
 					<!-- 행 -->
+<<<<<<< HEAD
+					<th class="col-sm-8 text-left text-black">
+						${order.orecipient}
+=======
 					<th class="col-sm-4 text-center text-black table-active"
 						style="border-right: 0.3px solid #cabfbf; border-bottom: 0.3px solid #a5a3a3">
 						<div class="">수령인</div>
+>>>>>>> main
 					</th>
 					<!-- 행 -->
 					<th class="col-sm-8 text-left text-black">${order.orecipent}</th>
 				</tr>
 				<tr class="table-secondary">
 					<!-- 행 -->
+<<<<<<< HEAD
+						<th class="col-sm-4 text-center text-black table-active" style="border-right:0.3px solid #cabfbf; border-bottom:0.3px solid #a5a3a3" >
+							<div class="">
+								휴대폰
+							</div>
+						</th>
+						<!-- 행 -->
+						<th class="col-sm-8 text-left text-black">
+							${order.orecipient_tel }
+						</th>
+				</tr>
+				<tr class="table-secondary">
+						<!-- 행 -->
+						<th class="col-sm-4 text-center text-black table-active" style="border-right:0.3px solid #cabfbf; border-bottom:0.3px solid #a5a3a3" >
+							<div class="">
+								E-mail
+							</div>
+						</th>
+						<!-- 행 -->
+						<th class="col-sm-8 text-left text-black">
+							${order.orecipient_email }
+						</th>
+=======
 					<th class="col-sm-4 text-center text-black table-active"
 						style="border-right: 0.3px solid #cabfbf; border-bottom: 0.3px solid #a5a3a3">
 						<div class="">휴대폰</div>
@@ -212,10 +252,10 @@
 					<!-- 행 -->
 					<th class="col-sm-8 text-left text-black">
 						${order.orecipent_email}</th>
+>>>>>>> main
 				</tr>
 			</tbody>
 		</table>
 	</div>
 </div>
-
 <%@ include file="/WEB-INF/views/common/footer.jsp"%>

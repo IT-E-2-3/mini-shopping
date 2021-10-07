@@ -39,15 +39,28 @@
 
 	<select id="selectOrderbyOid" parameterType="String"
 		resultType="order">
-		SELECT OID ,MID ,ODATE, OZIP_CODE,
-		OADDRESS, ODETAIL_ADDRESS
-		,ORECIPIENT, ORECIPIENT_TEL ,OTOTAL_PRICE
-		,OCHANNEL, OCARD_NAME,
-		OCARD_INSTALLMENTRATE
-		,OCARD_INSTALLMENT_PERIOD, OACCOUNTHOLDER,
-		ODEPOSIT_DEADLINE, ORDER_TEL, OADDTIONAL_TEL, ORECIPIENT_EMAIL, OPAYMENT
-		FROM ORDERS
-		where OID=#{oid}
+		SELECT 
+		  OID,
+	      MID,
+	      ODATE,
+	      OZIP_CODE,
+	      OADDRESS,
+	      ODETAIL_ADDRESS,
+	      ORECIPIENT, 
+	      ORECIPIENT_TEL,
+	      OTOTAL_PRICE,
+	      OCHANNEL,
+	      OCARD_NAME,
+	      OCARD_INSTALLMENTRATE,
+	      OCARD_INSTALLMENT_PERIOD,
+	      OACCOUNTHOLDER,
+	      ODEPOSIT_DEADLINE,
+	      ORDER_TEL,
+	      OADDTIONAL_TEL,
+	      OREQUEST,
+	      ORECIPIENT_EMAIL,
+	      OPAYMENT	FROM ORDERS	
+	      where OID=#{oid}
 	</select>
 
 	<select id="selectOrderItemsbyOid" parameterType="String"
@@ -121,11 +134,11 @@
 	  orecipient_email , opayment)
 	VALUES (#{oid}, #{mid}, CURRENT_TIMESTAMP,
 	 #{ozip_code}, #{oaddress}, #{odetail_address}, 
-	 #{orecipent}, #{orecipent_tel}, #{ototal_price}, 
+	 #{orecipient}, #{orecipient_tel}, #{ototal_price}, 
 	 #{ochannel}, #{ocard_name, jdbcType=VARCHAR}, #{ocard_installmentrate, jdbcType=VARCHAR}, 
 	 #{ocard_installmentrate_period, jdbcType=VARCHAR}, #{oaccountholder, jdbcType=VARCHAR}, #{odeposit_deadline, jdbcType=VARCHAR}, 
 	 #{order_tel}, #{oaddtional_tel}, #{orequest}, 
-	 #{orecipent_email, jdbcType=VARCHAR}, #{opayment, jdbcType=VARCHAR})
+	 #{orecipient_email, jdbcType=VARCHAR}, #{opayment, jdbcType=VARCHAR})
 	</insert>
   
 </mapper>

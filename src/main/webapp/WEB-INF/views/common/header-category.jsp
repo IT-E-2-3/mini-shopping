@@ -18,24 +18,21 @@
 	href="${pageContext.request.contextPath}/resources/images/icons/hansome.jpg" />
 <!--===============================================================================================-->
 <link rel="stylesheet"
-
 	href="${pageContext.request.contextPath}/resources/bootstrap/css/bootstrap.min.css" />
-<script
+<script	
 	src="${pageContext.request.contextPath}/resources/jquery/jquery-3.2.1.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/bootstrap/js/popper.min.js"></script>
 <script
 	src="${pageContext.request.contextPath}/resources/bootstrap/js/bootstrap.min.js"></script>
 
-
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/resources/fonts/font-awesome-4.7.0/css/font-awesome_.min.css" />
+	href="${pageContext.request.contextPath}/resources/fonts/font-awesome-4.7.0/css/font-awesome.min.css" />
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/resources/fonts/iconic/css/material-design-iconic-font_.min.css" />
+	href="${pageContext.request.contextPath}/resources/fonts/iconic/css/material-design-iconic-font.min.css" />
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css"
-
 	href="${pageContext.request.contextPath}/resources/fonts/linearicons-v1.0.0/icon-font.min.css" />
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/css-hamburgers/hamburgers.min.css" />
@@ -45,31 +42,17 @@
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/perfect-scrollbar/perfect-scrollbar.css" />
 <link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/resources/css/util_.css" />
+	href="${pageContext.request.contextPath}/resources/css/app.css" />
 <link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/resources/css/main_.css" />
+	href="${pageContext.request.contextPath}/resources/css/util.css" />
 <link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/resources/css/style_.css?version=51" />
+	href="${pageContext.request.contextPath}/resources/css/main.css" />
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/resources/css/style.css?version=51" />
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/resources/css/bootstrap.css?version=51" />
 </head>
 <body>
-
-
-	<span style="position: fixed; left: 88%; top: 88%"> <a
-		href="javascript:void(0)" onclick="javascript:totop()"><img
-			src="${pageContext.request.contextPath}/resources/images/pageup.png"
-			style="width: 40px;"></a> 
-
-	</span>
-
-	<script >
-	function totop() {
-		console.log("test")
-		 window.scrollTo(0,0);
-	}
- 
- </script>
-
-
 	<nav id="header-fixed"
 		class="navbar navbar-expand-sm navbar-light bg-white border-bottom ">
 		<div class="collapse navbar-collapse" id="navbarColor"
@@ -116,7 +99,7 @@
 					</sec:authorize>
 
 					<li class="nav-item"><a class="nav-link"
-						href="${pageContext.request.contextPath}/cart/2">쇼핑백(${amount})</a></li>
+						href="${pageContext.request.contextPath}/cart/2">쇼핑백(숫자)</a></li>
 					<li class="nav-item"><a class="nav-link"
 						href="${pageContext.request.contextPath}/order/orderList">주문조회</a></li>
 					<li class="nav-item"><a class="nav-link"
@@ -158,8 +141,6 @@
 			<li>기타 소품</li>
 		</ul>
 	</div>
-	
-	<!-- 남성 -->
 	<div id="남성" class="sub-back men">
 		<li class="category-list">전체보기</li>
 		<ul class="category-list"
@@ -209,8 +190,6 @@
 			<li>티셔츠</li>
 		</ul>
 	</div>
-	
-	<!-- 여성 -->
 	<div id="여성" class="sub-back women">
 		<li class="category-list">전체보기</li>
 		<ul class="category-list"
@@ -230,9 +209,7 @@
 
 		<ul class="category-list"
 			style="display: flex; flex-direction: column">
-			<div class="largecategory">
-				<a href="${pageContext.request.contextPath}/product/list?c=0403">아우터</a>
-			</div>
+			<div class="largecategory"><a href="${pageContext.request.contextPath}/product/list?c=0403">아우터</a></div>
 			<li>가디건/베스트</li>
 			<li>코트</li>
 			<li>다운/패딩</li>
@@ -242,23 +219,24 @@
 		</ul>
 
 		<ul class="category-list">
-
 			<div class="largecategory"><a href="${pageContext.request.contextPath}/product/list?c=0404">팬츠</a></div>
-			<a href="${pageContext.request.contextPath}/product/list?c=040401"><li>캐주얼</li></a>
-			<a href="${pageContext.request.contextPath}/product/list?c=040402"><li>데님</li></a>
-			<a href="${pageContext.request.contextPath}/product/list?c=040403"><li>포멀</li></a>
-			<a href="${pageContext.request.contextPath}/product/list?c=040404"><li>쇼츠</li></a>
-
+			<li>캐주얼</li>
+			<li>데님</li>
+			<li>포멀</li>
+			<li>쇼츠</li>
 		</ul>
 		<ul class="category-list"
 			style="display: flex; flex-direction: column">
-			<div class="largecategory">
-				<a href="${pageContext.request.contextPath}/product/list?c=0405">스커트</a>
-			</div>
+			<div class="largecategory"><a href="${pageContext.request.contextPath}/product/list?c=0405">스커트</a></div>
 			<li>플레어 스커트</li>
 			<li>롱/맥시 스커트</li>
 			<li>미니 스커트</li>
 			<li>펜슬 스커트</li>
+		</ul>
+
+		<ul class="category-list">
+			<div class="largecategory">SPECIAL SHOP*</div>
+			<li>잠시 생략....</li>
 		</ul>
 
 		<ul class="category-list">
@@ -283,7 +261,7 @@
           let action = event.target.dataset.action;
           console.log(action);
           if (action == "여성") {
-            if (this._currenthover != null) {
+            if (this._currenthover != null) {	
               this._currenthover.style.display = "none";
             }
             this._currenthover = 여성;
