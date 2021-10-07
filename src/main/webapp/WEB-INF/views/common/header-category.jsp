@@ -158,6 +158,8 @@
 			<li>기타 소품</li>
 		</ul>
 	</div>
+	
+	<!-- 남성 -->
 	<div id="남성" class="sub-back men">
 		<li class="category-list">전체보기</li>
 		<ul class="category-list"
@@ -207,6 +209,8 @@
 			<li>티셔츠</li>
 		</ul>
 	</div>
+	
+	<!-- 여성 -->
 	<div id="여성" class="sub-back women">
 		<li class="category-list">전체보기</li>
 		<ul class="category-list"
@@ -238,13 +242,13 @@
 		</ul>
 
 		<ul class="category-list">
-			<div class="largecategory">
-				<a href="${pageContext.request.contextPath}/product/list?c=0404">팬츠</a>
-			</div>
-			<li>캐주얼</li>
-			<li>데님</li>
-			<li>포멀</li>
-			<li>쇼츠</li>
+
+			<div class="largecategory"><a href="${pageContext.request.contextPath}/product/list?c=0404">팬츠</a></div>
+			<a href="${pageContext.request.contextPath}/product/list?c=040401"><li>캐주얼</li></a>
+			<a href="${pageContext.request.contextPath}/product/list?c=040402"><li>데님</li></a>
+			<a href="${pageContext.request.contextPath}/product/list?c=040403"><li>포멀</li></a>
+			<a href="${pageContext.request.contextPath}/product/list?c=040404"><li>쇼츠</li></a>
+
 		</ul>
 		<ul class="category-list"
 			style="display: flex; flex-direction: column">
@@ -255,11 +259,6 @@
 			<li>롱/맥시 스커트</li>
 			<li>미니 스커트</li>
 			<li>펜슬 스커트</li>
-		</ul>
-
-		<ul class="category-list">
-			<div class="largecategory">SPECIAL SHOP*</div>
-			<li>잠시 생략....</li>
 		</ul>
 
 		<ul class="category-list">
