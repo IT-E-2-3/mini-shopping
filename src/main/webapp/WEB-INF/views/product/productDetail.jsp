@@ -1,11 +1,12 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <%@ include file="/WEB-INF/views/common/header-category.jsp"%>
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/animsition/css/animsition_.min.css"/>
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/daterangepicker/daterangepicker_.css"/>
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/slick/slick_.css" />
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/MagnificPopup/magnific-popup_.css"/>
 
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/animsition/css/animsition.min.css"/>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/slick/slick.css" />
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/MagnificPopup/magnific-popup.css"/>
+<script src="${pageContext.request.contextPath}/resources/sweetalert/sweetalert.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/select2/select2.min.js"></script>
 
 <!-- Product Detail -->
     <section class="sec-product-detail bg0 p-t-65 p-b-60">

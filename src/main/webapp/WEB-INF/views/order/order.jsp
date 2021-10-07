@@ -1,6 +1,8 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 
-<%@ include file="/WEB-INF/views/common/header-category.jsp"%>
+
+<%@ include file="/WEB-INF/views/common/header-nocategory.jsp"%>
+<script src="${pageContext.request.contextPath}/resources/sweetalert/sweetalert.min.js"></script>
 <div class="card m-2">
    <form>
       <div class="row">

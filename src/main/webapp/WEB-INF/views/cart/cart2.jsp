@@ -3,12 +3,14 @@
 <%@ include file="/WEB-INF/views/common/header-category.jsp"%>
 
 <link rel="stylesheet"
+
 	href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
 	integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
 	crossorigin="anonymous">
 
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/css/cart_.css" />
+
 
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width" style="width: 40px;">
@@ -257,6 +259,7 @@
               method:"post", 
               contentType:'application/json; charset=UTF-8',
               dataType:'json',
+
               async: false,
               data:JSON.stringify(jsonArray)
            }).done((data) => {
@@ -283,6 +286,7 @@
         let elementsall = document.querySelectorAll('.'+className);
 
         console.log(elementsall);
+
 
          //product_detail_url1
         order1 = elementsall[1].value;
@@ -546,6 +550,7 @@ Number.prototype.formatNumber = function(){
     while (regex.test(nstr)) nstr = nstr.replace(regex, '$1' + ',' + '$2');
     return nstr;
 };
+
  */
     </script>
 

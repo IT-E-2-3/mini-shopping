@@ -18,16 +18,15 @@
 	href="${pageContext.request.contextPath}/resources/images/icons/hansome.jpg" />
 <!--===============================================================================================-->
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/bootstrap/css/bootstrap_.min.css" />
-<script
-	src="${pageContext.request.contextPath}/resources/jquery/jquery-3.2.1_.min.js"></script>
-<script
-	src="${pageContext.request.contextPath}/resources/bootstrap/js/popper_.min.js"></script>
-<script
-	src="${pageContext.request.contextPath}/resources/bootstrap/js/bootstrap_.min.js"></script>
 
+	href="${pageContext.request.contextPath}/resources/bootstrap/css/bootstrap.min.css" />
 <script
-	src="${pageContext.request.contextPath}/resources/sweetalert/sweetalert_.min.js"></script>
+	src="${pageContext.request.contextPath}/resources/jquery/jquery-3.2.1.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/bootstrap/js/popper.min.js"></script>
+<script
+	src="${pageContext.request.contextPath}/resources/bootstrap/js/bootstrap.min.js"></script>
+
+
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/fonts/font-awesome-4.7.0/css/font-awesome_.min.css" />
@@ -36,17 +35,15 @@
 	href="${pageContext.request.contextPath}/resources/fonts/iconic/css/material-design-iconic-font_.min.css" />
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/resources/fonts/linearicons-v1.0.0/icon-font_.min.css" />
-<!--===============================================================================================-->
 
+	href="${pageContext.request.contextPath}/resources/fonts/linearicons-v1.0.0/icon-font.min.css" />
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/resources/css-hamburgers/hamburgers.min.css" />
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/resources/select2/select2.min.css" />
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/resources/select2/select2_.min.css" />
-<!--===============================================================================================-->
-<link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/resources/perfect-scrollbar/perfect-scrollbar_.css" />
-<link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/resources/css/app_.css" />
+	href="${pageContext.request.contextPath}/resources/perfect-scrollbar/perfect-scrollbar.css" />
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/css/util_.css" />
 <link rel="stylesheet" type="text/css"

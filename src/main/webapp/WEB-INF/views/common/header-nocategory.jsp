@@ -18,17 +18,14 @@
 <link rel="icon" type="image/jpg"
 	href="${pageContext.request.contextPath}/resources/images/icons/hansome.jpg" />
 <!--===============================================================================================-->
-<script
-	src="${pageContext.request.contextPath}/resources/jquery/jquery-3.2.1.min.js"></script>
+
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/bootstrap/css/bootstrap.min.css" />
+<script	src="${pageContext.request.contextPath}/resources/jquery/jquery-3.2.1.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/bootstrap/js/popper.min.js"></script>
 <script
 	src="${pageContext.request.contextPath}/resources/bootstrap/js/bootstrap.min.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/bootstrap/js/popper.js"></script>
-<script
-	src="${pageContext.request.contextPath}/resources/bootstrap/js/popper.min.js"></script>
-<script src="${pageContext.request.contextPath}/resources/sweetalert/sweetalert.min.js"></script>
- <!-- Air datepicker -->
-<script src="${pageContext.request.contextPath}/resources/dist/js/datepicker.js"></script> 
-<script src="${pageContext.request.contextPath}/resources/dist/js/i18n/datepicker.ko.js"></script> <!-- 달력 한글 추가를 위해 커스텀 -->
+
 
 <!--===============================================================================================-->
 <link rel="stylesheet"
@@ -44,7 +41,9 @@
 	href="${pageContext.request.contextPath}/resources/fonts/linearicons-v1.0.0/icon-font.min.css" />
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/resources/animate/animate.css" />	
+
+	href="${pageContext.request.contextPath}/resources/animate/animate.css" />
+
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/css-hamburgers/hamburgers.min.css" />

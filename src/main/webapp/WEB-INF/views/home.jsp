@@ -1,9 +1,18 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 
 <%@ include file="/WEB-INF/views/common/header-category.jsp"%>
-	
+
 <link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/resources/vendor/bootstrap/css/bootstrap.css?version=51" />
+	href="${pageContext.request.contextPath}/resources/animsition/css/animsition.min.css" />
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/resources/daterangepicker/daterangepicker.css" />
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/resources/slick/slick.css" />
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/resources/MagnificPopup/magnific-popup.css" />
+
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/resources/bootstrap/css/bootstrap.css?version=51" />
 
 	<!-- 슬라이더 -->
     <div
