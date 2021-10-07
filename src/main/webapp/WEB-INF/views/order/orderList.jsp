@@ -4,9 +4,9 @@
 
 <div class="m-r-200 m-l-200">
 	<h4 class="text-center text-black m-b-25">상품 주문 목록</h4>
-	<div class="m-r-300 m-l-300">
+	<div class="m-r-300 m-l-300" style="width: 100%; margin: auto; display:flex; justify-content: center">
 		
-		<ul class="p-t-10 p-b-10" style="display: flex; width: 100%; align-items: center;  background-color: #d9ead3">
+		<ul class="p-t-10 p-b-10" style="display: flex; width: 720px; align-items: center;  background-color: #d9ead3">
 			<h5 class="col-sm-3" >상품/배송 조회</h5>
 			<li 
 				style="display: flex; justify-content: space-between; align-items: center;">
@@ -63,7 +63,7 @@
 							style="color: var(- -bs-gray-800)"><a
 							href="orderDetail?oid=${order.oid}" class="basket_tlt"
 							style="color: black"
-							onclick="javascript:setEcommerceData('0', 'Click ADD');GA_Event('쇼핑백','상품','울 셋업 재킷');">
+							>
 								<p class="sb_tlt">
 									${order.mainItem} <span class="text-right">
 										${(order.productKindNum - 1) != 0 ? "외 " += order.productKindNum - 1 += "건" : ""}</span>
@@ -93,7 +93,7 @@
 							style="color: var(- -bs-gray-800)"><a
 							href="orderDetail?oid=${order.oid}" class="basket_tlt"
 							style="color: black"
-							onclick="javascript:setEcommerceData('0', 'Click ADD');GA_Event('쇼핑백','상품','울 셋업 재킷');">
+							>
 								<p class="sb_tlt">
 									${order.mainItem} <span class="text-right">
 										${(order.productKindNum - 1) != 0 ? "외 " += order.productKindNum - 1 += "건" : ""}</span>
