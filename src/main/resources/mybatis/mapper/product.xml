@@ -54,11 +54,7 @@
 	<select id="getCountRows" parameterType="string" resultType="int">
 		select count(*)
 		from product p
-		join color_url c
-		on p.pid = c.pid
-		join stock s
-		on c.pid = s.pid and c.color_code=s.color_code
-		where p.category_code like #{cateCode}||'%'
+		where category_code like #{cateCode}||'%'
 	</select>
 	
 	<!-- 상품 상세정보 가져오기 -->
