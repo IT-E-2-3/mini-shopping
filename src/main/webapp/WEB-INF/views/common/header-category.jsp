@@ -49,6 +49,8 @@
 	href="${pageContext.request.contextPath}/resources/css/main.css" />
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/css/style.css?version=51" />
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/resources/css/bootstrap.css?version=51" />
 </head>
 <body>
 	<nav id="header-fixed"
@@ -259,7 +261,7 @@
           let action = event.target.dataset.action;
           console.log(action);
           if (action == "여성") {
-            if (this._currenthover != null) {
+            if (this._currenthover != null) {	
               this._currenthover.style.display = "none";
             }
             this._currenthover = 여성;

@@ -218,7 +218,7 @@
       <ul class="category-list"
          style="display: flex; flex-direction: column">
          <div class="largecategory">
-            <a href="product/list?c=0403">아우터</a>
+            <a href="${pageContext.request.contextPath}/product/list?c=0403">아우터</a>
          </div>
          <li>가디건/베스트</li>
          <li>코트</li>

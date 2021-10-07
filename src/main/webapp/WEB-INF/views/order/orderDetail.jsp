@@ -4,7 +4,7 @@
 
 <div class="m-r-200 m-l-200">
 	<div class="m-r-300 m-l-300">
-		<div class="row m-t-25 m-b-25 p-t-10  p-b-10" style="width: 100%; background-color: #d9ead3"> 
+		<div class="m-t-25 m-b-25 p-t-10 p-b-10 row" style="width: 100%; background-color: #d9ead3"> 
 			<h4 class="col-sm-7 ">주문번호 : ${order.oid} </h4> 
 			<div class="col-sm-5" style="text-align: right" >(주문일시 : ${order.odate})</div>
 		</div>
@@ -12,11 +12,9 @@
 		<table class="table-shopping-cart m-b-77" style="width: 100%" >
 			<thead class="table_head  h-25">
 				<tr>
-				
 					<th class="col-sm-6 text-center text-black" >상품 정보</th>
 					<th class="col-sm-1 text-center text-black">판매가</th>
 					<th class="col-sm-2 text-center text-black">수량</th>
-					
 				</tr>
 			</thead>
 			<tbody>
@@ -115,7 +113,7 @@
 					</th>
 					<!-- 행 -->
 					<th class="col-sm-8 text-left text-black">
-						${order.orecipent}
+						${order.orecipient}
 					</th>
 				</tr>
 				<tr class="table-secondary">
@@ -127,7 +125,7 @@
 						</th>
 						<!-- 행 -->
 						<th class="col-sm-8 text-left text-black">
-							${order.orecipent_tel }
+							${order.orecipient_tel }
 						</th>
 				</tr>
 				<tr class="table-secondary">
@@ -139,11 +137,11 @@
 						</th>
 						<!-- 행 -->
 						<th class="col-sm-8 text-left text-black">
-							${order.orecipent_email }
+							${order.orecipient_email }
 						</th>
 				</tr>
 			</tbody>
 		</table>
+	</div>
 </div>
-
 <%@ include file="/WEB-INF/views/common/footer.jsp"%>

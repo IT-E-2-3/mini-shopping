@@ -7,7 +7,7 @@
 <%@ taglib prefix="sec"
 	uri="http://www.springframework.org/security/tags"%>
 
-<!DOCTYPE html>
+<!DOCTYPE html>	
 <html lang="en">
 <head>
 <title>Shopping Mall</title>
@@ -53,7 +53,7 @@
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/css/main.css" />
 <link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/resources/css/style.css" />
+	href="${pageContext.request.contextPath}/resources/css/style.css?version=51" />
 
 <link href="${pageContext.request.contextPath}/resources/dist/css/datepicker.min.css" rel="stylesheet" type="text/css" media="all">
   <!-- Air datepicker css -->

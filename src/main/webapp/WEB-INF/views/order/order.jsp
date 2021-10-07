@@ -153,8 +153,8 @@
                      행
                      <th class="col-sm-10 text-left text-black"><input
                         type="email" class="form-control text-center"
-                        id="orecipent_email" aria-describedby="emailHelp"
-                        placeholder="0000" name="orecipent_email"></th>
+                        id="orecipient_email" aria-describedby="emailHelp"
+                        placeholder="0000" name="orecipient_email"></th>
                   </tr> -->
                </tbody>
             </table>
@@ -232,12 +232,12 @@
                            <div class="">
                               <div class="form-group w-25 d-inline-block text-center">
                                  <label for="exampleInputEmail1" class="form-label mt-4"></label>
-                                 <input <%-- value="${orderForm.orecipent }" --%> type="text"
-                                    class="form-control text-center" id="orecipent"
-                                    name="orecipent" placeholder="수령인 이름을 입력하세요" value="홍길동">
+                                 <input value="${orderForm.orecipient }" type="text"
+                                    class="form-control text-center" id="orecipient"
+                                    name="orecipient" placeholder="수령인 이름을 입력하세요" value="홍길동">
                               </div>
                            </div>
-                        </div> <span class="orecipent-error text-danger">헬로</span>
+                        </div> <span class="orecipient-error text-danger">헬로</span>
                      </th>
                   </tr>
                   <tr class="table-secondary">
@@ -275,7 +275,7 @@
                            <input type="text" class="form-control text-center" id="tel6"
                               name="tel6" placeholder="0000" value="1234" maxlength="4">
 
-                        </div> <span class="orecipent_tel-error text-danger"></span>
+                        </div> <span class="orecipient_tel-error text-danger"></span>
                      </th>
                   </tr>
 
@@ -352,7 +352,7 @@
                         <div class="form-group w-25 d-inline-block text-center">
                            <label for="exampleInputEmail1" class="form-label mt-4"></label>
                            <input type="text" class="form-control text-center"
-                              id="orecipent_email1" name="orecipent_email1"
+                              id="orecipient_email1" name="orecipient_email1"
                               placeholder="ILOVETEAM3" value="ILOVETEAM3">
 
                         </div>
@@ -361,7 +361,7 @@
                         <div class="form-group w-25 d-inline-block text-center">
                            <label for="exampleInputEmail1" class="form-label mt-4"></label>
 
-                           <select id="orecipent_email2" name="orecipent_email12"
+                           <select id="orecipient_email2" name="orecipient_email2"
                               class="form-select  text-center">
                               <option value="">직접입력</option>
                               <option value="naver.com" selected="selected">naver.com</option>
@@ -373,8 +373,8 @@
                               <option value="dreamwiz.com">dreamwiz.com</option>
                            </select>
 
-                        </div> <span class="orecipent_email-error text-danger"></span>
-                        <div class="form-group  w-25 d-inline-block m-b-10" id="orecipent_email-error-scroll">
+                        </div> <span class="orecipient_email-error text-danger"></span>
+                        <div class="form-group  w-25 d-inline-block m-b-10" id="orecipient_email-error-scroll">
                            <label for="exampleSelect1" class="form-label"></label>
                         </div>
                      </th>
@@ -800,12 +800,12 @@ $(document).ready(function(){
       const Ozip_code = ozip_code.value;
       const Oaddress = oaddress.value;
       const Odetail_address = odetail_address.value
-      const Orecipent = orecipent.value;
+      const Orecipient = orecipient.value;
       const Orequest = orequest.value;
       const Oorder_tel = tel1.value + "-"+  tel2.value + "-" + tel3.value;
-      const Orecipent_tel = tel4.value + "-" + tel5.value +  "-" + tel6.value;
+      const Orecipient_tel = tel4.value + "-" + tel5.value +  "-" + tel6.value;
       const Oaddtional_tel = tel7.value +  "-" + tel8.value +  "-" + tel9.value;
-      const Orecipent_email = orecipent_email1.value + "@" + orecipent_email2.value;
+      const Orecipient_email = orecipient_email1.value + "@" + orecipient_email2.value;
       
       const Opayment=document.querySelector('input[name="opayment"]:checked').value;
     /*   for (var i=0; i<Opayment_len; i++) {
@@ -846,27 +846,27 @@ $(document).ready(function(){
             oaddressError.innerHTML = "";         
       }
       // 수령인
-      const orecipentError = document.querySelector(".orecipent-error");
-      if(Orecipent == "" || Orecipent.trim() == "") {
-         orecipentError.innerHTML = "필수 입력 사항";
+      const orecipientError = document.querySelector(".orecipient-error");
+      if(Orecipient == "" || Orecipient.trim() == "") {
+         orecipientError.innerHTML = "필수 입력 사항";
          checkResult = false;
       }else{
-         orecipentError.innerHTML = "";      
+         orecipientError.innerHTML = "";      
       }
       // 수령인 전화번호
-      const Orecipent_telError = document.querySelector(".orecipent_tel-error");
-      if(Orecipent_tel == "" || Orecipent_tel.trim() == "") {
-         Orecipent_telError.innerHTML = "필수 입력 사항";
+      const Orecipient_telError = document.querySelector(".orecipient_tel-error");
+      if(Orecipient_tel == "" || Orecipient_tel.trim() == "") {
+         Orecipient_telError.innerHTML = "필수 입력 사항";
          checkResult = false;
       }else{
          const pattern = /(010|011|016|017|018|019)-[0-9]{3,4}-[0-9]{4}/g;
-         const result = pattern.test(Orecipent_tel);
+         const result = pattern.test(Orecipient_tel);
          if(result === false) {
             console.log("번호 형식");
-            Orecipent_telError.innerHTML = "번호 형식이 아닙니다.";
+            Orecipient_telError.innerHTML = "번호 형식이 아닙니다.";
             checkResult = false;
          }else{
-            Orecipent_telError.innerHTML = "";            
+            Orecipient_telError.innerHTML = "";            
          }
       } 
    
@@ -888,25 +888,25 @@ $(document).ready(function(){
       } 
       
       // 수령인 이메일
-      const orecipent_emailError = document.querySelector(".orecipent_email-error");
-      console.log("orecipent_email2", orecipent_email2.value);
-      console.log("orecipent_email1", orecipent_email1.value);
-      if(orecipent_email1.value == "" || orecipent_email1.value.trim() == "") {
-         document.getElementById("orecipent_email-error-scroll").scrollIntoView(false);
+      const orecipient_emailError = document.querySelector(".orecipient_email-error");
+      console.log("orecipient_email2", orecipient_email2.value);
+      console.log("orecipient_email1", orecipient_email1.value);
+      if(orecipient_email1.value == "" || orecipient_email1.value.trim() == "") {
+         document.getElementById("orecipient_email-error-scroll").scrollIntoView(false);
          //스크롤이동시키기 
-         orecipent_emailError.innerHTML = "필수 입력 사항";
+         orecipient_emailError.innerHTML = "필수 입력 사항";
          checkResult = false;
-      }else if(orecipent_email2.value == "" || orecipent_email2.value.trim() ==""){
-         orecipent_emailError.innerHTML = "필수 입력 사항";
+      }else if(orecipient_email2.value == "" || orecipient_email2.value.trim() ==""){
+         orecipient_emailError.innerHTML = "필수 입력 사항";
          checkResult = false;
       }else{
          const pattern = /^(.+)@(.+)$/g;
-         const result = pattern.test(Orecipent_email);
+         const result = pattern.test(Orecipient_email);
          if(result === false) {
-            orecipent_emailError.innerHTML = "이메일 형식이 아닙니다.";
+            orecipient_emailError.innerHTML = "이메일 형식이 아닙니다.";
             checkResult = false;
          }else{
-            orecipent_emailError.innerHTML = "";            
+            orecipient_emailError.innerHTML = "";            
          }
       }
       
@@ -932,7 +932,7 @@ $(document).ready(function(){
          return false;
       }
       
-      //console.log(Ozip_code, Oaddress, Odetail_address, Orecipent, Orequest, Orecipent_tel, Oaddtional_tel, Orecipent_email);
+      //console.log(Ozip_code, Oaddress, Odetail_address, Orecipient, Orequest, Orecipient_tel, Oaddtional_tel, Orecipient_email);
       
       //서버 유효성 검사
        $.ajax({
@@ -945,8 +945,8 @@ $(document).ready(function(){
             ozip_code: Ozip_code,
             oaddress: Oaddress,
             odetail_address: Odetail_address,
-            orecipent: Orecipent,
-            orecipent_tel: Orecipent_tel,
+            orecipient: Orecipient,
+            orecipient_tel: Orecipient_tel,
             ototal_price: Ototal_price,
             //ototal_price = totalprice.value;
             ochannel: "the handsome",
@@ -958,9 +958,8 @@ $(document).ready(function(){
             order_tel: Oorder_tel,
             oaddtional_tel: Oaddtional_tel, 
             orequest: Orequest,
-            orecipent_email: Orecipent_email,
-            opayment: Opayment,
-           
+            orecipient_email: Orecipient_email,
+            opayment: Opayment
          },
          contentType: "application/x-www-form-urlencoded; charset=UTF-8;"
       })

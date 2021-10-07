@@ -173,7 +173,7 @@ public class OrderController {
       try {
         orderService.makeOrder(OrderRowList, oid, order);
       } catch (ProductSoldOutException e) {
-        logger.error(e.getMessage());
+        logger.error(e.getMessage());	
         
 
         JSONObject jsonObject = new JSONObject();
@@ -306,7 +306,7 @@ public class OrderController {
                logger.info("pname " + pname);
                order.setMainItem(pname);
             }
-         }
+         }	
          
          model.addAttribute("orderList", orders);
          session.setAttribute("orders", orders);
@@ -348,14 +348,16 @@ public class OrderController {
    @GetMapping("/orderDetail")
    public String orderDetail(@RequestParam String oid, Model model, HttpSession session) {
       logger.info("실행");
-      OrderDto order = (OrderDto) orderService.getOrder(oid);
+      OrderDto order = (OrderDto) orderService.getOrder(oid);	
       List<OrderRowDetailDto> orderItems = orderService.getProductInfo(oid);
-
+      
       model.addAttribute("order", order);
+      logger.info("order.orecipient", order.getOrecipient());
+      
       model.addAttribute("orderItems", orderItems);
 
       logger.info(order.toString());
       logger.info(orderItems.toString());
       return "order/orderDetail";
-   }
+   }	
 }

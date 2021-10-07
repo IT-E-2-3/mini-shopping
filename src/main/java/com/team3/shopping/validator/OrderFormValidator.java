@@ -34,9 +34,9 @@ public class OrderFormValidator implements Validator {
 		}
 
 		// 수령인 이름 검사
-		if (order.getOrecipent() == null || order.getOrecipent().trim().equals("")) {
+		if (order.getOrecipient() == null || order.getOrecipient().trim().equals("")) {
 			logger.info("수령인 이름");
-			errors.rejectValue("orecipent", "errors.oname.required");
+			errors.rejectValue("orecipient", "errors.oname.required");
 		}
 		
 		//  주문자 휴대폰 번호 검사
@@ -47,7 +47,7 @@ public class OrderFormValidator implements Validator {
 			String regex = "^01(?:0|1|[6-9])-(?:\\d{3}|\\d{4})-\\d{4}$";
 			// 패턴 객체 만들기
 			Pattern pattern = Pattern.compile(regex);
-			Matcher matcher = pattern.matcher(order.getOrecipent_tel());
+			Matcher matcher = pattern.matcher(order.getOrecipient_tel());
 
 			if (!matcher.matches()) {
 				logger.info("주문자");
@@ -56,34 +56,34 @@ public class OrderFormValidator implements Validator {
 		}
 
 		// 수령인 휴대폰 번호 검사
-		if (order.getOrecipent_tel() == null || order.getOrecipent_tel().trim().equals("")) {
+		if (order.getOrecipient_tel() == null || order.getOrecipient_tel().trim().equals("")) {
 			logger.info("수령인 번호");
-			errors.rejectValue("orecipent_tel", "errors.orecipent_tel.invalid");
+			errors.rejectValue("orecipient_tel", "errors.orecipient_tel.invalid");
 		} else {
 			String regex = "^01(?:0|1|[6-9])-(?:\\d{3}|\\d{4})-\\d{4}$";
 			// 패턴 객체 만들기
 			Pattern pattern = Pattern.compile(regex);
-			Matcher matcher = pattern.matcher(order.getOrecipent_tel());
+			Matcher matcher = pattern.matcher(order.getOrecipient_tel());
 
 			if (!matcher.matches()) {
 				logger.info("수령인");
-				errors.rejectValue("orecipent_tel", "errors.orecipent_tel.invalid");
+				errors.rejectValue("orecipient_tel", "errors.orecipient_tel.invalid");
 			}
 		}
 
 		// 수령인 이메일 검사
-		if (order.getOrecipent_email() == null || order.getOrecipent_email().trim().equals("")) {
+		if (order.getOrecipient_email() == null || order.getOrecipient_email().trim().equals("")) {
 			logger.info("이메일 없음");
-			errors.reject("orecipent_email", "errors.orecipent_email.required");
+			errors.reject("orecipient_email", "errors.orecipient_email.required");
 		} else {
 			String regex = "^(.+)@(.+)$";
 					
 			// 패턴 객체 만들기 
 			Pattern pattern = Pattern.compile(regex); 
-			Matcher matcher = pattern.matcher(order.getOrecipent_email());
+			Matcher matcher = pattern.matcher(order.getOrecipient_email());
 			if (!matcher.matches()) {
 				logger.info("이메일 잘못됨");
-				errors.rejectValue("orecipent_email", "errors.orecipent_email.invalid");
+				errors.rejectValue("orecipient_email", "errors.orecipient_email.invalid");
 			}
 		}
 
