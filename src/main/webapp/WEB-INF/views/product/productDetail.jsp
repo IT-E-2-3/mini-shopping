@@ -388,10 +388,10 @@
 	        	
 	        	let checkResult = true;
 	        	
-	        	//수량 필수 입력
+	        	//사이즈 필수 입력
 	        	if(p_size_code=='옵션을 선택해주세요.'){
 	        		checkResult = false;
-	        		swal("수량 선택 안함", "수량을 선택해주세요!", "warning");
+	        		swal("사이즈 선택 안함", "사이즈를 선택해주세요!", "warning");
 	        	}
 	        	
 	        	//서버로 제출할지 말지 결정
