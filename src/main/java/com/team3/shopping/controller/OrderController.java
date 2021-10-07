@@ -51,7 +51,6 @@ import com.team3.shopping.validator.OrderFormValidator;
 
 @Controller
 @RequestMapping("/order")
-@SessionAttributes({ "inputForm" })
 public class OrderController {
    private static final Logger logger = LoggerFactory.getLogger(OrderController.class);
 
@@ -61,7 +60,7 @@ public class OrderController {
 
    @Resource
    OrderService orderService;
-
+//수정
    int total_amount = 0;
    List<OrderRowDetailDto> OrderRowList;
 
@@ -207,7 +206,7 @@ public class OrderController {
       logger.info(orderItems.toString());
       
       long cardCost = (order.getOtotal_price())/(Integer.parseInt(order.getOcard_installmentrate_period()) )*(100-Integer.parseInt(order.getOcard_installmentrate()) );
-      model.addAttribute("cardCost", orderItems);
+      model.addAttribute("cardCost", cardCost);
       
       //odate를 기반으로 2일 후까지 입금시켜야 하는 입금기한을 주려고 했으나 실패
 //      Timestamp ts= Timestamp.valueOf(order.getOdate());
@@ -262,7 +261,7 @@ public class OrderController {
       if (startDate != null && endDate != null) {
          logger.info("date로 변환");
          if(endDate.equals("today")) {
-            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd"); //dateFormat
             String date = formatter.format(new Date());
             beforeDate = dateFormat.parse(date);
          }else {
@@ -287,7 +286,7 @@ public class OrderController {
       // 리스트 새로 받기
       if (orders.size() == 0) {
          logger.info("새로운 orders");
-         orders = orderService.getOrderList(mid);
+         orders = orderService.getOrderList(mid); //paging 처리
          // session.removeAttribute("orders");
 
          for (OrderDto order : orders) {
@@ -350,12 +349,15 @@ public class OrderController {
       logger.info("실행");
       OrderDto order = (OrderDto) orderService.getOrder(oid);
       List<OrderRowDetailDto> orderItems = orderService.getProductInfo(oid);
-
-      model.addAttribute("order", order);
-      model.addAttribute("orderItems", orderItems);
-
+    
+     
       logger.info(order.toString());
-      logger.info(orderItems.toString());
+      model.addAttribute("orderItems", orderItems);
+      model.addAttribute("order", order);
+//      long cardCost = (order.getOtotal_price())/(Integer.parseInt(order.getOcard_installmentrate_period()) )*(100-Integer.parseInt(order.getOcard_installmentrate()) );
+//      model.addAttribute("cardCost", cardCost);
+//  
+//      logger.info(orderItems.toString());
       return "order/orderDetail";
    }
 }

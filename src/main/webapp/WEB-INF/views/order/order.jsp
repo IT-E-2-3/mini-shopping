@@ -1,6 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 
-<%@ include file="/WEB-INF/views/common/header-nocategory.jsp"%>
+<%@ include file="/WEB-INF/views/common/header-category.jsp"%>
 <div class="card m-2">
    <form>
       <div class="row">
@@ -618,70 +618,6 @@
             </div>
 
 
-<!-- 
-            <script>
-            $(document).ready(function(){
-                if($('input:radio[id=card]').is(':checked')){
-                       $('#cardView').show();
-                   }else{
-                       $('#cardView').hide();
-                   }
-                   
-                   if($('input:radio[id=mileage]').is(':checked')){
-                       $('#mileageView').show();
-                   }else{
-                       $('#mileageView').hide();
-                   }
-                   
-                   if($('input:radio[id=virtualAccount]').is(':checked')){
-                       $('#virtualAccountView').show();
-                   }else{
-                       $('#virtualAccountView').hide();
-                   }
-            });
-            
-               function setDisplay(){
-                   if($('input:radio[id=card]').is(':checked')){
-                       $('#cardView').show();
-                   }else{
-                       $('#cardView').hide();
-                   }
-                   
-                   if($('input:radio[id=mileage]').is(':checked')){
-                       $('#mileageView').show();
-                   }else{
-                       $('#mileageView').hide();
-                   }
-                   
-                   if($('input:radio[id=virtualAccount]').is(':checked')){
-                       $('#virtualAccountView').show();
-                   }else{
-                       $('#virtualAccountView').hide();
-                   }
-               }
-               
-               function send(){
-                  console.log("send")
-                  if($('input:radio[id=card]').is(':checked')){
-                     var className = $('input:radio[name=ocard_name]:checked').attr('class')
-                     //var className2 =document.querySelector('input[name="ocard_name"]:checked').value;
-                     console.log(className); //hyundai
-                     var strArray=className.split(' ');
-                     console.log(strArray[0]);
-                     var elementsall = document.querySelectorAll('.' +strArray[0]);
-                     console.log(elementsall);
-                  
-                     const   Ocard_name = elementsall[0].value;
-                     const   Ocard_installmentrate  = elementsall[1].value;
-                     const   Ocard_installmentrate_period = elementsall[2].value;
-                       
-                  }
-               }
-             
-             
-            </script>
-
- -->
          </div>
          <!-- 왼쪽 끝  -->
          <!-- 오른쪽 시작 -->
@@ -730,10 +666,12 @@
 
 <script>
 
-let   Ocard_name=7; //default
-let   Ocard_installmentrate=7; //default
-let   Ocard_installmentrate_period=7; //default
+let Ocard_name=7; //default
+let Ocard_installmentrate=7; //default
+let Ocard_installmentrate_period=7; //default
 let Ototal_price= totalprice.value;
+
+// 페이지가 로딩되면 바로 hide 시키기
 $(document).ready(function(){
     if($('input:radio[id=card]').is(':checked')){
            $('#cardView').show();
@@ -754,6 +692,7 @@ $(document).ready(function(){
        }
 });
 
+	// 라디오버튼으로 보이고 안보이게하기
    function setDisplay(){
        if($('input:radio[id=card]').is(':checked')){
            $('#cardView').show();
@@ -774,6 +713,7 @@ $(document).ready(function(){
        }
    }
    
+	//라디오버튼을 누르면 같은 클래스의 내용을 저장함 저장한 값은 AJAX로 controller로 전송
    function send(){
       console.log("send")
       if($('input:radio[id=card]').is(':checked')){
@@ -792,10 +732,12 @@ $(document).ready(function(){
       }
    }
    
+	//주문 DTO에 삽입할 정보 모두 저장
    function requestPost() {
-      
+      //제출 비활성화
       event.preventDefault();
-      
+    
+    	  
       const Ozip_code = ozip_code.value;
       const Oaddress = oaddress.value;
       const Odetail_address = odetail_address.value
@@ -932,7 +874,9 @@ $(document).ready(function(){
       }
       
       //console.log(Ozip_code, Oaddress, Odetail_address, Orecipent, Orequest, Orecipent_tel, Oaddtional_tel, Orecipent_email);
-      
+        if(Opayment===7){
+        	return false;
+        }
       //서버 유효성 검사
        $.ajax({
          url:"order",
@@ -968,12 +912,14 @@ $(document).ready(function(){
          const regex = new RegExp("상품명.+", "g");
          if(data.result == "success"){
             //console.log(data);
+            //리다이랙트
             window.location.href = "/order/ordersuccess";
          }else if(regex.test(data.result)){
             console.log("outofstock")
             var soldOutItem = data.result.split(":")[1];
             console.log(data.result.split(":")[1]);
             console.log(data.result);
+            //스왈 띄움
             swal("상품 재고부족", 	soldOutItem + " 상품 재고가 부족합니다.", "error");
          }
          return false;

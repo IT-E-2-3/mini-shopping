@@ -126,4 +126,8 @@ public class OrderService {
 		List<OrderRowDetailDto> infos = orderDao.selectProductbyOid(pid);
 		return infos;
 	}
+
+	public void DeleteProductFromCart(OrderRowDetailDto orderRowDetailDto) {
+		orderDao.DeleteProductFromCart(orderRowDetailDto);
+	}
 }
