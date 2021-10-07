@@ -1,8 +1,7 @@
 package com.team3.shopping.controller;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -52,7 +51,19 @@ public class ProductController {
 		model.addAttribute("pager", pager);
 		
 		List<ProductListDto> plist = productService.getproductList(pager, cateCode);
+		List<List<ProductListDto>> colorlist = new ArrayList<>();
+		
+		for(ProductListDto p: plist) {
+			String pid = p.getPid();
+			List<ProductListDto> colorlist_temp = productService.getColorList(pid);
+			colorlist.add(colorlist_temp);
+		}
+//		for(List<ProductListDto> colors : colorlist) {
+//			System.out.println("###########" +colors);
+//		}
+		
 		model.addAttribute("plist", plist);
+		model.addAttribute("colorlist", colorlist);
 		return "product/productList";
 	}
 	

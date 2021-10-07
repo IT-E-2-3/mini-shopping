@@ -1,6 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <%@ include file="/WEB-INF/views/common/header-category.jsp"%>
+
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/animsition/css/animsition.min.css"/>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/slick/slick.css" />
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/MagnificPopup/magnific-popup.css"/>
@@ -343,31 +344,9 @@
         <i class="zmdi zmdi-chevron-up"></i>
       </span>
     </div>
-    <script>
-      $(".js-select2").each(function () {
-        $(this).select2({
-          minimumResultsForSearch: 20,
-          dropdownParent: $(this).next(".dropDownSelect2"),
-        });
-      });
-    </script>
-  
-    <script>
-      $(".gallery-lb").each(function () {
-        // the containers for all your galleries
-        $(this).magnificPopup({
-          delegate: "a", // the selector for gallery product
-          type: "image",
-          gallery: {
-            enabled: true,
-          },
-          mainClass: "mfp-fade",
-        });
-      });
-    </script>
     
     <script>
-	    $(".js-addcart-detail").each(function () {
+	    $("js-addcart-detail").each(function () {
 	        var nameProduct = $(this)
 	          .parent()
 	          .parent()
@@ -388,10 +367,10 @@
 	        	
 	        	let checkResult = true;
 	        	
-	        	//수량 필수 입력
+	        	//사이즈 필수 입력
 	        	if(p_size_code=='옵션을 선택해주세요.'){
 	        		checkResult = false;
-	        		swal("수량 선택 안함", "수량을 선택해주세요!", "warning");
+	        		swal("사이즈 선택 안함", "사이즈를 선택해주세요!", "warning");
 	        	}
 	        	
 	        	//서버로 제출할지 말지 결정
@@ -440,19 +419,5 @@
 	        });
 	      });
     </script>
-    <script>
-      $(".js-pscroll").each(function () {
-        $(this).css("position", "relative");
-        $(this).css("overflow", "hidden");
-        var ps = new PerfectScrollbar(this, {
-          wheelSpeed: 1,
-          scrollingThreshold: 1000,
-          wheelPropagation: false,
-        });
-
-        $(window).on("resize", function () {
-          ps.update();
-        });
-      });
-    </script>
+    
 <%@ include file="/WEB-INF/views/common/footer.jsp"%>

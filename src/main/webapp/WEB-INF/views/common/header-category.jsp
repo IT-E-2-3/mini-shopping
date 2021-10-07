@@ -19,7 +19,7 @@
 <!--===============================================================================================-->
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/bootstrap/css/bootstrap.min.css" />
-<script
+<script	
 	src="${pageContext.request.contextPath}/resources/jquery/jquery-3.2.1.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/bootstrap/js/popper.min.js"></script>
 <script

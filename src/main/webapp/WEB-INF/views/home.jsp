@@ -2,7 +2,10 @@
 
 <%@ include file="/WEB-INF/views/common/header-category.jsp"%>
 
-<!-- 슬라이더 -->
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/resources/bootstrap/css/bootstrap.css?version=51" />
+
+	<!-- 슬라이더 -->
     <div
       id="carouselExampleControls"
       class="carousel slide"

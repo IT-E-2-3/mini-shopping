@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.team3.shopping.dao.CartDao;
 import com.team3.shopping.dto.CartDto;
+import com.team3.shopping.dto.OrderRowDetailDto;
 
 @Service
 public class CartService {
@@ -22,5 +23,14 @@ public class CartService {
 
 	public void updateProductCamount(CartDto cart) {
 		cartdao.updateCount(cart);
+	}
+
+	public void DeleteProductFromCart(OrderRowDetailDto orderRowDetailDto) {
+		cartdao.deleteProductByUrlSize(orderRowDetailDto);
+	}
+
+	public void updateAmount(OrderRowDetailDto orderRowDetailDto) {
+		cartdao.updateAmount(orderRowDetailDto);
+		
 	}
 }

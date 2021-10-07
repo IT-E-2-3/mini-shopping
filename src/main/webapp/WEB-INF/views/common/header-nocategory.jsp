@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
@@ -17,6 +18,7 @@
 <link rel="icon" type="image/jpg"
 	href="${pageContext.request.contextPath}/resources/images/icons/hansome.jpg" />
 <!--===============================================================================================-->
+
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/bootstrap/css/bootstrap.min.css" />
 <script	src="${pageContext.request.contextPath}/resources/jquery/jquery-3.2.1.min.js"></script>
@@ -24,7 +26,11 @@
 <script
 	src="${pageContext.request.contextPath}/resources/bootstrap/js/bootstrap.min.js"></script>
 
+
 <!--===============================================================================================-->
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/bootstrap/css/bootstrap.min.css" />
+
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/fonts/font-awesome-4.7.0/css/font-awesome.min.css" />
 <!--===============================================================================================-->
@@ -35,7 +41,9 @@
 	href="${pageContext.request.contextPath}/resources/fonts/linearicons-v1.0.0/icon-font.min.css" />
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css"
+
 	href="${pageContext.request.contextPath}/resources/animate/animate.css" />
+
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/css-hamburgers/hamburgers.min.css" />
@@ -49,17 +57,13 @@
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/perfect-scrollbar/perfect-scrollbar.css" />
 <link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/resources/css/util.css" />
+	href="${pageContext.request.contextPath}/resources/css/util_.css" />
 <link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/resources/css/main.css" />
+	href="${pageContext.request.contextPath}/resources/css/main_.css" />
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/css/style.css?version=51" />
-
 <link href="${pageContext.request.contextPath}/resources/dist/css/datepicker.min.css" rel="stylesheet" type="text/css" media="all">
-  <!-- Air datepicker css -->
- <script src="${pageContext.request.contextPath}/resources/dist/js/datepicker.js"></script> <!-- Air datepicker js -->
- <script src="${pageContext.request.contextPath}/resources/dist/js/i18n/datepicker.ko.js"></script> <!-- 달력 한글 추가를 위해 커스텀 -->
-</head>
+ </head>
 <body>
 	<!-- Header -->
 	<nav id="header-fixed"
