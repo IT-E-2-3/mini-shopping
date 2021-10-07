@@ -36,18 +36,13 @@
 	</select> -->
 	
 	<select id="getproductList" parameterType="pager" resultType="plist">
-		SELECT rnum, pid, pname, pbrand, pprice, category_code, product_detail_url1, product_detail_url2, color_chip_url,color_code, size_code
+		SELECT rnum, pid, pname, pbrand, pprice, category_code
 		FROM(
-			SELECT ROWNUM as rnum, pid, pname, pbrand, pprice, category_code, product_detail_url1, product_detail_url2, color_chip_url,color_code, size_code
+			SELECT ROWNUM as rnum, pid, pname, pbrand, pprice, category_code
 			FROM(
-			    select p.pid as pid, p.pname as pname, p.pbrand as pbrand, p.pprice as pprice, p.category_code as category_code,
-			     c.product_detail_url1 as product_detail_url1, c.product_detail_url2 as product_detail_url2, c.color_chip_url as color_chip_url, c.color_code as color_code, s.size_code as size_code
-				from product p
-				join color_url c
-				on p.pid = c.pid
-				join stock s
-				on c.pid = s.pid and c.color_code=s.color_code
-				where p.category_code like #{cateCode}||'%'
+			    select pid, pname, pbrand, pprice, category_code
+				from product
+			    where category_code like #{cateCode}||'%'
 				)
 			WHERE ROWNUM &lt;= #{pager.endRowNo}
 			)
@@ -84,7 +79,7 @@
 	
 	<!--  상품 색상 가져오기 -->
 	<select id="getColorList" parameterType="string" resultType="plist">
-		select pid, color_code, color_chip_url
+		select pid, color_code, color_chip_url, product_detail_url1, product_detail_url2, product_detail_url3
 		from color_url
 		where pid=#{pid}
 	</select>
