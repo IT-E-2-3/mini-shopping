@@ -4,15 +4,15 @@
 
 <h1 class="m-t-25 m-b-25 text-center">
 	주문 완료
-	</h2>
+	</h1>
 	<div class="m-t-25 m-b-25 text-center"
 		style="border-top: 0.3px solid #a5a3a3"></div>
 	<h2 class="m-t-25 m-b-25 text-center ">
 		주문이 완료되었습니다.
-		</h4>
+		</h2>
 		<h3 class="m-t-25 m-b-25 text-center ">
 			주문번호 : ${order.oid} (주문일시 : ${order.odate})
-			</h6>
+			</h3>
 
 
 
@@ -101,7 +101,7 @@
 									</th>
 									<!-- 행 -->
 									<th class="col-sm-8 text-left text-black">
-										 <h4>${cardCost}원 * ${order.ocard_installmentrate_period} 달</h4> <span>( 할부 이자 ${order.ocard_installmentrate} )%</span> 
+										 <h4>${cardCost}원 * ${order.ocard_installmentrate_period} 달</h4> <span>( 할부 이자 ${order.ocard_installmentrate} % )</span> 
 									</th>
 								</tr>
 							</tbody>

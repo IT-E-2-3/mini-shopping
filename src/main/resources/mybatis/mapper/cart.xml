@@ -20,4 +20,16 @@
 		set camount = camount + #{camount}
 		where mid=#{mid} and pid=#{pid} and color_code=#{color_code} and size_code=#{size_code}
 	</update>
+	
+	
+	<delete id="deleteProductByUrlSize" parameterType="orderRowDetail" >
+	DELETE FROM mycart
+	WHERE mid=#{mid} and pid=(SELECT pid FROM color_url where product_detail_url1=#{product_detail_url1}) and color_code=#{color_code} and size_code=#{size_code}
+	</delete>
+	
+	<update id="updateAmount" parameterType="orderRowDetail">
+		update mycart
+		set camount = #{oamount}
+		WHERE mid=#{mid} and pid=(SELECT pid FROM color_url where product_detail_url1=#{product_detail_url1}) and color_code=#{color_code} and size_code=#{size_code}
+	</update>
 </mapper>
