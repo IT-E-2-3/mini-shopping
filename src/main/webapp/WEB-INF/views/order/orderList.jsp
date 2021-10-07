@@ -1,7 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 
-<%@ include file="/WEB-INF/views/common/header-nocategory.jsp"%>
-
+<%@ include file="/WEB-INF/views/common/header-category.jsp"%>
 <div class="m-r-200 m-l-200">
 	<h4 class="text-center text-black m-b-25">상품 주문 목록</h4>
 	<div class="m-r-300 m-l-300" style="width: 100%; margin: auto; display:flex; justify-content: center">
@@ -20,13 +19,7 @@
 						style="border: 1px solid black" value=" ${startDate} - ${endDate}">
 				</div>
 
-				<!-- <div class="tab_c">
-					<ul class="clearfix" style="display: flex">
-						<li><a href="javascript:void(0);" id="setDateBtn1" class="on">1주일1주일</a></li>
-						<li><a href="javascript:void(0);" id="setDateBtn2">1개월1개월</a></li>
-						<li><a href="javascript:void(0);" id="setDateBtn3">3개월3개월</a></li>
-					</ul>
-				</div> -->
+			
 				<form class="col-sm-2" action="orderList" onsubmit="return requestPost()" >
 					<input type="submit"  type="button" id="searchBtn"
 						class="btn_search p-t-5 p-b-5" value="조회하기"> <input type="hidden"
@@ -116,6 +109,8 @@
 		</tbody>
 	</table>
 </div>
+
+
 <script>
 /* $(function () {
 	  //selecting the button and adding a click event
