@@ -1,7 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <%@ include file="/WEB-INF/views/common/header-category.jsp"%>
-
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/animsition/css/animsition.min.css"/>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/slick/slick.css" />
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/MagnificPopup/magnific-popup.css"/>
@@ -19,46 +18,46 @@
                 <div class="wrap-slick3-arrows flex-sb-m flex-w"></div>
 
                 <div class="slick3 gallery-lb">
-                	<!-- 첫 번째 사진 -->
-					<div class="product-slick3" data-thumb="${product.product_detail_url1}">
-					  <div class="wrap-pic-w pos-relative">
-					  
-					    <img src="${product.product_detail_url1}"
-					      alt="IMG-PRODUCT"/>
-					
-					    <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hovbtn3 trans-04"
-					      href="${product.product_detail_url1}">
-					      <i class="fa fa-expand"></i>
-					    </a>
-					  </div>
-					</div>
-					
-					<!-- 두 번째 사진 -->
-					<div class="product-slick3" data-thumb="${product.product_detail_url2}">
-					  <div class="wrap-pic-w pos-relative">
-					    <img src="${product.product_detail_url2}" alt="IMG-PRODUCT"/>
-					
-					    <a class="flex-c-m size-108 how-pos1 bor0 s-16 cl10 bg0 hov-btn3 trans-04"
-					      href="${product.product_detail_url2}">
-					      <i class="fa fa-expand"></i>
-					    </a>
-					  </div>
-					</div>
-					
-					<!-- 세 번째 사진 -->
-   					<div class="product-slick3" data-thumb="${product.product_detail_url3}">
-     					<div class="wrap-pic-w pos-relative">
-							<img
-						        src="${product.product_detail_url3}"
-						        alt="IMG-PRODUCT"
-						      />
+                   <!-- 첫 번째 사진 -->
+               <div class="product-slick3" data-thumb="${product.product_detail_url1}">
+                 <div class="wrap-pic-w pos-relative">
+                 
+                   <img src="${product.product_detail_url1}"
+                     alt="IMG-PRODUCT"/>
+               
+                   <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hovbtn3 trans-04"
+                     href="${product.product_detail_url1}">
+                     <i class="fa fa-expand"></i>
+                   </a>
+                 </div>
+               </div>
+               
+               <!-- 두 번째 사진 -->
+               <div class="product-slick3" data-thumb="${product.product_detail_url2}">
+                 <div class="wrap-pic-w pos-relative">
+                   <img src="${product.product_detail_url2}" alt="IMG-PRODUCT"/>
+               
+                   <a class="flex-c-m size-108 how-pos1 bor0 s-16 cl10 bg0 hov-btn3 trans-04"
+                     href="${product.product_detail_url2}">
+                     <i class="fa fa-expand"></i>
+                   </a>
+                 </div>
+               </div>
+               
+               <!-- 세 번째 사진 -->
+                  <div class="product-slick3" data-thumb="${product.product_detail_url3}">
+                    <div class="wrap-pic-w pos-relative">
+                     <img
+                          src="${product.product_detail_url3}"
+                          alt="IMG-PRODUCT"
+                        />
 
-							<a class="flex-c-m size-108 how-pos1 bor0 s-16 cl10 bg0 hov-btn3 trans-04"
-							   href="${product.product_detail_url3}">
-         						<i class="fa fa-expand"></i>
-       						</a>
-     					</div>
-  					 </div>
+                     <a class="flex-c-m size-108 how-pos1 bor0 s-16 cl10 bg0 hov-btn3 trans-04"
+                        href="${product.product_detail_url3}">
+                           <i class="fa fa-expand"></i>
+                         </a>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -72,8 +71,8 @@
               <span class="mtext-101 cl2"> ₩&nbsp;<span id="productprice">${product.pprice}</span></span>
 
               <div class="prod-detail-box mt-3">
-              	<input type="hidden" id="productid" value="${product.pid}"/>
-              	<input type="hidden" id="pcolor" value="${product.color_code}"/>
+                 <input type="hidden" id="productid" value="${product.pid}"/>
+                 <input type="hidden" id="pcolor" value="${product.color_code}"/>
                 <span class="number-code" style="font-size: 12px">
                   상품품번 : <span>${product.pid}_${product.color_code}</span>
                 </span>
@@ -92,7 +91,7 @@
                       <select class="js-select2" name="size" id="size">
                         <option>옵션을 선택해주세요.</option>
                         <c:forEach var="size" items="${sizelist}">
-                        	<option value="${size.size_code}">${size.size_code}</option>
+                           <option value="${size.size_code}">${size.size_code}</option>
                         </c:forEach>
                       </select>
                       <div class="dropDownSelect2"></div>
@@ -106,11 +105,11 @@
                   <div class="size-204">
                     <ul class="color_chip d-flex" style="padding-left:0px;">
                     <c:forEach var="color" items="${colorlist}">
-                    	<li id="${color.pid}_${color.color_code}" style="margin-right:8px;">
-                    		<a href="${pageContext.request.contextPath}/product/detail?pid=${product.pid}&co=${color.color_code}">
-	                    		<img src="${color.color_chip_url}" style="width: 20px; height: 20px;"/>
-                    		</a>
-                    	</li>
+                       <li id="${color.pid}_${color.color_code}" style="margin-right:8px;">
+                          <a href="${pageContext.request.contextPath}/product/detail?pid=${product.pid}&co=${color.color_code}">
+                             <img src="${color.color_chip_url}" style="width: 20px; height: 20px;"/>
+                          </a>
+                       </li>
                     </c:forEach>
                     </ul>
                   </div>
@@ -146,22 +145,22 @@
                   </div>
                 </div>
                 <script>
-					$('.btn-num-product-down').on('click', function(){
-						var numProduct = Number($(this).next().val());
-					    if(numProduct > 1) $(this).next().val(numProduct - 1);
-					    
-					    var productprice = document.querySelector('#productprice').textContent;
-			        	document.querySelector('#totalprice').textContent = productprice * productnum.value;
-					});
-					
-					$('.btn-num-product-up').on('click', function(){
-					    var numProduct = Number($(this).prev().val());
-					    $(this).prev().val(numProduct + 1);
-					    
-					    var productprice = document.querySelector('#productprice').textContent;
-			        	document.querySelector('#totalprice').textContent = productprice * productnum.value;
-					});
-				</script>
+               $('.btn-num-product-down').on('click', function(){
+                  var numProduct = Number($(this).next().val());
+                   if(numProduct > 1) $(this).next().val(numProduct - 1);
+                   
+                   var productprice = document.querySelector('#productprice').textContent;
+                    document.querySelector('#totalprice').textContent = productprice * productnum.value;
+               });
+               
+               $('.btn-num-product-up').on('click', function(){
+                   var numProduct = Number($(this).prev().val());
+                   $(this).prev().val(numProduct + 1);
+                   
+                   var productprice = document.querySelector('#productprice').textContent;
+                    document.querySelector('#totalprice').textContent = productprice * productnum.value;
+               });
+            </script>
 
                 <hr />
                 <div class="total_price d-flex justify-content-between m-4">
@@ -173,16 +172,16 @@
 
                 <div class="flex-w flex-r-m p-b-10">
                   <div class="size-204 flex-w flex-m respon6-next">
-                  	<sec:authorize access="isAnonymous()">
-					   <a class="flex-c-m stext-101 cl0 size-101 bg3 bor14 hov-btn3 p-lr-15 trans-04" href="/loginform" style="text-decoration:none;">
- 	                      Add to cart
-	                    </a>
-					</sec:authorize>
+                     <sec:authorize access="isAnonymous()">
+                  <a class="flex-c-m stext-101 cl0 size-101 bg3 bor14 hov-btn3 p-lr-15 trans-04" href="/loginform" style="text-decoration:none;">
+                          Add to cart
+                       </a>
+               </sec:authorize>
                     <sec:authorize access="hasRole('ROLE_USER')">
-	                    <button
-	                      class="flex-c-m stext-101 cl0 size-101 bg3 bor14 hov-btn3 p-lr-15 trans-04 js-addcart-detail">
-	                      Add to cart
-	                    </button>
+                       <button
+                         class="flex-c-m stext-101 cl0 size-101 bg3 bor14 hov-btn3 p-lr-15 trans-04 js-addcart-detail">
+                         Add to cart
+                       </button>
                     </sec:authorize>
                   </div>
                 </div>
@@ -295,129 +294,165 @@
         </div>
       </div>
     </section>
-	
-	<!-- 함께 코디된 옷이 있을 경우에만 표시 -->
-	<c:if test="${not empty matching_cloth}">
-	<!-- Related Products -->
-	<section class="sec-relate-product bg0 p-t-45 p-b-105">
-		<div class="container">
-			<div class="p-b-45">
-				<h3 class="ltext-106 cl5 txt-center">
-					Related Products
-				</h3>
-			</div>
+   
+   <!-- 함께 코디된 옷이 있을 경우에만 표시 -->
+   <c:if test="${not empty matching_cloth}">
+   <!-- Related Products -->
+   <section class="sec-relate-product bg0 p-t-45 p-b-105">
+      <div class="container">
+         <div class="p-b-45">
+            <h3 class="ltext-106 cl5 txt-center">
+               Related Products
+            </h3>
+         </div>
 
-			<!-- Slide2 -->
-			<div class="wrap-slick2">
-				<div class="slick2">
-					<div class="product-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
-						<!-- Block2 -->
-						<div class="block2">
-							<div class="block2-pic hov-img0 text-center">
-								<img src="${matching_cloth.product_detail_url3}" alt="IMG-PRODUCT" style="width:200px;">
-							</div>
+         <!-- Slide2 -->
+         <div class="wrap-slick2">
+            <div class="slick2">
+               <div class="product-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
+                  <!-- Block2 -->
+                  <div class="block2">
+                     <div class="block2-pic hov-img0 text-center">
+                        <img src="${matching_cloth.product_detail_url3}" alt="IMG-PRODUCT" style="width:200px;">
+                     </div>
 
-							<div class="block2-txt flex-w flex-t p-t-14 text-center">
-								<div class="block2-txt-child1 flex-col-l align-items-center">
-									<span class="stext-104">${matching_cloth.pbrand}</span>
-									<a href="${pageContext.request.contextPath}/product/detail?pid=${matching_cloth.pid}&co=${matching_cloth.color_code}"
-									class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-										${matching_cloth.pname}
-									</a>
+                     <div class="block2-txt flex-w flex-t p-t-14 text-center">
+                        <div class="block2-txt-child1 flex-col-l align-items-center">
+                           <span class="stext-104">${matching_cloth.pbrand}</span>
+                           <a href="${pageContext.request.contextPath}/product/detail?pid=${matching_cloth.pid}&co=${matching_cloth.color_code}"
+                           class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+                              ${matching_cloth.pname}
+                           </a>
 
-									<span class="stext-105 cl3">
-										 ₩&nbsp;${matching_cloth.pprice}</span>
-									</span>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-	</c:if>
-	
+                           <span class="stext-105 cl3">
+                               ₩&nbsp;${matching_cloth.pprice}</span>
+                           </span>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </section>
+   </c:if>
+   
     <!-- Back to top -->
     <div class="btn-back-to-top" id="myBtn">
       <span class="symbol-btn-back-to-top">
         <i class="zmdi zmdi-chevron-up"></i>
       </span>
     </div>
-    
     <script>
-	    $("js-addcart-detail").each(function () {
-	        var nameProduct = $(this)
-	          .parent()
-	          .parent()
-	          .parent()
-	          .parent()
-	          .find(".js-name-detail")
-	          .html();
-	        $(this).on("click", function () {
-	        	const p_pid = productid.value; //상품 id
-	        	const p_color_code = pcolor.value; // member가 선택한 색상 = 현재product의 color 
-	        	const p_size_code = $("#size option:selected").val(); // member가 선택한 사이즈
-	        	const p_camount = productnum.value; //수량
-	      		
-	        	console.log(p_pid);
-	        	console.log(p_color_code);
-	        	console.log(p_size_code);
-	        	console.log(p_camount); 
-	        	
-	        	let checkResult = true;
-	        	
-	        	//수량 필수 입력
-	        	if(p_size_code=='옵션을 선택해주세요.'){
-	        		checkResult = false;
-	        		swal("수량 선택 안함", "수량을 선택해주세요!", "warning");
-	        	}
-	        	
-	        	//서버로 제출할지 말지 결정
-	        	if(!checkResult) {
-			         return false;
-			    }
-	        	
-	        	<!--ajax 시작-->
-	        	$.ajax({
-	        		url : "/cart/insert",
-	        		method:"get",
-	        		data : {
-	        			mid : null,
-	        			pid : p_pid,
-	        			color_code : p_color_code,
-	        			size_code : p_size_code,
-	        			camount : p_camount
-	        		},
-	                contentType: "application/x-www-form-urlencoded; charset=UTF-8;"
-	        	}).done((data)=>{
-	        		console.log(data);
-	        		if(data.result =="success"){
-			        	<!--swal 시작 -->
-						swal({
-						  title: nameProduct,
-						  text: "장바구니에 담았습니다.",
-						  icon: "success",
-						  buttons: {
-						    cancle: {
-						      text: "계속 쇼핑하기",
-						      value: false,
-						      className: "swal_confirm",
-						    },
-						    confirm: {
-						      text: "쇼핑백으로 가기",
-						      value: true,
-						    },
-						  },
-						}).then((result) => {
-						  if (result) window.location.href = "/cart/2";
-						});
-						<!--swal 끝-->
-	        		}
-	        	});
-	        	<!--ajax 끝 -->
-	        });
-	      });
+      $(".js-select2").each(function () {
+        $(this).select2({
+          minimumResultsForSearch: 20,
+          dropdownParent: $(this).next(".dropDownSelect2"),
+        });
+      });
+    </script>
+  
+    <script>
+      $(".gallery-lb").each(function () {
+        // the containers for all your galleries
+        $(this).magnificPopup({
+          delegate: "a", // the selector for gallery product
+          type: "image",
+          gallery: {
+            enabled: true,
+          },
+          mainClass: "mfp-fade",
+        });
+      });
     </script>
     
+    <script>
+       $(".js-addcart-detail").each(function () {
+           var nameProduct = $(this)
+             .parent()
+             .parent()
+             .parent()
+             .parent()
+             .find(".js-name-detail")
+             .html();
+           $(this).on("click", function () {
+              const p_pid = productid.value; //상품 id
+              const p_color_code = pcolor.value; // member가 선택한 색상 = 현재product의 color 
+              const p_size_code = $("#size option:selected").val(); // member가 선택한 사이즈
+              const p_camount = productnum.value; //수량
+               
+              console.log(p_pid);
+              console.log(p_color_code);
+              console.log(p_size_code);
+              console.log(p_camount); 
+              
+              let checkResult = true;
+              
+              //수량 필수 입력
+              if(p_size_code=='옵션을 선택해주세요.'){
+                 checkResult = false;
+                 swal("수량 선택 안함", "수량을 선택해주세요!", "warning");
+              }
+              
+              //서버로 제출할지 말지 결정
+              if(!checkResult) {
+                  return false;
+             }
+              
+              <!--ajax 시작-->
+              $.ajax({
+                 url : "/cart/insert",
+                 method:"get",
+                 data : {
+                    mid : null,
+                    pid : p_pid,
+                    color_code : p_color_code,
+                    size_code : p_size_code,
+                    camount : p_camount
+                 },
+                   contentType: "application/x-www-form-urlencoded; charset=UTF-8;"
+              }).done((data)=>{
+                 console.log(data);
+                 if(data.result =="success"){
+                    <!--swal 시작 -->
+                  swal({
+                    title: nameProduct,
+                    text: "장바구니에 담았습니다.",
+                    icon: "success",
+                    buttons: {
+                      cancle: {
+                        text: "계속 쇼핑하기",
+                        value: false,
+                        className: "swal_confirm",
+                      },
+                      confirm: {
+                        text: "쇼핑백으로 가기",
+                        value: true,
+                      },
+                    },
+                  }).then((result) => {
+                    if (result) window.location.href = "/cart/2";
+                  });
+                  <!--swal 끝-->
+                 }
+              });
+              <!--ajax 끝 -->
+           });
+         });
+    </script>
+    <script>
+      $(".js-pscroll").each(function () {
+        $(this).css("position", "relative");
+        $(this).css("overflow", "hidden");
+        var ps = new PerfectScrollbar(this, {
+          wheelSpeed: 1,
+          scrollingThreshold: 1000,
+          wheelPropagation: false,
+        });
+
+        $(window).on("resize", function () {
+          ps.update();
+        });
+      });
+    </script>
 <%@ include file="/WEB-INF/views/common/footer.jsp"%>

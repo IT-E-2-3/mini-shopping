@@ -876,8 +876,12 @@ $(document).ready(function(){
       }
       
       //console.log(Ozip_code, Oaddress, Odetail_address, Orecipent, Orequest, Orecipent_tel, Oaddtional_tel, Orecipent_email);
-        if(Opayment===7){
-        	return false;
+        if(Ocard_name==1){
+        	if(Opayment==7){
+        		 swal("", 	soldOutItem + " 상품 재고가 부족합니다.", "error");
+             	return false;
+        	}
+        	
         }
       //서버 유효성 검사
        $.ajax({

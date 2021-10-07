@@ -1,6 +1,11 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 
 <%@ include file="/WEB-INF/views/common/header-category.jsp"%>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/animsition/css/animsition.min.css"/>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/slick/slick.css" />
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/MagnificPopup/magnific-popup.css"/>
+<script src="${pageContext.request.contextPath}/resources/sweetalert/sweetalert.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/select2/select2.min.js"></script>
 
 <link rel="stylesheet"
 
@@ -204,6 +209,7 @@
        //json 배열 생성
        //기본 리프래시 비활성화
        if(this.totalPrice===0){
+    	   swal("상품을 선택해주세요", "체크박스를 통해 장바구니의 물건을 담으세요!","error");
     	   return false;
        }
         event.preventDefault();
