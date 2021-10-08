@@ -65,9 +65,9 @@
 		where c.color_code=#{color} and c.pid=#{pid}
 	</select>
 	
-	<!-- 상품 사이즈 가져오기 -->
+	<!-- 상품 사이즈와 재고 가져오기 -->
 	<select id="getSizeList" parameterType="string" resultType="plist">
-		select s.size_code
+		select s.size_code, s.remaining_stock
 		from color_url c join stock s
 		on c.pid = s.pid and c.color_code = s.color_code
 		where c.color_code=#{color} and c.pid=#{pid}

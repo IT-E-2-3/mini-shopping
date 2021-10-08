@@ -88,12 +88,12 @@
 
                   <div class="size-204 respon6-next">
                     <div class="rs1-select2 bor8 bg0">
-                      <select class="js-select2" name="size" id="size">
-                        <option>옵션을 선택해주세요.</option>
-                        <c:forEach var="size" items="${sizelist}">
-                           <option value="${size.size_code}">${size.size_code}</option>
-                        </c:forEach>
-                      </select>
+						<select class="js-select2" name="size" id="size">
+							<option>옵션을 선택해주세요.</option>
+							<c:forEach var="size" items="${sizelist}">
+							<option value="${size.remaining_stock}|${size.size_code}">${size.size_code}</option>
+							</c:forEach>
+						</select>
                       <div class="dropDownSelect2"></div>
                     </div>
                   </div>
@@ -170,18 +170,20 @@
                   </div>
                 </div>
 
+              	<p class="stock-error text-danger text-center" style="font-weight:bold;"></p>
                 <div class="flex-w flex-r-m p-b-10">
                   <div class="size-204 flex-w flex-m respon6-next">
-                     <sec:authorize access="isAnonymous()">
-                  <a class="flex-c-m stext-101 cl0 size-101 bg3 bor14 hov-btn3 p-lr-15 trans-04" href="/loginform" style="text-decoration:none;">
-                          Add to cart
-                       </a>
-               </sec:authorize>
+
+                  	<sec:authorize access="isAnonymous()">
+					   <a class="flex-c-m stext-101 cl0 size-101 bg3 bor14 hov-btn3 p-lr-15 trans-04 text-center" href="/loginform" style="text-decoration:none;">
+ 	                      Add to cart
+	                    </a>
+					</sec:authorize>
                     <sec:authorize access="hasRole('ROLE_USER')">
-                       <button
-                         class="flex-c-m stext-101 cl0 size-101 bg3 bor14 hov-btn3 p-lr-15 trans-04 js-addcart-detail">
-                         Add to cart
-                       </button>
+	                    <button
+	                      class="flex-c-m stext-101 cl0 size-101 bg3 bor14 hov-btn3 p-lr-15 trans-04 text-center js-addcart-detail" id="addcart">
+	                      Add to cart
+	                    </button>
                     </sec:authorize>
                   </div>
                 </div>
@@ -344,115 +346,110 @@
       </span>
     </div>
     <script>
-      $(".js-select2").each(function () {
-        $(this).select2({
-          minimumResultsForSearch: 20,
-          dropdownParent: $(this).next(".dropDownSelect2"),
-        });
-      });
-    </script>
+    //   $(".js-select2").each(function () {
+    //     $(this).select2({
+    //       minimumResultsForSearch: 20,
+    //       dropdownParent: $(this).next(".dropDownSelect2"),
+    //     });
+    //   });
+// </script>
   
-    <script>
-      $(".gallery-lb").each(function () {
-        // the containers for all your galleries
-        $(this).magnificPopup({
-          delegate: "a", // the selector for gallery product
-          type: "image",
-          gallery: {
-            enabled: true,
-          },
-          mainClass: "mfp-fade",
-        });
-      });
-    </script>
-    
-    <script>
-       $(".js-addcart-detail").each(function () {
-           var nameProduct = $(this)
-             .parent()
-             .parent()
-             .parent()
-             .parent()
-             .find(".js-name-detail")
-             .html();
-           $(this).on("click", function () {
-              const p_pid = productid.value; //상품 id
-              const p_color_code = pcolor.value; // member가 선택한 색상 = 현재product의 color 
-              const p_size_code = $("#size option:selected").val(); // member가 선택한 사이즈
-              const p_camount = productnum.value; //수량
-               
-              console.log(p_pid);
-              console.log(p_color_code);
-              console.log(p_size_code);
-              console.log(p_camount); 
-              
-              let checkResult = true;
-              
-              //수량 필수 입력
-              if(p_size_code=='옵션을 선택해주세요.'){
-                 checkResult = false;
-                 swal("수량 선택 안함", "수량을 선택해주세요!", "warning");
-              }
-              
-              //서버로 제출할지 말지 결정
-              if(!checkResult) {
-                  return false;
-             }
-              
-              <!--ajax 시작-->
-              $.ajax({
-                 url : "/cart/insert",
-                 method:"get",
-                 data : {
-                    mid : null,
-                    pid : p_pid,
-                    color_code : p_color_code,
-                    size_code : p_size_code,
-                    camount : p_camount
-                 },
-                   contentType: "application/x-www-form-urlencoded; charset=UTF-8;"
-              }).done((data)=>{
-                 console.log(data);
-                 if(data.result =="success"){
-                    <!--swal 시작 -->
-                  swal({
-                    title: nameProduct,
-                    text: "장바구니에 담았습니다.",
-                    icon: "success",
-                    buttons: {
-                      cancle: {
-                        text: "계속 쇼핑하기",
-                        value: false,
-                        className: "swal_confirm",
-                      },
-                      confirm: {
-                        text: "쇼핑백으로 가기",
-                        value: true,
-                      },
-                    },
-                  }).then((result) => {
-                    if (result) window.location.href = "/cart/2";
-                  });
-                  <!--swal 끝-->
-                 }
-              });
-              <!--ajax 끝 -->
-           });
-         });
-    </script>
-    <script>
-      $(".js-pscroll").each(function () {
-        $(this).css("position", "relative");
-        $(this).css("overflow", "hidden");
-        var ps = new PerfectScrollbar(this, {
-          wheelSpeed: 1,
-          scrollingThreshold: 1000,
-          wheelPropagation: false,
-        });
+// <script>
+//   $(".gallery-lb").each(function () {
+//     // the containers for all your galleries
+//     $(this).magnificPopup({
+//       delegate: "a", // the selector for gallery product
+//       type: "image",
+//       gallery: {
+//         enabled: true,
+//       },
+//       mainClass: "mfp-fade",
+//     });
+//   });
+    $(document).ready(function(){
+      $('#size').change(function(){
+        var stock = $("#size option:selected").val().substring(0, $('#size').val().indexOf('|')); //member가 선택한 사이즈의 재고
+            var p_size_code = $("#size option:selected").val().substring($('#size').val().indexOf('|')+1); // member가 선택한 사이즈
 
-        $(window).on("resize", function () {
-          ps.update();
+            console.log(p_size_code, stock);
+        
+        if(stock<=0){
+          $('#addcart').prop("disabled", true);
+          $('#addcart').attr("disabled", "disabled");
+          $('.stock-error').html("재고가 없습니다.");
+        }
+      });
+    })
+	</script>
+  <script>
+    $(".js-addcart-detail").each(function () {
+        var nameProduct = $(this)
+          .parent()
+          .parent()
+          .parent()
+          .parent()
+          .find(".js-name-detail")
+          .html();
+        $(this).on("click", function () {
+          const p_pid = productid.value; //상품 id
+          const p_color_code = pcolor.value; // member가 선택한 색상 = 현재product의 color 
+          const p_size_code = $("#size option:selected").val().substring($('#size').val().indexOf('|')+1); // member가 선택한 사이즈
+          const p_camount = productnum.value; //수량
+          
+          console.log(p_pid, p_color_code, p_size_code, p_camount);
+          
+          let checkResult = true;
+          
+          //사이즈 필수 입력
+          if(p_size_code=='옵션을 선택해주세요.'){
+            checkResult = false;
+            swal("사이즈 선택 안함", "사이즈를 선택해주세요!", "warning");
+          }
+          
+          //서버로 제출할지 말지 결정
+          if(!checkResult) {
+              return false;
+        }
+          
+          <!--ajax 시작-->
+          $.ajax({
+            url : "/cart/insert",
+            method:"get",
+            data : {
+              mid : null,
+              pid : p_pid,
+              color_code : p_color_code,
+              size_code : p_size_code,
+              camount : p_camount
+            },
+                contentType: "application/x-www-form-urlencoded; charset=UTF-8;"
+          }).done((data)=>{
+            console.log(data);
+            if(data.result =="success"){
+              <!--swal 시작 -->
+          swal({
+            title: nameProduct,
+            text: "장바구니에 담았습니다.",
+            icon: "success",
+            buttons: {
+              cancle: {
+                text: "계속 쇼핑하기",
+                value: false,
+                className: "swal_confirm",
+              },
+              confirm: {
+                text: "쇼핑백으로 가기",
+                value: true,
+              },
+            },
+          }).then((result) => {
+            if (result) window.location.href = "/cart/2";
+          });
+          <!--swal 끝-->
+            }
+          });
+          <!--ajax 끝 -->
         });
       });
-    </script>
+  </script>
 <%@ include file="/WEB-INF/views/common/footer.jsp"%>
