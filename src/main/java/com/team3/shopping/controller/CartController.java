@@ -52,7 +52,6 @@ public class CartController {
 		MemberInfoDto member = orderService.getMid(principal.getName());
 		String mid = member.getMid();
 		cart.setMid(mid);
-//		logger.info(cart.toString());
 
 		int chkcart = cartService.checkCart(cart);
 		if (chkcart == 0) {
