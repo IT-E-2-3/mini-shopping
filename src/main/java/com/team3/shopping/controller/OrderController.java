@@ -123,6 +123,13 @@ public class OrderController {
          HttpSession session) {
       logger.info("실행");
 
+      
+      int total_amount = 0;
+      List<OrderRowDetailDto> OrderRowList;
+      OrderRowList = (List<OrderRowDetailDto>) session.getAttribute("OrderRowList");
+      
+      
+      
       if (errors.hasErrors()) {
          logger.info(errors.toString());
          logger.info("다시 입력폼 제공 + 에러 메시지");
@@ -160,10 +167,7 @@ public class OrderController {
     // LocalTime targetTime = LocalTime.of(int hour, int minute, int second, int
     // nanoOfSecond);
     
-    int total_amount = 0;
-    List<OrderRowDetailDto> OrderRowList;
-    OrderRowList = (List<OrderRowDetailDto>) session.getAttribute("OrderRowList");
-    
+
     for (OrderRowDetailDto orderRowDetailDto : OrderRowList) {
        int price = (orderRowDetailDto.getPprice());
        total_amount += price * orderRowDetailDto.getOamount();

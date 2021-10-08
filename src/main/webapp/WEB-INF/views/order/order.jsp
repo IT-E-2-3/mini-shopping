@@ -765,7 +765,7 @@ $(document).ready(function(){
           }
       } */
       
-      
+      console.log("Orecipent", Orecipent);
       /*
       브라우저 유효성 검사
       */
@@ -901,8 +901,8 @@ $(document).ready(function(){
             ozip_code: Ozip_code,
             oaddress: Oaddress,
             odetail_address: Odetail_address,
-            orecipent: Orecipent,
-            orecipent_tel: Orecipent_tel,
+            orecipient: Orecipent,
+            orecipient_tel: Orecipent_tel,
             ototal_price: Ototal_price,
             //ototal_price = totalprice.value;
             ochannel: "the handsome",
@@ -914,7 +914,7 @@ $(document).ready(function(){
             order_tel: Oorder_tel,
             oaddtional_tel: Oaddtional_tel, 
             orequest: Orequest,
-            orecipent_email: Orecipent_email,
+            orecipient_email: Orecipent_email,
             opayment: Opayment,
            
          },
