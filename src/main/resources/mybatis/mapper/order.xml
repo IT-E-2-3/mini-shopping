@@ -121,11 +121,11 @@
 	  orecipient_email , opayment)
 	VALUES (#{oid}, #{mid}, CURRENT_TIMESTAMP,
 	 #{ozip_code}, #{oaddress}, #{odetail_address}, 
-	 #{orecipent}, #{orecipent_tel}, #{ototal_price}, 
+	 #{orecipient}, #{orecipient_tel}, #{ototal_price}, 
 	 #{ochannel}, #{ocard_name, jdbcType=VARCHAR}, #{ocard_installmentrate, jdbcType=VARCHAR}, 
 	 #{ocard_installmentrate_period, jdbcType=VARCHAR}, #{oaccountholder, jdbcType=VARCHAR}, #{odeposit_deadline, jdbcType=VARCHAR}, 
 	 #{order_tel}, #{oaddtional_tel}, #{orequest}, 
-	 #{orecipent_email, jdbcType=VARCHAR}, #{opayment, jdbcType=VARCHAR})
+	 #{orecipient_email, jdbcType=VARCHAR}, #{opayment, jdbcType=VARCHAR})
 	</insert>
-  
+  	
 </mapper>
