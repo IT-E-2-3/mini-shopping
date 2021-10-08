@@ -89,12 +89,12 @@
 
                   <div class="size-204 respon6-next">
                     <div class="rs1-select2 bor8 bg0">
-                      <select class="js-select2" name="size" id="size">
-                        <option>옵션을 선택해주세요.</option>
-                        <c:forEach var="size" items="${sizelist}">
-                        	<option value="${size.size_code}">${size.size_code}</option>
-                        </c:forEach>
-                      </select>
+						<select class="js-select2" name="size" id="size">
+							<option>옵션을 선택해주세요.</option>
+							<c:forEach var="size" items="${sizelist}">
+							<option value="${size.remaining_stock}|${size.size_code}">${size.size_code}</option>
+							</c:forEach>
+						</select>
                       <div class="dropDownSelect2"></div>
                     </div>
                   </div>
@@ -171,16 +171,17 @@
                   </div>
                 </div>
 
+              	<p class="stock-error text-danger text-center" style="font-weight:bold;"></p>
                 <div class="flex-w flex-r-m p-b-10">
                   <div class="size-204 flex-w flex-m respon6-next">
                   	<sec:authorize access="isAnonymous()">
-					   <a class="flex-c-m stext-101 cl0 size-101 bg3 bor14 hov-btn3 p-lr-15 trans-04" href="/loginform" style="text-decoration:none;">
+					   <a class="flex-c-m stext-101 cl0 size-101 bg3 bor14 hov-btn3 p-lr-15 trans-04 text-center" href="/loginform" style="text-decoration:none;">
  	                      Add to cart
 	                    </a>
 					</sec:authorize>
                     <sec:authorize access="hasRole('ROLE_USER')">
 	                    <button
-	                      class="flex-c-m stext-101 cl0 size-101 bg3 bor14 hov-btn3 p-lr-15 trans-04 js-addcart-detail">
+	                      class="flex-c-m stext-101 cl0 size-101 bg3 bor14 hov-btn3 p-lr-15 trans-04 text-center js-addcart-detail" id="addcart">
 	                      Add to cart
 	                    </button>
                     </sec:authorize>
@@ -344,9 +345,24 @@
         <i class="zmdi zmdi-chevron-up"></i>
       </span>
     </div>
-    
     <script>
-	    $("js-addcart-detail").each(function () {
+		$(document).ready(function(){
+			$('#size').change(function(){
+				var stock = $("#size option:selected").val().substring(0, $('#size').val().indexOf('|')); //member가 선택한 사이즈의 재고
+	        	var p_size_code = $("#size option:selected").val().substring($('#size').val().indexOf('|')+1); // member가 선택한 사이즈
+	
+	        	console.log(p_size_code, stock);
+				
+				if(stock<=0){
+					$('#addcart').prop("disabled", true);
+					$('#addcart').attr("disabled", "disabled");
+					$('.stock-error').html("재고가 없습니다.");
+				}
+			});
+		})
+	</script>
+    <script>
+	    $(".js-addcart-detail").each(function () {
 	        var nameProduct = $(this)
 	          .parent()
 	          .parent()
@@ -357,13 +373,10 @@
 	        $(this).on("click", function () {
 	        	const p_pid = productid.value; //상품 id
 	        	const p_color_code = pcolor.value; // member가 선택한 색상 = 현재product의 color 
-	        	const p_size_code = $("#size option:selected").val(); // member가 선택한 사이즈
+	        	const p_size_code = $("#size option:selected").val().substring($('#size').val().indexOf('|')+1); // member가 선택한 사이즈
 	        	const p_camount = productnum.value; //수량
 	      		
-	        	console.log(p_pid);
-	        	console.log(p_color_code);
-	        	console.log(p_size_code);
-	        	console.log(p_camount); 
+	        	console.log(p_pid, p_color_code, p_size_code, p_camount);
 	        	
 	        	let checkResult = true;
 	        	
