@@ -60,27 +60,32 @@ public class OrderController {
 
    @Resource
    OrderService orderService;
-//수정
-   int total_amount = 0;
-   List<OrderRowDetailDto> OrderRowList;
+////수정
+//   int total_amount = 0;
+//   List<OrderRowDetailDto> OrderRowList;
 
    @GetMapping("/")
    public String content(Model model, Principal principal, HttpSession session) {
+	   
+
+	 
+	   List<OrderRowDetailDto> OrderRowList;
+	   
       logger.info("실행");
-      total_amount = 0;
       MemberInfoDto member = orderService.getMid(principal.getName());
-      // cart의 내용 받아오기
-    //      OrderRowList = orderService.getMyCart(member.getMid());
+      
       
       OrderRowList = (List<OrderRowDetailDto>) session.getAttribute("OrderRowList");
-      DecimalFormat decFormat = new DecimalFormat("###,###");
+      
+      int total_amount = 0;
+      
       for (OrderRowDetailDto orderRowDetailDto : OrderRowList) {
          int price = (orderRowDetailDto.getPprice());
          total_amount += price * orderRowDetailDto.getOamount();
 
       }
     
-      String decimal_total_amount = decFormat.format(total_amount);
+
 
       model.addAttribute("OrderRowList", OrderRowList);
       model.addAttribute("total_amount", total_amount);
@@ -155,12 +160,20 @@ public class OrderController {
     // LocalTime targetTime = LocalTime.of(int hour, int minute, int second, int
     // nanoOfSecond);
     
-   
+    int total_amount = 0;
+    List<OrderRowDetailDto> OrderRowList;
+    OrderRowList = (List<OrderRowDetailDto>) session.getAttribute("OrderRowList");
+    
+    for (OrderRowDetailDto orderRowDetailDto : OrderRowList) {
+       int price = (orderRowDetailDto.getPprice());
+       total_amount += price * orderRowDetailDto.getOamount();
+
+    }
     order.setOtotal_price(total_amount);
     
     session.removeAttribute(oid);
     
-   
+
       OrderRowList = (List<OrderRowDetailDto>) session.getAttribute("OrderRowList");
       for (OrderRowDetailDto orderRowDetailDto : OrderRowList) {
         logger.info("orderRowDetailDto.toString() : "+orderRowDetailDto.toString());
