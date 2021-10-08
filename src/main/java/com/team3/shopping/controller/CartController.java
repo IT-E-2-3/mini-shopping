@@ -43,8 +43,8 @@ public class CartController {
 	@Resource
 	CartService cartService;
 
-	int total_amount = 0;
-	List<OrderRowDetailDto> OrderRowList;
+//	int total_amount = 0;
+//	List<OrderRowDetailDto> OrderRowList;
 
 	@GetMapping(value = "/insert", produces = "application/json;charset=UTF-8")
 	@ResponseBody
@@ -52,7 +52,6 @@ public class CartController {
 		MemberInfoDto member = orderService.getMid(principal.getName());
 		String mid = member.getMid();
 		cart.setMid(mid);
-//		logger.info(cart.toString());
 
 		int chkcart = cartService.checkCart(cart);
 		if (chkcart == 0) {
@@ -71,8 +70,8 @@ public class CartController {
 
 	@RequestMapping("/2")
 	public String cart2(Model model, Principal principal) {
-
-		total_amount = 0;
+		int total_amount = 0;
+		List<OrderRowDetailDto> OrderRowList;
 		MemberInfoDto member = orderService.getMid(principal.getName());
 //			logger.info(mid);
 
@@ -85,7 +84,7 @@ public class CartController {
 		// 지금은 cart 전체를 받아오지만
 		OrderRowList = orderService.getMyCart(mid);
 
-		DecimalFormat decFormat = new DecimalFormat("###,###");
+//		DecimalFormat decFormat = new DecimalFormat("###,###");
 		for (OrderRowDetailDto orderRowDetailDto : OrderRowList) {
 			int price = (orderRowDetailDto.getPprice());
 			total_amount += price * orderRowDetailDto.getOamount();
@@ -93,10 +92,10 @@ public class CartController {
 		}
 //		logger.info(total_amount+" ");
 
-		String decimal_total_amount = decFormat.format(total_amount);
+//		String decimal_total_amount = decFormat.format(total_amount);
 
 		model.addAttribute("OrderRowList", OrderRowList);
-		model.addAttribute("total_amount", decimal_total_amount);
+		model.addAttribute("total_amount", total_amount);
 
 		return "cart/cart2";
 	}

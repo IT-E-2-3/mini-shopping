@@ -55,32 +55,37 @@ public class OrderController {
    private static final Logger logger = LoggerFactory.getLogger(OrderController.class);
 
    /*
-    * principal 로그인아이디 알기위해 사용
+    * principal 로그인아이디 알기위해 사용 
     */
 
    @Resource
    OrderService orderService;
-//수정
-   int total_amount = 0;
-   List<OrderRowDetailDto> OrderRowList;
+////수정
+//   int total_amount = 0;
+//   List<OrderRowDetailDto> OrderRowList;
 
    @GetMapping("/")
    public String content(Model model, Principal principal, HttpSession session) {
+	   
+
+	 
+	   List<OrderRowDetailDto> OrderRowList;
+	   
       logger.info("실행");
-      total_amount = 0;
       MemberInfoDto member = orderService.getMid(principal.getName());
-      // cart의 내용 받아오기
-    //      OrderRowList = orderService.getMyCart(member.getMid());
+      
       
       OrderRowList = (List<OrderRowDetailDto>) session.getAttribute("OrderRowList");
-      DecimalFormat decFormat = new DecimalFormat("###,###");
+      
+      int total_amount = 0;
+      
       for (OrderRowDetailDto orderRowDetailDto : OrderRowList) {
          int price = (orderRowDetailDto.getPprice());
          total_amount += price * orderRowDetailDto.getOamount();
 
       }
     
-      String decimal_total_amount = decFormat.format(total_amount);
+
 
       model.addAttribute("OrderRowList", OrderRowList);
       model.addAttribute("total_amount", total_amount);
@@ -118,6 +123,13 @@ public class OrderController {
          HttpSession session) {
       logger.info("실행");
 
+      
+      int total_amount = 0;
+      List<OrderRowDetailDto> OrderRowList;
+      OrderRowList = (List<OrderRowDetailDto>) session.getAttribute("OrderRowList");
+      
+      
+      
       if (errors.hasErrors()) {
          logger.info(errors.toString());
          logger.info("다시 입력폼 제공 + 에러 메시지");
@@ -155,12 +167,17 @@ public class OrderController {
     // LocalTime targetTime = LocalTime.of(int hour, int minute, int second, int
     // nanoOfSecond);
     
-   
+
+    for (OrderRowDetailDto orderRowDetailDto : OrderRowList) {
+       int price = (orderRowDetailDto.getPprice());
+       total_amount += price * orderRowDetailDto.getOamount();
+
+    }
     order.setOtotal_price(total_amount);
     
     session.removeAttribute(oid);
     
-   
+
       OrderRowList = (List<OrderRowDetailDto>) session.getAttribute("OrderRowList");
       for (OrderRowDetailDto orderRowDetailDto : OrderRowList) {
         logger.info("orderRowDetailDto.toString() : "+orderRowDetailDto.toString());
@@ -172,7 +189,7 @@ public class OrderController {
       try {
         orderService.makeOrder(OrderRowList, oid, order);
       } catch (ProductSoldOutException e) {
-        logger.error(e.getMessage());	
+        logger.error(e.getMessage());
         
 
         JSONObject jsonObject = new JSONObject();
@@ -305,7 +322,7 @@ public class OrderController {
                logger.info("pname " + pname);
                order.setMainItem(pname);
             }
-         }	
+         }
          
          model.addAttribute("orderList", orders);
          session.setAttribute("orders", orders);
@@ -347,9 +364,11 @@ public class OrderController {
    @GetMapping("/orderDetail")
    public String orderDetail(@RequestParam String oid, Model model, HttpSession session) {
       logger.info("실행");
-      OrderDto order = (OrderDto) orderService.getOrder(oid);	
+      OrderDto order = (OrderDto) orderService.getOrder(oid);
       List<OrderRowDetailDto> orderItems = orderService.getProductInfo(oid);
+    
      
+      logger.info(order.toString());
       model.addAttribute("orderItems", orderItems);
       model.addAttribute("order", order);
 //      long cardCost = (order.getOtotal_price())/(Integer.parseInt(order.getOcard_installmentrate_period()) )*(100-Integer.parseInt(order.getOcard_installmentrate()) );
@@ -357,5 +376,5 @@ public class OrderController {
 //  
 //      logger.info(orderItems.toString());
       return "order/orderDetail";
-   }	
+   }
 }

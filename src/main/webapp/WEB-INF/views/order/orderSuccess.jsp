@@ -202,7 +202,7 @@
 										<div class="">수령인</div>
 									</th>
 									<!-- 행 -->
-									<th class="col-sm-8 text-left text-black">${order.orecipient}
+									<th class="col-sm-8 text-left text-black">${order.orecipent}
 									</th>
 								</tr>
 								<tr class="table-secondary">
@@ -213,7 +213,7 @@
 									</th>
 									<!-- 행 -->
 									<th class="col-sm-8 text-left text-black">
-										${order.orecipient_tel }</th>
+										${order.orecipent_tel }</th>
 								</tr>
 								<tr class="table-secondary">
 									<!-- 행 -->
@@ -223,7 +223,7 @@
 									</th>
 									<!-- 행 -->
 									<th class="col-sm-8 text-left text-black">
-										${order.orecipient_email }</th>
+										${order.orecipent_email }</th>
 								</tr>
 							</tbody>
 						</table>
