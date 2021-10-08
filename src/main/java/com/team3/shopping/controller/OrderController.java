@@ -55,7 +55,7 @@ public class OrderController {
    private static final Logger logger = LoggerFactory.getLogger(OrderController.class);
 
    /*
-    * principal 로그인아이디 알기위해 사용
+    * principal 로그인아이디 알기위해 사용 
     */
 
    @Resource
