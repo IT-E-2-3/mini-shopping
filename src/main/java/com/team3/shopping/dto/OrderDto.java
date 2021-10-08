@@ -14,9 +14,9 @@ public class OrderDto {
 	private String ozip_code;
 	private String oaddress;
 	private String odetail_address;
-	private String orecipent;
-	private String orecipent_tel;
-	private int ototal_price;
+	private String orecipient;
+	private String orecipient_tel;
+	private int ototal_price;	
 	private String ochannel="the handsome";
 	private String ocard_name;
 	private String ocard_installmentrate;
@@ -26,7 +26,7 @@ public class OrderDto {
 	private String order_tel;
 	private String oaddtional_tel;
 	private String orequest;
-	private String orecipent_email;
+	private String orecipient_email;
 	private String opayment;
 	
 	private List<OrderItemDto> orderItems;
@@ -48,11 +48,11 @@ public class OrderDto {
 	private String ozip_code;
 	private String oaddress;
 	private String odetail_address;
-	private String orecipent;
-	private String orecipent_tel;
+	private String orecipient;
+	private String orecipient_tel;
 	private String oaddtional_tel;
 	private String orequest;
-	private String orecipent_email;
+	private String orecipient_email;
 	
 	// 이걸 어쩐다?
 	private String ototal_price;
