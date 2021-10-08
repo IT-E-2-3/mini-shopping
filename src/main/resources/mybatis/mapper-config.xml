@@ -13,6 +13,8 @@
 		<typeAlias alias="MemberInfo" type="com.team3.shopping.dto.MemberInfoDto" />
 <!-- 경무 		<typeAlias alias="OrderRowDetail" type="com.team3.shopping.dto.OrderRowDetailDto" /> -->
 		<typeAlias alias="plist" type="com.team3.shopping.dto.ProductListDto" />
-		<typeAlias alias="pager" type="com.team3.shopping.dto.Pager" />		
+		<typeAlias alias="pager" type="com.team3.shopping.dto.Pager" />	
+		<typeAlias alias="event" type="com.team3.shopping.dto.EventDto" />	
+			
 	</typeAliases>	
 </configuration>
