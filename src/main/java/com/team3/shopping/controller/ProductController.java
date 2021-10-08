@@ -80,6 +80,7 @@ public class ProductController {
 		ProductListDto matching_cloth = productService.getMatchingCloth(pid, color);
 		model.addAttribute("matching_cloth", matching_cloth);
 //		System.out.println("#########매칭 컬러코드 : " + matching_cloth.getColor_code());
+		System.out.println("######### 재고 " + sizelist);
 		return "product/productDetail";
 	}
 }

@@ -15,4 +15,5 @@ public class ProductListDto {
 	private String product_detail_url3;
 	private String color_chip_url;
 	private String size_code;
+	private int remaining_stock;
 }

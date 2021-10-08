@@ -48,7 +48,7 @@
 <link rel="stylesheet" type="text/css"
    href="${pageContext.request.contextPath}/resources/css/main.css" />
 <link rel="stylesheet" type="text/css"
-   href="${pageContext.request.contextPath}/resources/css/style.css?version=51" />
+	href="${pageContext.request.contextPath}/resources/css/style_.css?version=53" />
 </head>
 <body>
 
