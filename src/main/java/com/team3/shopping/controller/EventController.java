@@ -54,20 +54,6 @@ public class EventController {
 		//logger.info("#######" + event);
 		return "event/event";
 	}
-	
-	@RequestMapping("/mycoupon")
-	public String mycoupon(Principal principal, Model model) {
-		logger.info("마이 쿠폰");
-		MemberInfoDto member = orderservice.getMid(principal.getName());
-		String mid = member.getMid();
-		String eid = "11";
-		List<CouponDto> couponList = couponservice.getCouponList(mid, eid);
-		int couponRows = couponservice.getCouponRows(mid, eid);
-		model.addAttribute("couponList", couponList);
-		model.addAttribute("couponRows", couponRows);
-		return "member/coupon";
-		
-	}
 
 	@ModelAttribute("eventStartDate")
 	public Date initEvent() {

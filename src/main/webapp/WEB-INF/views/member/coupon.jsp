@@ -14,17 +14,17 @@
 			<div class="tblwrap">
 				<table class="tbl_ltype">
 					<colgroup>
+						<col style="width:110px">
+						<col style="width:80px">
+						<col style="width:300px">
 						<col style="width:130px">
-						<col style="width:140px">
-						<col>
-						<col style="width:90px">
-						<col style="width:140px">
-						<col style="width:180px">
+						<col style="width:130px">
+						<col style="width:50px">
 					</colgroup>
 					<thead>
-						<tr>
-							<th scope="col">종류</th>
+						<tr style="background-color:#EAEAEA;">
 							<th scope="col">쿠폰번호</th>
+							<th scope="col">종류</th>
 							<th scope="col">내용</th>
 							<th scope="col">시작일자</th>
 							<th scope="col">유효기간</th>
@@ -32,7 +32,7 @@
 						</tr>
 					</thead>
 					<tbody id="listBody">
-						<c:if test="${couponRows eq 0}">
+						<c:if test="${empty couponList}">
 						<tr>
 							<td colspan="6" class="no_data">내역이 없습니다.</td>
 						</tr>
@@ -40,9 +40,9 @@
 						<c:if test="${not empty couponList}">
 							<c:forEach var="coupon" items="${couponList}">
 								<tr>
-									<td>${coupon.coupon_type}</td>
 									<td>${coupon.eid}</td>
-									<td></td>
+									<td>${coupon.coupon_type}</td>
+									<td>${coupon.ename}</td>
 									<td>${coupon.coupon_startdate}</td>
 									<td>${coupon.coupon_expiredate}</td>
 									<td>${coupon.coupon_state}</td>

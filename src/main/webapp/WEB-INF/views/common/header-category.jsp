@@ -119,7 +119,7 @@
                   href="${pageContext.request.contextPath}/order/orderList">주문조회</a></li>
                <sec:authorize access="isAuthenticated()">
                		<li class="nav-item"><a class="nav-link"
-                  		href="${pageContext.request.contextPath}/mycoupon">마이쿠폰</a></li>
+                  		href="${pageContext.request.contextPath}/member/mycoupon">마이쿠폰</a></li>
                </sec:authorize>
             </ul>
          </div>

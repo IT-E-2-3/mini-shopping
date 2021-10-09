@@ -81,12 +81,9 @@ public class CouponService {
 		});
 		
 	}
-  
-  public int getCouponRows(String mid, String eid) {
-		return couponDao.getCouponRows(mid, eid);
-	}
+ 
 	
-	public List<CouponDto> getCouponList(String mid, String eid){
-		return couponDao.getCouponList(mid, eid);
+	public List<CouponDto> getCouponList(String mid){
+		return couponDao.getCouponList(mid);
 	}
 }

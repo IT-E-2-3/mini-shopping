@@ -16,7 +16,6 @@ public interface CouponDao {
 	public void insertCoupon(CouponDto couponDto);
 	public int updateCouponAmount(String eid);
 	public Date selectEventStartTIme(String eid);
-	public int getCouponRows(@Param("mid") String mid, @Param("eid") String eid);
-	public List<CouponDto> getCouponList(@Param("mid") String mid, @Param("eid") String eid);
+	public List<CouponDto> getCouponList(String mid);
   
 }

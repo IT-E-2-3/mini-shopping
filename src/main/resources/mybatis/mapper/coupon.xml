@@ -12,12 +12,6 @@
 		from mycoupon
 		where mid=#{mid} and eid=#{eid}
   </select>
-  
-	<select id="getCouponRows" parameterType="string" resultType="int">
-		select count(*)
-		from mycoupon
-		where mid=#{mid} and eid=#{eid}
-	</select>
 	
 	<insert id="insertCoupon" parameterType="coupon">
 		insert into mycoupon values(#{mid}, #{eid}, #{coupon_startdate}, #{coupon_expiredate}, #{coupon_type}, #{coupon_state})
@@ -35,9 +29,10 @@
 		where eid=#{eid}
    </select>
   
-	<select id="getCouponList" parameterType="String" resultType="coupon">
-		select mid, eid, coupon_startdate, coupon_expiredate, coupon_type, coupon_state
-		from mycoupon
-		where mid=#{mid} and eid=#{eid}
+	<select id="getCouponList" parameterType="string" resultType="coupon">
+		select m.mid, m.eid, m.coupon_startdate, m.coupon_expiredate, m.coupon_type, m.coupon_state, e.ename
+		from mycoupon m join event e
+		on m.eid = e.eid
+		where mid=#{mid}
 	</select>
 </mapper>

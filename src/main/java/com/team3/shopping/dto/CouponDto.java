@@ -13,4 +13,7 @@ public class CouponDto {
 	private String coupon_type;
 	private String coupon_state;	
 	//private char coupon_state;
+	
+	//event테이블의 내용을 가져오기 위 
+	private String ename;
 }
