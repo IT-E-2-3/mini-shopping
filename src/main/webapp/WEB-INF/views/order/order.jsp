@@ -240,7 +240,7 @@
 												name="orecipient" placeholder="수령인 이름을 입력하세요" value="홍길동">
 										</div>
 									</div>
-								</div> <span class="orecipient-error text-danger">헬로</span>
+								</div> <span class="orecipient-error text-danger"></span>
 							</th>
 						</tr>
 						<tr class="table-secondary">

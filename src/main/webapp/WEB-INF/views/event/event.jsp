@@ -40,7 +40,7 @@
 		            if(data.result == "success"){
 		               swal("쿠폰 이벤트",    "쿠폰이 발급되었습니다.", "success");
 		            }else if(data.result == "fail"){
-		               swal("쿠폰 이벤트", "쿠폰 발급이 실패하였습니다.", "fail");
+		               swal("쿠폰 이벤트", "쿠폰 발급이 실패하였습니다.", "error");
 		            }
 		            
 		         })
