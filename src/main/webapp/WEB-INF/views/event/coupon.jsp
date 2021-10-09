@@ -1,47 +1,60 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 	
-<%@ include file="/WEB-INF/views/common/header-nocategory.jsp"%>
-<script
-	src="${pageContext.request.contextPath}/resources/sweetalert/sweetalert.min.js"></script>
-<body>
+<%@ include file="/WEB-INF/views/common/header-category.jsp"%>
 
-	<!-- 이벤트 -->
-	<div style="margin: auto;  width: 80%; position: relative">
-		<a id="scrollspyHeading2" href="#scrollspyHeading2"><img
-			src="${pageContext.request.contextPath}/resources/images/eventbanner.jpg"
-			style="width: 100%" /></a>
+<div id="bodyWrap" style="height:500px;">
+	<h3 class="cnts_title">
+		<span id="menuTitle">나의 쿠폰</span>
+	</h3>
+	<hr />
+	<div class="sub_container">
+		<!-- cnts -->
+		<div class="sub_cnts d-flex justify-content-center mt-3">
+			<!-- Table -->
+			<div class="tblwrap">
+				<table class="tbl_ltype">
+					<colgroup>
+						<col style="width:130px">
+						<col style="width:140px">
+						<col>
+						<col style="width:90px">
+						<col style="width:140px">
+						<col style="width:180px">
+					</colgroup>
+					<thead>
+						<tr>
+							<th scope="col">종류</th>
+							<th scope="col">쿠폰번호</th>
+							<th scope="col">내용</th>
+							<th scope="col">시작일자</th>
+							<th scope="col">유효기간</th>
+							<th scope="col">사용상태</th>
+						</tr>
+					</thead>
+					<tbody id="listBody">
+						<c:if test="${couponRows eq 0}">
+						<tr>
+							<td colspan="6" class="no_data">내역이 없습니다.</td>
+						</tr>
+						</c:if>
+						<c:if test="${not empty couponList}">
+							<c:forEach var="coupon" items="${couponList}">
+								<tr>
+									<td>${coupon.coupon_type}</td>
+									<td>${coupon.eid}</td>
+									<td></td>
+									<td>${coupon.coupon_startdate}</td>
+									<td>${coupon.coupon_expiredate}</td>
+									<td>${coupon.coupon_state}</td>
+								</tr>
+							</c:forEach>
+						</c:if>
+					</tbody>
+				</table>
+			</div>
+			<!-- //Table -->
+		</div>
+		<!-- //cnts -->
 	</div>
-	<div
-		style="position: relative; margin: auto; width: 80%; height: 125px; background-color: #6f8fc7;">
-		<button type="button" class="btn btn-outline-primary btn-lg"
-			onclick="javascript:issueCoupon(event)"
-			style="position: absolute; top: 50%; left: 50%; transform: translateY(-50%); background-color: yellow;">
-			쿠폰 발급받기</button>
-	</div>
-		
-	<script>
-		function issueCoupon(event){
-			console.log(event);	
-			var mid = "<c:out value='${mid}'/>";
-			
-			$.ajax({
-				url:"issue" + "/" + mid,
-		        method:"get"
-			}).done((data) => {
-				console.log("data", data);
-				
-				if(data.result == "success"){
-					swal("쿠폰 이벤트", 	"쿠폰이 발급되었습니다.", "success");
-				}else if(data.result == "fail"){
-					swal("쿠폰 이벤트", "쿠폰 발급이 실패하였습니다.", "fail");
-				}
-				
-			})
-		}
-	
-	</script>
-
-</body>
-
-
+</div>
 <%@ include file="/WEB-INF/views/common/footer.jsp"%>

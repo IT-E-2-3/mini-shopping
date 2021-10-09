@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -18,6 +19,8 @@ import com.team3.shopping.dto.CouponDto;
 import com.team3.shopping.dto.OrderDto;
 import com.team3.shopping.dto.OrderRowDetailDto;
 import com.team3.shopping.exception.ProductSoldOutException;
+
+import org.springframework.stereotype.Service;
 
 @Service
 public class CouponService {
@@ -77,5 +80,13 @@ public class CouponService {
 			}
 		});
 		
+	}
+  
+  public int getCouponRows(String mid, String eid) {
+		return couponDao.getCouponRows(mid, eid);
+	}
+	
+	public List<CouponDto> getCouponList(String mid, String eid){
+		return couponDao.getCouponList(mid, eid);
 	}
 }

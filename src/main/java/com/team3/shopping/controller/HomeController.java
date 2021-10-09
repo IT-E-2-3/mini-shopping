@@ -30,5 +30,5 @@ public class HomeController {
 		logger.info("실행123");
 		return "member/loginForm2";
 	}
-	
+
 }  

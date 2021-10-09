@@ -35,6 +35,13 @@
             alt="Second slide"
           />
         </div>
+        <div class="carousel-item">
+          <img
+            class="d-block w-100"
+            src="${pageContext.request.contextPath}/resources/images/event-banner.jpg"
+            alt="Third slide"
+          />
+        </div>
       </div>
       <a
         class="carousel-control-prev"
@@ -47,7 +54,7 @@
       </a>
       <a
         class="carousel-control-center"
-        href="coupon"
+        href="event/"
         role="button"
         data-slide="prev"
       >

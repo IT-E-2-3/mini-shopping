@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.team3.shopping.dao.CouponDao">
-
 	<select id="selectRemainigCoupon" parameterType="String" resultType="int">
 		select eamount
 		from event
@@ -9,6 +8,12 @@
 	</select>
 	
 	<select id="selectCheckifCouponissued" parameterType="String" resultType="int">
+    select count(*)
+		from mycoupon
+		where mid=#{mid} and eid=#{eid}
+  </select>
+  
+	<select id="getCouponRows" parameterType="string" resultType="int">
 		select count(*)
 		from mycoupon
 		where mid=#{mid} and eid=#{eid}
@@ -28,5 +33,11 @@
 		select estart_time
 		from event
 		where eid=#{eid}
+   </select>
+  
+	<select id="getCouponList" parameterType="String" resultType="coupon">
+		select mid, eid, coupon_startdate, coupon_expiredate, coupon_type, coupon_state
+		from mycoupon
+		where mid=#{mid} and eid=#{eid}
 	</select>
 </mapper>
