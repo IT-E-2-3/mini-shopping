@@ -24,22 +24,11 @@ public class HomeController {
 		logger.info("실행123");
 		return "error/403";
 	}
-	//hello team3
+	
 	@GetMapping("/loginform")
 	public String loginForm() {
 		logger.info("실행123");
 		return "member/loginForm2";
 	}
-	
-
-	
-	@GetMapping("/coupon")
-	public String coupon() {
-		logger.info("실행coupon");
-		return "event/coupon";
-	}
-	
-	
-	
 	
 }  
