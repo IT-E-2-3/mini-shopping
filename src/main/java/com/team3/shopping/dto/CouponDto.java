@@ -1,7 +1,7 @@
 package com.team3.shopping.dto;
 
-import java.util.Date;
-
+import java.sql.Date;
+//import java.util.Date;
 import lombok.Data;
 
 @Data
@@ -11,5 +11,6 @@ public class CouponDto {
 	private Date coupon_startdate;
 	private Date coupon_expiredate;
 	private String coupon_type;
-	private char coupon_state;
+	private String coupon_state;	
+	//private char coupon_state;
 }
