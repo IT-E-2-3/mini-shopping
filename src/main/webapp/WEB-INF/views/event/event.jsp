@@ -1,7 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 	
 <%@ include file="/WEB-INF/views/common/header-category.jsp"%>
-
+<script src="${pageContext.request.contextPath}/resources/sweetalert/sweetalert.min.js"></script>
 
 	<div class="event m-5">
 		<div class="mt-2">
@@ -22,10 +22,31 @@
 				<h1 class="clock-title" style="font-size:45px;">00:00</h1>
 			</div>
 			<button type="button" class="btn btn-outline-primary btn-lg"
-				style="background-color: #FFF98C;border-color:#5676CA;font-size:20px;">
+				style="background-color: #FFF98C;border-color:#5676CA;font-size:20px;" onclick="javascript:issueCoupon(event)">
 				쿠폰 발급받기
 			</button>
 		</div>
+		<script>
+		 function issueCoupon(event){
+		         console.log(event);   
+		         var mid = "<c:out value='${mid}'/>";
+		         
+		         $.ajax({
+		            url:"issue" + "/" + mid,
+		              method:"get"
+		         }).done((data) => {
+		            console.log("data", data);
+		            
+		            if(data.result == "success"){
+		               swal("쿠폰 이벤트",    "쿠폰이 발급되었습니다.", "success");
+		            }else if(data.result == "fail"){
+		               swal("쿠폰 이벤트", "쿠폰 발급이 실패하였습니다.", "fail");
+		            }
+		            
+		         })
+		      }
+		</script>
+		
 		<script>
 			function getTime(){
 			const clockContainer = document.querySelector(".js-clock");
@@ -49,6 +70,7 @@
 			}
 			
 			init();
+			
 		</script>
 	</div>
 
