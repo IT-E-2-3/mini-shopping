@@ -48,7 +48,7 @@
 		<!-- 요청 URL 권한 설정 -->
 		
 		<security:intercept-url pattern="/cart/**" access="isAuthenticated()"/>
-		<security:intercept-url pattern="/event/**" access="isAuthenticated()"/>
+		<!-- <security:intercept-url pattern="/event/**" access="isAuthenticated()"/> -->
 		<security:intercept-url pattern="/order/**" access="isAuthenticated()"/>
 		
 		<security:intercept-url pattern="/**" access="permitAll"/>
