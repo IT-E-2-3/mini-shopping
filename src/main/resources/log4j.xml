@@ -12,7 +12,16 @@
 		<layout class="org.apache.log4j.PatternLayout">
 			<param name="ConversionPattern" value="%-5p: %c.%M() - %m%n" />
 		</layout>
-	</appender>
+	</appender>  
+	
+	<appender name="filelogger" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="file" value="c://logs//spring//spring.Log"/>
+        <param name="Append" value="true"/>
+        <param name="dataPattern" value=".yyyy-MM-dd"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="[%d{yyyy-MM-dd HH:mm:ss}] %-5p: %F:%L - %m%n" />
+        </layout>
+	</appender>  
 	
 	<!-- Application Loggers -->
 	<logger name="com.team3.shopping">
@@ -21,6 +30,11 @@
 	
 	<logger name="jdbc.sqltiming">
 		<level value="info" />
+	</logger>
+	
+	<logger name="com.team3.shopping.controller.EventController" additivity="false">
+		<level value="info" />
+		<appender-ref ref="filelogger"/>
 	</logger>
 
 	<!-- Root Logger -->

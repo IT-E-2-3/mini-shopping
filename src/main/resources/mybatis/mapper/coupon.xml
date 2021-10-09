@@ -4,7 +4,7 @@
 	<select id="selectRemainigCoupon" parameterType="String" resultType="int">
 		select eamount
 		from event
-		where eid=#{eid}
+		where eid=#{eid} for update
 	</select>
 	
 	<select id="selectCheckifCouponissued" parameterType="String" resultType="int">
