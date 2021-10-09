@@ -15,6 +15,7 @@
 		<typeAlias alias="plist" type="com.team3.shopping.dto.ProductListDto" />
 		<typeAlias alias="pager" type="com.team3.shopping.dto.Pager" />	
 		<typeAlias alias="event" type="com.team3.shopping.dto.EventDto" />	
+		<typeAlias alias="coupon" type="com.team3.shopping.dto.CouponDto" />	
 			
 	</typeAliases>	
 </configuration>
