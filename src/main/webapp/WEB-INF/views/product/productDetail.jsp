@@ -346,15 +346,15 @@
       </span>
     </div>
     <script>
-    //   $(".js-select2").each(function () {
-    //     $(this).select2({
-    //       minimumResultsForSearch: 20,
-    //       dropdownParent: $(this).next(".dropDownSelect2"),
-    //     });
-    //   });
-// </script>
+    $(".js-select2").each(function () {
+        $(this).select2({
+          minimumResultsForSearch: 20,
+          dropdownParent: $(this).next(".dropDownSelect2"),
+        });
+      });
+ 	</script>
   
-// <script>
+ 	<script>
 //   $(".gallery-lb").each(function () {
 //     // the containers for all your galleries
 //     $(this).magnificPopup({
@@ -366,20 +366,20 @@
 //       mainClass: "mfp-fade",
 //     });
 //   });
-    $(document).ready(function(){
-      $('#size').change(function(){
-        var stock = $("#size option:selected").val().substring(0, $('#size').val().indexOf('|')); //member가 선택한 사이즈의 재고
-            var p_size_code = $("#size option:selected").val().substring($('#size').val().indexOf('|')+1); // member가 선택한 사이즈
-
-            console.log(p_size_code, stock);
-        
-        if(stock<=0){
-          $('#addcart').prop("disabled", true);
-          $('#addcart').attr("disabled", "disabled");
-          $('.stock-error').html("재고가 없습니다.");
-        }
-      });
-    })
+	    $(document).ready(function(){
+	      $('#size').change(function(){
+	        var stock = $("#size option:selected").val().substring(0, $('#size').val().indexOf('|')); //member가 선택한 사이즈의 재고
+	            var p_size_code = $("#size option:selected").val().substring($('#size').val().indexOf('|')+1); // member가 선택한 사이즈
+	
+	            console.log(p_size_code, stock);
+	        
+	        if(stock<=0){
+	          $('#addcart').prop("disabled", true);
+	          $('#addcart').attr("disabled", "disabled");
+	          $('.stock-error').html("재고가 없습니다.");
+	        }
+	      });
+	    })
 	</script>
   <script>
     $(".js-addcart-detail").each(function () {

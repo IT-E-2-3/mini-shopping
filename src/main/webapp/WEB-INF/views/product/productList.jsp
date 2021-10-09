@@ -48,7 +48,7 @@
 							<div class="size">${product.pbrand}</div>
 							<div class="title"><a class="detail${s.count}">${product.pname}</a></div>
 							<div class="tag">NEW</div>
-							<div class="price">₩&nbsp;${product.pprice}</div>
+							<div class="price">₩&nbsp;<fmt:formatNumber type="number" maxFractionDigits="3" value="${product.pprice}"></fmt:formatNumber></div>
 							<div>
 								<div class="color_chip" style="display: inline;">
 								<c:forEach var="color" items="${colorlist}">
