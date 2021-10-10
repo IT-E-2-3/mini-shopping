@@ -2,6 +2,11 @@ package com.team3.shopping.controller;
 
 import java.security.Principal;
 import java.util.Date;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 import javax.annotation.Resource;
 
@@ -26,7 +31,7 @@ import com.team3.shopping.service.OrderService;
 @RequestMapping("/coupon")
 public class CouponController {
 	private static final Logger logger = LoggerFactory.getLogger(CouponController.class);
-
+	
 	@Resource
 	OrderService orderService;
 
@@ -55,57 +60,5 @@ public class CouponController {
 		return "event/coupon";
 	}
 
-	@GetMapping(value = "issue/{mid}", produces = "application/json'; charset=UTF-8")
-	@ResponseBody
-	public String issueCoupon(@PathVariable("mid") String mid, Principal principal, Model model) {
-		logger.info("실행");
-		
-		String eid = "11";
-		
-		// 날짜 확인
-		Date curDate = new Date();
-		Date estartDate = (Date) model.getAttribute("eventStartDate");
-		
-		//결과 변수
-		JSONObject jsonObject = new JSONObject();
-		
-		if(curDate.before(estartDate)) {
-			jsonObject.put("result", "fail");
-			String json = jsonObject.toString();
-			return json;
-		}
-			
-		//쿠폰 생성
-		CouponDto newCoupon = new CouponDto();
-		newCoupon.setEid(eid);
-		newCoupon.setMid(mid);
-		newCoupon.setCoupon_type("type");
-		newCoupon.setCoupon_state("1");
-		
-		// 쿠폰 유효기간 설정 (임의)
-		Date date = new Date();
-        long timeInMilliSeconds = date.getTime();
-        java.sql.Date date1 = new java.sql.Date(timeInMilliSeconds);
-		
-        newCoupon.setCoupon_startdate(date1);
-		newCoupon.setCoupon_expiredate(date1);
-		
-		//쿠폰 발급
-		EventTransferResult result = couponService.issueCoupon(newCoupon);
-		logger.info("transaciton info " + result);
-		
-		if(result.toString().contains("FAIL")) {
-			jsonObject.put("result", "fail");
-			String json = jsonObject.toString();
-			return json;
-		}
-		
-		//eid에 추가
-			
-		jsonObject.put("result", "success");
-		String json = jsonObject.toString();
-
-		return json;	
-	}
 
 }

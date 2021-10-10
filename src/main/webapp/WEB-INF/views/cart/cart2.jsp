@@ -14,7 +14,7 @@
 	crossorigin="anonymous">
 
 <link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/resources/css/cart_.css" />
+	href="${pageContext.request.contextPath}/resources/css/cart.css" />
 
 
 <meta charset="utf-8">
