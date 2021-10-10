@@ -86,4 +86,8 @@ public class CouponService {
 	public List<CouponDto> getCouponList(String mid){
 		return couponDao.getCouponList(mid);
 	}
+	
+	public void insertCoupon(CouponDto coupon) {
+		couponDao.insertCoupon(coupon);
+	}
 }

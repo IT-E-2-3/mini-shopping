@@ -2,7 +2,9 @@ package com.team3.shopping.controller;
 
 import java.security.Principal;
 import java.util.Date;
-import java.util.List;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import javax.annotation.Resource;
 
@@ -20,10 +22,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.team3.shopping.dto.CouponDto;
 import com.team3.shopping.dto.EventDto;
 import com.team3.shopping.dto.MemberInfoDto;
+import com.team3.shopping.service.CouponRedisService;
 import com.team3.shopping.service.CouponService;
+import com.team3.shopping.service.CouponService.EventTransferResult;
 import com.team3.shopping.service.EventService;
 import com.team3.shopping.service.OrderService;
-import com.team3.shopping.service.CouponService.EventTransferResult;
 
 @Controller
 @RequestMapping("/event")
@@ -36,6 +39,9 @@ public class EventController {
 	
 	@Resource
 	CouponService couponservice;
+	
+	@Resource
+	CouponRedisService redisservice;
 	
 	@Resource
 	OrderService orderservice;
@@ -94,10 +100,10 @@ public class EventController {
 		
 		// 쿠폰 유효기간 설정 (임의)
 		Date date = new Date();
-        long timeInMilliSeconds = date.getTime();
-        java.sql.Date date1 = new java.sql.Date(timeInMilliSeconds);
+		long timeInMilliSeconds = date.getTime();
+		java.sql.Date date1 = new java.sql.Date(timeInMilliSeconds);
 		
-        newCoupon.setCoupon_startdate(date1);
+		newCoupon.setCoupon_startdate(date1);
 		newCoupon.setCoupon_expiredate(date1);
 		
 		//쿠폰 발급
@@ -116,5 +122,56 @@ public class EventController {
 		String json = jsonObject.toString();
 
 		return json;	
+	}
+	
+	
+	//레디스에서 테스트하는 메서드
+	@GetMapping(value = "rediscoupon/{mid}", produces = "application/json'; charset=UTF-8")
+	@ResponseBody
+	public String redisCoupon(@PathVariable("mid") String mid, Principal principal, Model model) {
+		MemberInfoDto member = orderservice.getMid(principal.getName());
+		JSONObject jsonObject = new JSONObject();
+		//쿠폰의 양을 확인한다
+		if(eservice.getEamount() < 1) {
+			logger.info("sold out");
+			jsonObject.put("result", "sold out");
+		} else {//쿠폰이 남아있으면
+			String eid ="11";
+			//아이디가 중복된 아이디인지 확인
+			if(redisservice.checkCouponMid(mid, eid)) { //중복된 아이디가 없으면
+				//------쿠폰 생성------
+				CouponDto newCoupon = new CouponDto();
+				newCoupon.setEid(eid);
+				newCoupon.setMid(mid);
+				newCoupon.setCoupon_type("type");
+				newCoupon.setCoupon_state("1");
+				
+				// 쿠폰 유효기간 설정 (임의)
+				Date date = new Date();
+				long timeInMilliSeconds = date.getTime();
+				java.sql.Date date1 = new java.sql.Date(timeInMilliSeconds);
+				newCoupon.setCoupon_startdate(date1);
+				newCoupon.setCoupon_expiredate(date1);
+				//------쿠폰 생성 끝------
+				
+				redisservice.setCoupons();
+				redisservice.insertCoupon(mid, eid);
+				couponservice.insertCoupon(newCoupon);
+				jsonObject.put("result", "success");
+			}else {//중복 참여한 아이디가 있으면
+				logger.info("중복 참여한 아이디가 있습니다.");
+				jsonObject.put("result", "overlap");
+			}
+		}
+
+//		
+//		Callable<Integer> task = new Callable<Integer>() {
+//			
+//			@Override
+//			public Integer call() throws Exception {
+//			}};
+		
+		String json = jsonObject.toString();
+		return json;
 	}
 }

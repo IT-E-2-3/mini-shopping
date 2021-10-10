@@ -16,4 +16,8 @@ public class EventService {
 	public EventDto getEventContent() {
 		return eventdao.getEvent();
 	}
+	
+	public int getEamount() {
+		return eventdao.getEamount();
+	}
 }

@@ -35,4 +35,10 @@
 		on m.eid = e.eid
 		where mid=#{mid}
 	</select>
+	
+	<select id="midGetCoupon" parameterType="string" resultType="int">
+		select count(mid)
+		from mycoupon
+		where mid=#{mid}
+	</select>
 </mapper>
