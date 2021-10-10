@@ -6,4 +6,10 @@
 		from event
 		where eid='11'
 	</select>
+	
+	<select id="getEamount" parameterType="string" resultType="int">
+		select eamount
+		from event
+		where eid='11'
+	</select>
 </mapper>

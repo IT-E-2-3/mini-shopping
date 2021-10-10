@@ -17,5 +17,6 @@ public interface CouponDao {
 	public int updateCouponAmount(String eid);
 	public Date selectEventStartTIme(String eid);
 	public List<CouponDto> getCouponList(String mid);
+	public int midGetCoupon(String mid);
   
 }

@@ -25,6 +25,10 @@
 				style="background-color: #FFF98C;border-color:#5676CA;font-size:20px;" onclick="javascript:issueCoupon(event)">
 				쿠폰 발급받기
 			</button>
+			<button type="button" class="btn btn-outline-primary btn-lg"
+				style="background-color: #FFF98C;border-color:#5676CA;font-size:20px;" onclick="javascript:issueCoupon2(event)">
+				쿠폰 발급받기2
+			</button>
 		</div>
 		<script>
 		 function issueCoupon(event){
@@ -45,6 +49,27 @@
 		            
 		         })
 		      }
+		</script>
+		
+		<script>
+			function issueCoupon2(event){
+		         var mid = "<c:out value='${mid}'/>";
+		         $.ajax({
+			            url:"rediscoupon" + "/" + mid,
+			              method:"get"
+			         }).done((data) => {
+			            console.log("data", data);
+			            
+			            if(data.result == "sold out"){
+			               swal("쿠폰 이벤트",  "선착순 쿠폰이 마감되었습니다.", "error");
+			            }else if(data.result == "overlap"){
+			               swal("쿠폰 이벤트", "중복된 참여내역이 있습니다.", "warning");
+			            }else if(data.result=="success"){
+			               swal("쿠폰 이벤트", "쿠폰이 성공적으로 발급되었습니다.", "success");
+			            }
+			            
+			         })
+			}
 		</script>
 		
 		<script>
