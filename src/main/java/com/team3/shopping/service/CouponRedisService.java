@@ -2,17 +2,22 @@ package com.team3.shopping.service;
 
 import javax.annotation.Resource;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.SetOperations;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Service;
 
+import com.team3.shopping.controller.EventController;
 import com.team3.shopping.dao.CouponDao;
 import com.team3.shopping.dao.EventDao;
 
 @Service
 public class CouponRedisService {
+	private static final Logger logger = LoggerFactory.getLogger(CouponRedisService.class);
+	
 	@Autowired
 	RedisTemplate<String, Object> redisTemplate;
 
@@ -22,6 +27,7 @@ public class CouponRedisService {
 	@Resource(name="redisTemplate")
 	private SetOperations<String, String> setOps;
 	
+	
 	@Resource
 	EventDao eventdao;
 	
@@ -29,11 +35,8 @@ public class CouponRedisService {
 	CouponDao coupondao;
 	
 	//시작전 쿠폰 수량 지정
-	public void setCoupons() {
-		if(!redisTemplate.hasKey("eamount")) {
-			int totalEamount = eventdao.getEamount();
-			valueOps.set("eamount", totalEamount);
-		}
+	public void setCouponAmount(Integer amount) {
+		valueOps.set("eamount", amount);
 	}
 	
 	//남아있는 쿠폰 수량 확인
@@ -41,27 +44,23 @@ public class CouponRedisService {
 		return (int) valueOps.get("eamount");
 	}
 	
-	//쿠폰 감소
-	public void decreaseCoupon() {
-		valueOps.decrement("eamount");
-		coupondao.updateCouponAmount("11");
-	}
-	
 	//이미 받아간 사람인지 확인하는 메서드
+	/*
+	 * { eid: [mid1 , mid2, mid3, ...] }
+	 * 
+	 * */
 	public boolean checkCouponMid(String mid, String eid){
-		if(redisTemplate.hasKey(mid)){
-			if(valueOps.get(mid).equals(eid)) {
-				return false;
-			}else return true;
-		}else {
+		
+		if(setOps.isMember(eid, mid)){
 			return true;
 		}
+		return false;
 	}
 	
-	//쿠폰 넣기
+	//회원에게 쿠폰을 나눠준 이력
 	public void insertCoupon(String mid, String eid) {
-		valueOps.set(mid, eid);
-		decreaseCoupon();
+		logger.info("give coupon");
+		setOps.add(eid, mid);
 	}
 	
 }

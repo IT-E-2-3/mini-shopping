@@ -2,7 +2,6 @@ package com.team3.shopping.controller;
 
 import java.security.Principal;
 import java.util.Date;
-import java.util.List;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.Callable;
@@ -174,9 +173,6 @@ public class EventController {
 				Date curDate = new Date();
 				Date estartDate = (Date) model.getAttribute("eventStartDate");
 
-				// 결과 변수
-				JSONObject jsonObject = new JSONObject();
-				
 				if (curDate.before(estartDate)) {
 					return "fail";
 				}
@@ -222,50 +218,73 @@ public class EventController {
 	//레디스에서 테스트하는 메서드
 	@GetMapping(value = "rediscoupon/{mid}", produces = "application/json'; charset=UTF-8")
 	@ResponseBody
-	public String redisCoupon(@PathVariable("mid") String mid, Principal principal, Model model) {
-		MemberInfoDto member = orderservice.getMid(principal.getName());
+	public String redisCoupon(@PathVariable("mid") String mid, Model model) throws InterruptedException, ExecutionException {
+		
 		JSONObject jsonObject = new JSONObject();
-		//쿠폰의 양을 확인한다
-		if(eservice.getEamount() < 1) {
-			logger.info("sold out");
-			jsonObject.put("result", "sold out");
-		} else {//쿠폰이 남아있으면
-			String eid ="11";
-			//아이디가 중복된 아이디인지 확인
-			if(redisservice.checkCouponMid(mid, eid)) { //중복된 아이디가 없으면
-				//------쿠폰 생성------
+		
+		Callable<String> task = new Callable<String>() {
+
+			@Override
+			public synchronized String call() throws Exception {
+				
+				logger.info("mid " + mid + " " + Thread.currentThread().getName() + ": 이벤트 처리");
+				String eid = "11";
+				
+				//쿠폰 남은 수량이 0인지 확인한다
+				int cahcedCouponNum = redisservice.getCouponCounts();
+				if(cahcedCouponNum < 1) {
+					return "fail";
+				}
+					
+				// 이미 발급된 회원 아이디	
+				if(redisservice.checkCouponMid(mid, eid)) { 
+					return "fail";
+				}
+				
+				// 날짜 확인
+				Date curDate = new Date();
+				Date estartDate = (Date) model.getAttribute("eventStartDate");
+				
+				if (curDate.before(estartDate)) {
+					return "fail";
+				}
+				
+				/* ----------------여기까지 실패의 경우의 수 -----------------*/
+				
+				// 쿠폰 생성
 				CouponDto newCoupon = new CouponDto();
 				newCoupon.setEid(eid);
 				newCoupon.setMid(mid);
 				newCoupon.setCoupon_type("type");
 				newCoupon.setCoupon_state("1");
-				
+
 				// 쿠폰 유효기간 설정 (임의)
 				Date date = new Date();
 				long timeInMilliSeconds = date.getTime();
 				java.sql.Date date1 = new java.sql.Date(timeInMilliSeconds);
+
 				newCoupon.setCoupon_startdate(date1);
 				newCoupon.setCoupon_expiredate(date1);
-				//------쿠폰 생성 끝------
-				
-				redisservice.setCoupons();
-				redisservice.insertCoupon(mid, eid);
-				couponservice.insertCoupon(newCoupon);
-				jsonObject.put("result", "success");
-			}else {//중복 참여한 아이디가 있으면
-				logger.info("중복 참여한 아이디가 있습니다.");
-				jsonObject.put("result", "overlap");
-			}
-		}
 
-//		
-//		Callable<Integer> task = new Callable<Integer>() {
-//			
-//			@Override
-//			public Integer call() throws Exception {
-//			}};
+				// 쿠폰 발급 트랜잭션
+				EventTransferResult result = couponservice.issueCoupon(newCoupon);
+				logger.info("transaciton info " + result);
+
+				if (result.toString().contains("FAIL")) {
+					return "fail";
+				}
+				
+				return "success";
+			}
+		};
+
+		Future<String> future = multiexecutorService.submit(task);
+		String futureResult = future.get();
+
+		jsonObject.put("result", futureResult);
 		
 		String json = jsonObject.toString();
 		return json;
+		
 	}
 }
