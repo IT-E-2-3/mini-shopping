@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.team3.shopping.dto.CouponDto;
 import com.team3.shopping.dto.EventDto;
+import com.team3.shopping.dto.EventPeople;
 import com.team3.shopping.dto.MemberInfoDto;
 import com.team3.shopping.service.CouponRedisService;
 import com.team3.shopping.service.CouponService;
@@ -177,7 +178,7 @@ public class EventController {
 					return "fail";
 				}
 				
-				// 쿠폰 생성
+				// 쿠폰 생성 -- mycoupon - // mid eid
 				CouponDto newCoupon = new CouponDto();
 				newCoupon.setEid(eid);
 				newCoupon.setMid(mid);
@@ -228,28 +229,33 @@ public class EventController {
 			public synchronized String call() throws Exception {
 				
 				logger.info("mid " + mid + " " + Thread.currentThread().getName() + ": 이벤트 처리");
-				String eid = "11";
-				
-				//쿠폰 남은 수량이 0인지 확인한다
-				int cahcedCouponNum = redisservice.getCouponCounts();
-				if(cahcedCouponNum < 1) {
-					return "fail";
-				}
-					
-				// 이미 발급된 회원 아이디	
-				if(redisservice.checkCouponMid(mid, eid)) { 
-					return "fail";
-				}
+				String eid = "2";
 				
 				// 날짜 확인
 				Date curDate = new Date();
 				Date estartDate = (Date) model.getAttribute("eventStartDate");
 				
 				if (curDate.before(estartDate)) {
+					logger.info("beforedate");
 					return "fail";
 				}
 				
+				//쿠폰 남은 수량이 0인지 확인한다 
+				int cahcedCouponNum = redisservice.getCouponCounts();
+				if(cahcedCouponNum < 1) {
+					logger.info(cahcedCouponNum + " soldout");
+					return "fail";
+				}
+					
+				// 이미 발급된 회원 아이디	
+				if(redisservice.checkCouponMid(mid, eid)){ 
+					logger.info("issued");
+					return "fail";
+				}
+				
+				
 				/* ----------------여기까지 실패의 경우의 수 -----------------*/
+				
 				
 				// 쿠폰 생성
 				CouponDto newCoupon = new CouponDto();
@@ -268,7 +274,7 @@ public class EventController {
 
 				// 쿠폰 발급 트랜잭션
 				EventTransferResult result = couponservice.issueCoupon(newCoupon);
-				logger.info("transaciton info " + result);
+				logger.info("transaciton info " + result + ":" + mid);
 
 				if (result.toString().contains("FAIL")) {
 					return "fail";
