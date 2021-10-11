@@ -9,14 +9,13 @@ import org.springframework.context.annotation.Configuration;
 @EnableCaching
 public class CachingConfig {
 
-    @Bean
-    public CacheManager cacheManager() {
-        return new ConcurrentMapCacheManager("addresses");
-    }
-    @Bean
-    public CacheManager couponNum() {
-    	return new ConcurrentMapCacheManager("couponNum");
-    }
+	/*
+	 * @Bean public CacheManager cacheManager() { return new
+	 * ConcurrentMapCacheManager("addresses"); }
+	 * 
+	 * @Bean public CacheManager couponNum() { return new
+	 * ConcurrentMapCacheManager("couponNum"); }
+	 */
     @Bean
     public CacheManager eamount() {
     	return new ConcurrentMapCacheManager("eamount");

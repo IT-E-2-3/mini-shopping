@@ -245,7 +245,7 @@
 			<version>2.10</version>
 		</dependency>
 
-		</dependency>
+
 
 		<dependency>
 			<groupId>org.springframework</groupId>
