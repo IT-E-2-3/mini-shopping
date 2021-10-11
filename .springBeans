@@ -23,6 +23,7 @@
 		<config>src/main/resources/spring/root/cache-context.xml</config>
 	</configs>
 	<autoconfigs>
+		<config>src/main/resources/spring/dispatcher/mvc-config.xml</config>
 	</autoconfigs>
 	<configSets>
 	</configSets>

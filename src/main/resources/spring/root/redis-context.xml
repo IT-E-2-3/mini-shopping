@@ -1,30 +1,117 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	xmlns:redisson="http://redisson.org/schema/redisson"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xmlns:cache="http://www.springframework.org/schema/cache"
+	xsi:schemaLocation="http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://redisson.org/schema/redisson http://redisson.org/schema/redisson/redisson.xsd">
 
-	<bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig" />
-	
+	<bean id="jedisPoolConfig"
+		class="redis.clients.jedis.JedisPoolConfig" />
+
 	<!-- jedis jedisConnectionFactory 설정 -->
-	<bean id="jedisConnectionFactory" class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory">
-	    <property name="usePool" value="true" />                 
-	    <property name="hostName" value="192.168.0.7" />     
-	    <property name="port" value="6379" />                      
-	    <property name="poolConfig" ref="jedisPoolConfig" />    
-	    <!-- <property name="password" value="*******" />   -->             
+	<bean id="jedisConnectionFactory"
+		class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory">
+		<property name="usePool" value="true" />
+		<property name="hostName" value="0.0.0.0" />
+    <!--   <property name="hostName" value="192.168.0.7" />     -->
+		<property name="port" value="6379" />
+		<property name="poolConfig" ref="jedisPoolConfig" />
+		<!-- <property name="password" value="*******" /> -->
 	</bean>
-	
+
+	<bean id="stringRedisSerializer"
+		class="org.springframework.data.redis.serializer.StringRedisSerializer" />
+	<bean id="jdkRedisSerializer"
+		class="org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer">
+		<constructor-arg value="java.lang.Object" />
+	</bean>
+
 	<!-- redis 템플릿 설정 -->
-	<bean id="redisTemplate" class="org.springframework.data.redis.core.RedisTemplate">
-	    <!-- 위에서 생성한 jedisConnectionFactory 를 꽂아줌 -->
-	    <property name="connectionFactory" ref="jedisConnectionFactory" />
-	    <property name="keySerializer">
-	        <bean class="org.springframework.data.redis.serializer.StringRedisSerializer" />
-	    </property>
-	    <property name="valueSerializer">
-	        <bean class="org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer">
-	            <constructor-arg value="java.lang.Object" />
-	        </bean>
-	    </property>
+	<bean id="redisTemplate"
+		class="org.springframework.data.redis.core.RedisTemplate">
+		<!-- 위에서 생성한 jedisConnectionFactory 를 꽂아줌 -->
+		<property name="connectionFactory"
+			ref="jedisConnectionFactory" />
+		<property name="keySerializer" ref="stringRedisSerializer">
+		</property>
+		<property name="valueSerializer" ref="jdkRedisSerializer">
+		</property>
 	</bean>
+
+	<bean id="cacheWriter"
+		class="org.springframework.data.redis.cache.DefaultRedisCacheWriter">
+		<constructor-arg name="connectionFactory"
+			ref="jedisConnectionFactory"></constructor-arg>
+	</bean>
+
+	<bean id="ttl" class="java.time.Duration"
+		factory-method="ofSeconds">
+		<constructor-arg value="60"></constructor-arg>
+	</bean>
+
+
+	<bean id="defaultCacheConfig"
+		class="org.springframework.data.redis.cache.RedisCacheConfiguration"
+		init-method="defaultCacheConfig">
+
+		<constructor-arg name="usePrefix" value="false"></constructor-arg>
+		<constructor-arg name="cacheNullValues" value="true"></constructor-arg>
+		<constructor-arg name="keyPrefix">
+			<bean
+				class="org.springframework.data.redis.cache.CacheKeyPrefix"
+				factory-method="simple">
+
+			</bean>
+		</constructor-arg>
+		<constructor-arg name="keySerializationPair">
+			<bean
+				class="org.springframework.data.redis.serializer.RedisSerializationContext$SerializationPair"
+				factory-method="fromSerializer">
+				<constructor-arg ref="stringRedisSerializer"></constructor-arg>
+			</bean>
+		</constructor-arg>
+		<constructor-arg name="valueSerializationPair">
+			<bean
+				class="org.springframework.data.redis.serializer.RedisSerializationContext$SerializationPair"
+				factory-method="fromSerializer">
+				<constructor-arg ref="jdkRedisSerializer"></constructor-arg>
+			</bean>
+		</constructor-arg>
+		<constructor-arg name="conversionService">
+			<bean
+				class="org.springframework.format.support.DefaultFormattingConversionService"></bean>
+		</constructor-arg>
+		<constructor-arg name="ttl" ref="ttl" />
+	</bean>
+
+	<cache:annotation-driven />
+	<bean id="couponRedisService"
+		class="com.team3.shopping.service.CouponRedisService" />
+		
+	<!-- declare Redis Cache Manager -->
+	<!-- <bean id="cacheManagerBuilder"
+		class="org.springframework.data.redis.cache.RedisCacheManager.RedisCacheManagerBuilder"
+		factory-method="fromConnectionFactory">
+		<constructor-arg ref="jedisConnectionFactory"></constructor-arg>
+		<property name="get"></property>
+	</bean> -->
+
+	<bean id="cacheManager"
+		class="org.springframework.cache.support.SimpleCacheManager">
+		<property name="caches">
+			<set>
+				<bean
+					class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean"
+					name="eamount" />
+				<bean
+					class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean"
+					name="epeople" />
+			</set>
+		</property>
+	</bean>
+
 </beans>
+
