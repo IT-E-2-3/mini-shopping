@@ -21,4 +21,5 @@ public interface ProductDao {
 	public List<ProductListDto> getSizeList(@Param("pid")String pid, @Param("color") String color);
 	public List<ProductListDto> getColorList(String pid);
 	public ProductListDto getMatchingCloth(@Param("pid") String pid, @Param("color") String color);
+	public List<ProductListDto> getStockListByPid(String pid);
 }
