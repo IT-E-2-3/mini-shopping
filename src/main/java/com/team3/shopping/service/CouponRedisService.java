@@ -5,6 +5,9 @@ import javax.annotation.Resource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.SetOperations;
 import org.springframework.data.redis.core.ValueOperations;
@@ -15,6 +18,7 @@ import com.team3.shopping.dao.CouponDao;
 import com.team3.shopping.dao.EventDao;
 
 @Service
+@EnableCaching
 public class CouponRedisService {
 	private static final Logger logger = LoggerFactory.getLogger(CouponRedisService.class);
 	
@@ -35,13 +39,21 @@ public class CouponRedisService {
 	CouponDao coupondao;
 	
 	//시작전 쿠폰 수량 지정
+	@CacheEvict(value="eamount")
 	public void setCouponAmount(Integer amount) {
 		valueOps.set("eamount", amount);
 	}
 	
 	//남아있는 쿠폰 수량 확인
-	public int getCouponCounts() {
-		return (int) valueOps.get("eamount");
+	@Cacheable(cacheNames = "couponNum")
+	public int getCouponCounts(int eamount) {
+		if(eamount==1) {
+			logger.info(valueOps.get("eamount") +"남은수량");
+			return (int) valueOps.get("eamount");
+		}else {
+			return (int) valueOps.get("eamount");
+		}
+		
 	}
 	
 	//이미 받아간 사람인지 확인하는 메서드
@@ -49,6 +61,7 @@ public class CouponRedisService {
 	 * { eid: [mid1 , mid2, mid3, ...] }
 	 * 
 	 * */
+//	@Cacheable(value = "checkmid")
 	public boolean checkCouponMid(String mid, String eid){
 		
 		if(setOps.isMember(eid, mid)){
