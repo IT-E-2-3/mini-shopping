@@ -12,13 +12,14 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.SetOperations;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import com.team3.shopping.dao.CouponDao;
 import com.team3.shopping.dao.EventDao;
 import com.team3.shopping.service.CouponRedisService;
 
 @Component
-@EnableCaching
+
 public class RedisCompo {
 
 	private static final Logger logger = LoggerFactory.getLogger(RedisCompo.class);
@@ -39,13 +40,17 @@ public class RedisCompo {
 	CouponDao coupondao;
 	
 	//시작전 쿠폰 수량 지정
-	@CacheEvict(value="couponNum")
+	@CacheEvict(value="eamount")
 	public void setCouponAmount(Integer amount) {
+		logger.info("eamount 수량 변경");
 		valueOps.set("eamount", amount);
+	}
+	@CacheEvict(value = "eamount")
+	public void clearCouponAmount() {
 	}
 	
 	//남아있는 쿠폰 수량 확인
-	@Cacheable(value = "couponNum")
+	@Cacheable(value = "eamount")
 	public int getCouponCounts(int eamount) {
 		if(eamount==1) {
 			logger.info(valueOps.get("eamount") +"남은수량");
@@ -53,7 +58,20 @@ public class RedisCompo {
 		}else {
 			return (int) valueOps.get("eamount");
 		}
+	}
+	@Cacheable(value = "checkmid")
+	public boolean checkCouponMid(String mid, String eid){
 		
+		if(setOps.isMember(eid, mid)){
+			return true;
+		}
+		return false;
+	}
+	
+	//회원에게 쿠폰을 나눠준 이력
+	public void insertCoupon(String mid, String eid) {
+		logger.info("give coupon");
+		setOps.add(eid, mid);
 	}
 	
 }

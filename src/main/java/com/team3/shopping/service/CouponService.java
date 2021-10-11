@@ -18,6 +18,7 @@ import com.team3.shopping.dto.CouponDto;
 import com.team3.shopping.dto.OrderDto;
 import com.team3.shopping.dto.OrderRowDetailDto;
 import com.team3.shopping.exception.ProductSoldOutException;
+import com.team3.shopping.test.RedisCompo;
 
 import org.springframework.stereotype.Service;
 
@@ -31,7 +32,9 @@ public class CouponService {
 
 	@Resource
 	CouponRedisService redisservice;
+	
 
+	 
 	public enum EventTransferResult {
 		SUCCESS, FAIL, FAIL_COUPON_SOLDOUT, FAIL_COUPON_ISSUED
 	}
@@ -51,21 +54,27 @@ public class CouponService {
 			@Override
 			public EventTransferResult doInTransaction(TransactionStatus status) {
 				logger.info("실행");
+				logger.info("___________________________트렌젝션____________________________");
 				try {
 					logger.info("coupon.getEid() " + coupon.getEid());
-
+					///오라클에서 가져오기
 					int remains = couponDao.selectRemainigCoupon(coupon.getEid());
 					logger.info("remains " + remains);
+					//레디스의 쿠폰 수량 오라클의 남은 쿠폰 조회하여 변경
 					if (remains < 1) {
+						logger.info("수량 0으로 맞춤");
 						redisservice.setCouponAmount(0);
+						//캐시를 초기화 시키기 
+//						redisservice.clearCouponAmount();
 						
 						return EventTransferResult.FAIL_COUPON_SOLDOUT;
 					}
-
+					// 중복참여를 레디스에 기록
 					int isIssued = couponDao.selectCheckifCouponissued(coupon.getMid(), coupon.getEid());
 					if (isIssued > 0) {
 						return EventTransferResult.FAIL_COUPON_ISSUED;
 					}
+					// 중복참여를 레디스에 기록
 					redisservice.insertCoupon(coupon.getMid(), coupon.getEid());
 					logger.info("isIssued " + isIssued);
 

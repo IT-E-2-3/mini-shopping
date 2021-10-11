@@ -64,6 +64,7 @@ public class EventController {
 	
 	@Resource
 	RedisCompo redisCompo; 
+	
 	//이벤트 페이지 홈
 	@RequestMapping("/")
 	public String home(Model model, Principal principal) {
@@ -102,9 +103,10 @@ public class EventController {
 					String eid = "11";
 					
 					// 날짜 확인
+					
 					Date curDate = new Date();
 					Date estartDate = (Date) model.getAttribute("eventStartDate");
-					
+					logger.info("컨트롤러 시간 확인");
 					if (curDate.before(estartDate)) {
 						return "fail";
 					}
@@ -113,14 +115,14 @@ public class EventController {
 					//쿠폰 남은 수량이 0인지 redis 에서 확인한다
 //					@Cacheable("getCouponAmount")
 					int cahcedCouponNum = redisCompo.getCouponCounts(1);
-					logger.info("cahcedCouponNum : "+cahcedCouponNum);
+					logger.info("남은 수량 확인 cahcedCouponNum : "+cahcedCouponNum);
 					if(cahcedCouponNum < 1) {
 						return "fail";
 					}
 						
 					// 이미 발급된 회원 아이디	
 					if(redisservice.checkCouponMid(mid, eid)) { 
-						logger.info("redisservice : fail");
+						logger.info("이미 발급된 회원아이디 redisservice : fail");
 						return "fail";
 					}
 					
