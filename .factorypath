@@ -62,4 +62,6 @@
     <factorypathentry kind="VARJAR" id="M2_REPO/io/projectreactor/reactor-core/3.3.20.RELEASE/reactor-core-3.3.20.RELEASE.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="VARJAR" id="M2_REPO/org/reactivestreams/reactive-streams/1.0.3/reactive-streams-1.0.3.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="VARJAR" id="M2_REPO/redis/clients/jedis/3.7.0/jedis-3.7.0.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="VARJAR" id="M2_REPO/net/sf/ehcache/ehcache-core/2.6.9/ehcache-core-2.6.9.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="PLUGIN" id="net.harawata.mybatipse" enabled="false" runInBatchMode="false"/>
 </factorypath>

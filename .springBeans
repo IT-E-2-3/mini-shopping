@@ -20,6 +20,7 @@
 		<config>src/main/resources/spring/root/security.xml</config>
 		<config>src/main/resources/spring/root/properties.xml</config>
 		<config>src/main/resources/spring/root/redis-context.xml</config>
+		<config>src/main/resources/spring/root/cache-context.xml</config>
 	</configs>
 	<autoconfigs>
 	</autoconfigs>

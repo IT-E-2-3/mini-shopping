@@ -9,8 +9,16 @@
 	<div class="card-body">
 		<p>어떤 이유 때문에 서버에서 처리하지 못했습니다.</p>
 		<p>일시 서버 오류이므로 조금후 다시 시도해 주세요.</p>
+		<img src="/resources/images/team3.jpg" class="w-50">
+		
 		<div>
-			<a href="${pageContext.request.contextPath}/" class="btn btn-danger btn-sm">홈으로가기</a>
+			<a href="${pageContext.request.contextPath}/" >
+			<img  src="/resources/images/team3.jpg" class="w-50">
+			</a>
+			<br>
+			<a href="${pageContext.request.contextPath}/" class="btn btn-danger btn-sm">홈으로가기
+			
+			</a>
 		</div>
 	</div>
 </div>
