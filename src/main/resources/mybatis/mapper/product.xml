@@ -89,4 +89,14 @@
 		on p.pid = c2.pid and c2.color_code=regexp_substr(c.matching_clothe, '[^_]+', 1, 2)
 		where c.color_code=#{color} and c.pid=#{pid}
 	</select>
+	
+	<!-- 하나의 상품의 모든 컬러 모든 재고를 가져온다 -->
+	<select id="getStockListByPid" parameterType="string" resultType="plist">
+		select p.pid, s.size_code, c.color_code, s.remaining_stock
+		from product p join color_url c
+		on p.pid = c.pid
+		join stock s
+		on c.pid =s.pid and c.color_code = s.color_code
+		where p.pid = #{pid}
+	</select>
 </mapper>

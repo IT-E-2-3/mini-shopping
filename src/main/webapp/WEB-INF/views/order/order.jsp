@@ -1,3 +1,4 @@
+
 <%@ page contentType="text/html; charset=UTF-8"%>
 
 
@@ -413,9 +414,8 @@
 										</label>
 									</div>
 									<div class="form-check d-inline-flex">
-										<label class="form-check-label"> <input type="radio"
-											class="form-check-input" name="opayment" id="mileage"
-											value="2" onchange="setDisplay()"> 마일리지
+										<label class="form-check-label">
+											<input type="radio" class="form-check-input" name="opayment" id="mileage" value="2" onchange="setDisplay()"> 마일리지
 										</label>
 									</div>
 									<div class="form-check disabled d-inline-flex">
@@ -477,8 +477,8 @@
 
 								<th class="col-sm-4 text-center text-black"><label
 									for="exampleInputEmail1" class="form-label mt-4"></label> <select
-									id="ocard_installmentrate_period"
-									name="ocard_installmentrate_period"
+									id="ocard_installment_period"
+									name="ocard_installment_period"
 									class="hyundai form-select  text-center"
 									onchange="javascript:send()">
 										<option value="1" selected="selected">일시불</option>
@@ -522,8 +522,8 @@
 
 								<th class="col-sm-4 text-center text-black"><label
 									for="exampleInputEmail1" class="form-label mt-4"></label> <select
-									id="ocard_installmentrate_period"
-									name="ocard_installmentrate_period"
+									id="ocard_installment_period"
+									name="ocard_installment_period"
 									class="BC form-select  text-center"
 									onchange="javascript:send()">
 										<option value="1" selected="selected">일시불</option>
@@ -536,8 +536,8 @@
 
 								</select> <!--  <input
                            type="text" class="form-control text-center BC" placeholder="3"
-                           id="ocard_installmentrate_period"
-                           name="ocard_installmentrate_period" value="3" maxlength="2"> -->
+                           id="ocard_installment_period"
+                           name="ocard_installment_period" value="3" maxlength="2"> -->
 								</th>
 							</tr>
 
@@ -677,7 +677,7 @@
 
 let Ocard_name=7; //default
 let Ocard_installmentrate=7; //default
-let Ocard_installmentrate_period=7; //default
+let Ocard_installment_period=7; //default
 let Ototal_price= totalprice.value;
 
 // 페이지가 로딩되면 바로 hide 시키기
@@ -736,7 +736,7 @@ $(document).ready(function(){
       
          Ocard_name= elementsall[0].value;
          Ocard_installmentrate= elementsall[1].value;
-         Ocard_installmentrate_period= elementsall[2].value;
+         Ocard_installment_period= elementsall[2].value;
            
       }
    }
@@ -908,7 +908,7 @@ $(document).ready(function(){
             ochannel: "the handsome",
             ocard_name: Ocard_name, 
             ocard_installmentrate: Ocard_installmentrate, 
-            ocard_installmentrate_period: Ocard_installmentrate_period,
+            ocard_installment_period: Ocard_installment_period,
             oaccountholder: "우체국 102345-678-91011",
             odeposit_deadline: null,
             order_tel: Oorder_tel,

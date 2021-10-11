@@ -89,7 +89,7 @@
 					<!-- 행 -->
 					<th class="col-sm-8 text-left text-black">
 							${order.odeposit_deadline != null ?
-							order.odeposit_deadline += "까지 입금" : order.ocard_installmentrate += "개월" } 
+							order.odeposit_deadline += "까지 입금" : order.ocard_installment_period += "개월" } 
 					</th>
 				</tr>
 		</tbody>

@@ -62,7 +62,7 @@
 										src="${OrderRow.product_detail_url1}" width="60">
 								</div>
 								<div class="pname">
-									<div class="col-sm-6 m-l-20 m-t-15">
+									<div class="col-sm-6 col-md-10 col-lg-12 m-l-20 m-t-15">
 										<a href="#" class="basket_tlt" style="color: black"> <input
 											hidden="hidden" value="${OrderRow.pbrand}"
 											class="orders${vs.count}">
@@ -115,13 +115,10 @@
 					</c:forEach>
 				</div>
 
-
 				<div class="right-align basketrowcmd">
 					<!-- 	<a href="javascript:void(0)" class="abutton"
 						onclick="javascript:basket.delCheckedItem();">선택상품삭제</a> -->
 				</div>
-
-
 
 
 				<div id="goorder" class="">
@@ -149,7 +146,7 @@
 					<div class="flex-w flex-t p-b-13 justify-content-between">
 						<b style="color: black;"> 선택한 상품 수</b>
 						<div>
-							<div id="sum_p_num">0 개</div>
+							<span id="sum_p_num">0</span>개 
 						</div>
 					</div>
 
@@ -164,7 +161,7 @@
 						style="font-size: 20px;">
 						<dt class="ee_tit ee_strong">총 합계</dt>
 						<dd class="ee_price ee_strong">
-							<div id="sum_p_price">0 원</div>
+							<span id="sum_p_price">0</span> 원
 						</dd>
 					</div>
 					
@@ -180,23 +177,16 @@
 					<button onclick="javascript:basket.send();"
 						class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer">
 						주문하기</button>
-
-				
-
-
 				</div>
 			</div>
 
 		</div>
 	</div>
 
-
-
 	<!-- 확인버튼을 누르면 form 중에 select 된 녀석의 class 와 같은 이름이 있는 녀석을 모조리 얻어오기 얻어온 뒤에 객체로 뿌리기 -->
 
 </body>
 </html>
-
 
 
 <script>
@@ -209,7 +199,7 @@
        //json 배열 생성
        //기본 리프래시 비활성화
        if(this.totalPrice===0){
-    	   swal("상품을 선택해주세요", "체크박스를 통해 장바구니의 물건을 담으세요!","error");
+    	   swal("상품을 선택해주세요", "체크박스를 통해 장바구니의 물건을 담으세요!","warning");
     	   return false;
        }
         event.preventDefault();
@@ -336,10 +326,10 @@
               async: false,
               data:JSON.stringify(jsonArray)
            }).done((data) => {
-              console.log("result")
+              console.log("result");
              // window.location.href="/order/"
-              
            })      
+          swal("쇼핑백 저장", "현재 쇼핑백 내용을 저장했습니다.", "success");
            
     },
         
@@ -455,8 +445,8 @@
    
     //화면 업데이트
     updateUI: function () {
-        document.querySelector('#sum_p_num').textContent = '상품갯수: ' + this.totalCount+ '개';
-        document.querySelector('#sum_p_price').textContent = '합계금액: ' + this.totalPrice + '원';
+        document.querySelector('#sum_p_num').textContent = this.totalCount;
+        document.querySelector('#sum_p_price').textContent = this.totalPrice;
     },
     //개별 수량 변경
     changePNum: function (vs) {
