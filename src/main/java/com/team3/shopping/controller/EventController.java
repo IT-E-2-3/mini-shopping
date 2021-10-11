@@ -161,16 +161,6 @@ public class EventController {
 			
 //		}
 ///*************************************************/
-	
-	@ModelAttribute("eventStartDate")
-	public Date initEvent() {
-		logger.info("실행");
-
-		String eid = "11";
-		Date startDate = couponservice.getEventStartTime(eid);
-
-		return startDate;
-	}
 
 
 	// 싱글 스레드 
@@ -191,7 +181,7 @@ public class EventController {
 				
 				// 날짜 확인
 				Date curDate = new Date();
-				Date estartDate = (Date) model.getAttribute("eventStartDate");
+				Date estartDate = couponservice.getEventStartTime(eid);
 
 				// 결과 변수
 				JSONObject jsonObject = new JSONObject();
@@ -258,7 +248,7 @@ public class EventController {
 				
 				// 날짜 확인
 				Date curDate = new Date();
-				Date estartDate = (Date) model.getAttribute("eventStartDate");
+				Date estartDate = couponservice.getEventStartTime(eid);
 
 				if (curDate.before(estartDate)) {
 					return "fail";
@@ -318,8 +308,7 @@ public class EventController {
 				
 				// 날짜 확인
 				Date curDate = new Date();
-				Date estartDate = (Date) model.getAttribute("eventStartDate");
-				
+				Date estartDate = couponservice.getEventStartTime(eid);
 				if (curDate.before(estartDate)) {
 					logger.info("beforedate");
 					return "fail";

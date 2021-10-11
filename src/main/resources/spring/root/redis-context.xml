@@ -90,7 +90,9 @@
 	<cache:annotation-driven />
 	<bean id="couponRedisService"
 		class="com.team3.shopping.service.CouponRedisService" />
-		
+	<bean id="couponService"
+		class="com.team3.shopping.service.CouponService" />
+			
 	<!-- declare Redis Cache Manager -->
 	<!-- <bean id="cacheManagerBuilder"
 		class="org.springframework.data.redis.cache.RedisCacheManager.RedisCacheManagerBuilder"
@@ -109,6 +111,9 @@
 				<bean
 					class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean"
 					name="epeople" />
+				<bean
+					class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean"
+					name="estarttime" />
 			</set>
 		</property>
 	</bean>

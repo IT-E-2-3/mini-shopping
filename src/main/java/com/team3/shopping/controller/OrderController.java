@@ -103,7 +103,7 @@ public class OrderController {
    }
 
    @InitBinder("orderForm")
-   public void joinFormSetValidator(WebDataBinder binder) {
+   public void orderFormSetValidator(WebDataBinder binder) {
       logger.info("실행");
 
       binder.addValidators(new OrderFormValidator());
@@ -379,4 +379,16 @@ public class OrderController {
 //      logger.info(orderItems.toString());
       return "order/orderDetail";
    }
+
+/*
+    * @InitBinder public void initBinder(WebDataBinder binder) throws Exception {
+    * final DateFormat df = new SimpleDateFormat("yyyy-MM-dd"); final
+    * CustomDateEditor dateEditor = new CustomDateEditor(df, true) {
+    * 
+    * @Override public void setAsText(String text) throws IllegalArgumentException
+    * { if ("today".equals(text)) { SimpleDateFormat dateFormat = new
+    * SimpleDateFormat("yyyy-MM-dd"); String currentDate = dateFormat.format(new
+    * Date()); setValue(currentDate.toString()); } else { super.setAsText(text); }
+    * } }; binder.registerCustomEditor(Date.class, dateEditor); }
+    */
 }
