@@ -11,6 +11,7 @@ import javax.annotation.Resource;
 //import org.redisson.api.RedissonClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.TransactionCallback;
@@ -38,7 +39,9 @@ public class CouponService {
 		SUCCESS, FAIL, FAIL_COUPON_SOLDOUT, FAIL_COUPON_ISSUED
 	}
 
+	@Cacheable(value = "estarttime")
 	public Date getEventStartTime(String eid) {
+		logger.info("estarttime");
 		return couponDao.selectEventStartTIme(eid);
 	}
 
