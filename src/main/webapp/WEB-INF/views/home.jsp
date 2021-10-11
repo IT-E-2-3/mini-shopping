@@ -81,5 +81,8 @@
         <span class="sr-only">Next</span>
       </a>
     </div>
-
+	<div>
+		<img src="/resources/images/home_image.jpg"/>
+		<img src="/resources/images/home_image2.jpg"/>
+	</div>
 <%@ include file="/WEB-INF/views/common/footer.jsp"%>

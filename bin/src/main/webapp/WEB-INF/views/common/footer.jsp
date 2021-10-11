@@ -86,7 +86,7 @@
 					추가 서비스</h4>
 				<div style="display: flex; justify-content: center;">
 					<a href="https://www.thehandsome.com/ko/appDownloadSMS/sendSMSPage">
-						<img src="images/handsomeapp.png" style="width: 39%;"
+						<img src="/resources/images/handsomeapp.png" style="width: 39%;"
 						class="m-l-88">
 					</a>
 				</div>
@@ -95,7 +95,7 @@
 
 				<div style="display: flex; justify-content: center;" class="m-t-25">
 					<a href="http://www.thehandsome.com/ko/svcenter/footerAthomeInfo">
-						<img src="images/handsomeDeliver.png" style="width: 55%;"
+						<img src="/resources/images/handsomeDeliver.png" style="width: 55%;"
 						class="m-l-55">
 					</a>
 

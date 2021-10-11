@@ -11,21 +11,12 @@
 		</div>
 	</div>
 	
-	<div
-		style="display: grid; grid-template-columns: 10% 90%; margin: 0 200px">
+	<div style="display: grid; grid-template-columns: 15% 85%; margin: 0 150px">
 		<div id="sidebar">
 			<div>
 				<h6 class="p-1 border-bottom"
 					style="text-align: center; font-size: 20px">${current.category_name}</h6>
 				<ul class="list-group list-group-flush ml-4">
-					<!-- <li class="list-group-item border-0 subcategory"><a href="#">티셔츠</a>
-					</li>
-					<li class="list-group-item border-0 subcategory"><a href="#">블라우스</a>
-					</li>
-					<li class="list-group-item border-0 subcategory"><a href="#">셔츠</a>
-					</li>
-					<li class="list-group-item border-0 subcategory"><a href="#">니트</a>
-					</li> -->
 					<c:forEach var="sub" items="${subcategory}">
 						<li class="list-group-item border-0 subcategory"><a href="#">${sub.category_name}</a>
 						</li>
@@ -47,7 +38,21 @@
 						<div class="product-content">
 							<div class="size">${product.pbrand}</div>
 							<div class="title"><a class="detail${s.count}">${product.pname}</a></div>
-							<div class="tag">NEW</div>
+							<div class="tag text-danger" id="tag${s.count}"></div>
+							<c:forEach var="stock" items="${stocklist}">
+								<c:if test="${product.pid eq stock.pid}">
+									<script>
+										var no = "<c:out value='${s.count}'/>";
+										var p_stock ="<c:out value='${stock.remaining_stock}'/>";
+										
+										var tag = "#tag" + no;
+										console.log('######', p_stock);
+										if(p_stock < 1){
+											document.querySelector(tag).textContent = "Sold out";
+										}
+									</script>
+								</c:if>
+							</c:forEach>
 							<div class="price">₩&nbsp;<fmt:formatNumber type="number" maxFractionDigits="3" value="${product.pprice}"></fmt:formatNumber></div>
 							<div>
 								<div class="color_chip" style="display: inline;">

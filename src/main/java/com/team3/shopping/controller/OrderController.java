@@ -152,7 +152,7 @@ public class OrderController {
     logger.info("---------CARD--------");
     logger.info("getOpayment : "+ order.getOpayment());
     logger.info("getOcard_installmentrate : " + order.getOcard_installmentrate());
-    logger.info("getOcard_installmentrate_period : "+order.getOcard_installmentrate_period());
+    logger.info("getOcard_installment_period : "+order.getOcard_installment_period());
     logger.info("getOcard_name :"+order.getOcard_name());
     logger.info("---------CARD--------");
     MemberInfoDto member = orderService.getMid(principal.getName());
@@ -160,10 +160,7 @@ public class OrderController {
     
     String mid = member.getMid();
     order.setMid(mid);
-    Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-    SimpleDateFormat sdf = new SimpleDateFormat ("yyyy-MM-dd hh:mm:ss");
-    order.setOdate(sdf.toString());
-    LocalTime currentTime = LocalTime.now();
+//    LocalTime currentTime = LocalTime.now();
     // LocalTime targetTime = LocalTime.of(int hour, int minute, int second, int
     // nanoOfSecond);
     
@@ -202,6 +199,10 @@ public class OrderController {
       // 성공시
       JSONObject jsonObject = new JSONObject();
       jsonObject.put("result", "success");
+      Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+      SimpleDateFormat sdf = new SimpleDateFormat ("yyyy-MM-dd hh:mm:ss");
+      order.setOdate(sdf.format(timestamp).toString());
+      System.out.println("#######"+order.getOdate());
       session.setAttribute("order", order);
       String json = jsonObject.toString(); // result : successs
       
@@ -222,7 +223,7 @@ public class OrderController {
 
       logger.info(orderItems.toString());
       
-      long cardCost = (order.getOtotal_price())/(Integer.parseInt(order.getOcard_installmentrate_period()) )*(100-Integer.parseInt(order.getOcard_installmentrate()) );
+      long cardCost = (order.getOtotal_price())/(Integer.parseInt(order.getOcard_installment_period()) )*(100-Integer.parseInt(order.getOcard_installmentrate()) );
       model.addAttribute("cardCost", cardCost);
       
       //odate를 기반으로 2일 후까지 입금시켜야 하는 입금기한을 주려고 했으나 실패
@@ -366,12 +367,13 @@ public class OrderController {
       logger.info("실행");
       OrderDto order = (OrderDto) orderService.getOrder(oid);
       List<OrderRowDetailDto> orderItems = orderService.getProductInfo(oid);
-    
-     
+      
+      System.out.println("######" + order.getOcard_installment_period());
+      
       logger.info(order.toString());
       model.addAttribute("orderItems", orderItems);
       model.addAttribute("order", order);
-//      long cardCost = (order.getOtotal_price())/(Integer.parseInt(order.getOcard_installmentrate_period()) )*(100-Integer.parseInt(order.getOcard_installmentrate()) );
+//      long cardCost = (order.getOtotal_price())/(Integer.parseInt(order.getOcard_installment_period()) )*(100-Integer.parseInt(order.getOcard_installmentrate()) );
 //      model.addAttribute("cardCost", cardCost);
 //  
 //      logger.info(orderItems.toString());

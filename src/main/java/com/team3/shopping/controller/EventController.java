@@ -15,6 +15,8 @@ import javax.annotation.Resource;
 import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,9 +34,11 @@ import com.team3.shopping.service.CouponService;
 import com.team3.shopping.service.CouponService.EventTransferResult;
 import com.team3.shopping.service.EventService;
 import com.team3.shopping.service.OrderService;
+import com.team3.shopping.test.RedisCompo;
 
 @Controller
 @RequestMapping("/event")
+@EnableCaching
 public class EventController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(EventController.class);
@@ -59,6 +63,8 @@ public class EventController {
 	@Resource
 	OrderService orderservice;
 	
+	@Resource
+	RedisCompo redisCompo; 
 	//이벤트 페이지 홈
 	@RequestMapping("/")
 	public String home(Model model, Principal principal) {
@@ -75,7 +81,87 @@ public class EventController {
 		//logger.info("#######" + event);
 		return "event/event";
 	}
+	
+// 	//레디스에서 테스트하는 메서드
+// 		@GetMapping(value = "rediscoupon/{mid}", produces = "application/json'; charset=UTF-8")
+// 		@ResponseBody
+// 		public String redisCoupon(@PathVariable("mid") String mid, Model model) throws InterruptedException, ExecutionException {
+			
+// 			JSONObject jsonObject = new JSONObject();
+			
+// 			Callable<String> task = new Callable<String>() {
 
+// 				@Override
+// 				public synchronized String call() throws Exception {
+					
+// 					logger.info("mid " + mid + " " + Thread.currentThread().getName() + ": 이벤트 처리");
+// 					String eid = "11";
+					
+// 					// 날짜 확인
+// 					Date curDate = new Date();
+// 					Date estartDate = (Date) model.getAttribute("eventStartDate");
+					
+// 					if (curDate.before(estartDate)) {
+// 						return "fail";
+// 					}
+					
+					
+// 					//쿠폰 남은 수량이 0인지 redis 에서 확인한다
+// //					@Cacheable("getCouponAmount")
+// 					int cahcedCouponNum = redisCompo.getCouponCounts(1);
+// 					logger.info("cahcedCouponNum : "+cahcedCouponNum);
+// 					if(cahcedCouponNum < 1) {
+// 						return "fail";
+// 					}
+						
+// 					// 이미 발급된 회원 아이디	
+// 					if(redisservice.checkCouponMid(mid, eid)) { 
+// 						logger.info("redisservice : fail");
+// 						return "fail";
+// 					}
+					
+					
+					
+// 					/* ----------------여기까지 실패의 경우의 수 -----------------*/
+					
+// 					// 쿠폰 생성
+// 					CouponDto newCoupon = new CouponDto();
+// 					newCoupon.setEid(eid);
+// 					newCoupon.setMid(mid);
+// 					newCoupon.setCoupon_type("type");
+// 					newCoupon.setCoupon_state("1");
+
+// 					// 쿠폰 유효기간 설정 (임의)
+// 					Date date = new Date();
+// 					long timeInMilliSeconds = date.getTime();
+// 					java.sql.Date date1 = new java.sql.Date(timeInMilliSeconds);
+
+// 					newCoupon.setCoupon_startdate(date1);
+// 					newCoupon.setCoupon_expiredate(date1);
+
+// 					// 쿠폰 발급 트랜잭션
+// 					EventTransferResult result = couponservice.issueCoupon(newCoupon);
+// 					logger.info("transaciton info " + result);
+
+// 					if (result.toString().contains("FAIL")) {
+// 						return "fail";
+// 					}
+					
+// 					return "success";
+// 				}
+// 			};
+
+// 			Future<String> future = multiexecutorService.submit(task);
+// 			String futureResult = future.get();
+
+// 			jsonObject.put("result", futureResult);
+			
+// 			String json = jsonObject.toString();
+// 			return json;
+			
+//		}
+///*************************************************/
+	
 	@ModelAttribute("eventStartDate")
 	public Date initEvent() {
 		logger.info("실행");
@@ -214,7 +300,6 @@ public class EventController {
 		String json = jsonObject.toString();
 		return json;
 	}
-	
 	
 	//레디스에서 테스트하는 메서드
 	@GetMapping(value = "rediscoupon/{mid}", produces = "application/json'; charset=UTF-8")
