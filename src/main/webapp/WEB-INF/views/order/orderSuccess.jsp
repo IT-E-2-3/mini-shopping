@@ -101,7 +101,7 @@
 									</th>
 									<!-- 행 -->
 									<th class="col-sm-8 text-left text-black">
-										 <h4>${cardCost}원 * ${order.ocard_installmentrate_period} 달</h4> <span>( 할부 이자 ${order.ocard_installmentrate} % )</span> 
+										 <h4>${cardCost}원 * ${order.ocard_installment_period} 달</h4> <span>( 할부 이자 ${order.ocard_installmentrate} % )</span> 
 									</th>
 								</tr>
 							</tbody>

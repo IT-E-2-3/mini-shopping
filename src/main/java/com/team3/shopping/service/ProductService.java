@@ -45,4 +45,7 @@ public class ProductService {
 	public ProductListDto getMatchingCloth(String pid, String color) {
 		return productdao.getMatchingCloth(pid, color);
 	}
+	public List<ProductListDto> getStockListByPid(String pid){
+		return productdao.getStockListByPid(pid);
+	}
 }

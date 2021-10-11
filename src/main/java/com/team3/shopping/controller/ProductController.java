@@ -39,7 +39,6 @@ public class ProductController {
 		List<CategoryDto> subcategory = productService.getcategoryList(cateCode);
 		CategoryDto current = productService.currentCategory(cateCode);
 		CategoryDto parent = productService.parentCategory(cateCode);
-//		List<ProductListDto> plist = productService.getproductList(cateCode);
 		logger.info(cateCode);
 		
 		model.addAttribute("subcategory", subcategory);
@@ -52,18 +51,44 @@ public class ProductController {
 		
 		List<ProductListDto> plist = productService.getproductList(pager, cateCode);
 		List<List<ProductListDto>> colorlist = new ArrayList<>();
+		List<List<ProductListDto>> stocklist = new ArrayList<>();
 		
 		for(ProductListDto p: plist) {
 			String pid = p.getPid();
 			List<ProductListDto> colorlist_temp = productService.getColorList(pid);
+			List<ProductListDto> stocklist_temp = productService.getStockListByPid(pid);
 			colorlist.add(colorlist_temp);
+			stocklist.add(stocklist_temp);
 		}
-//		for(List<ProductListDto> colors : colorlist) {
-//			System.out.println("###########" +colors);
+
+		//하나의 pid당 하나의 최종 재고(모든 컬러와 모든 사이즈의 재고를 합한 )만 가질 수 있도록 stocklist를 재가공
+		List<ProductListDto> new_stocklist = new ArrayList<>();
+		
+		for(List<ProductListDto> stocks : stocklist) {
+			int cnt = 0;
+			int stockBypid = 0;
+			for(ProductListDto stock: stocks) {
+				if(stocks.get(cnt).getPid().equals(stock.getPid())) {
+					stockBypid += stock.getRemaining_stock();
+				}
+				cnt++;
+			}
+//			System.out.println("###########"+ stocks.get(cnt-1).getPid()+"-" +stockBypid);
+			ProductListDto new_stocks = new ProductListDto();
+			new_stocks.setPid(stocks.get(cnt-1).getPid());
+			new_stocks.setRemaining_stock(stockBypid);
+			new_stocklist.add(new_stocks);
+		}
+//		
+//		for(ProductListDto p : new_stocklist) {
+//			System.out.println(p);
 //		}
+		
 		
 		model.addAttribute("plist", plist);
 		model.addAttribute("colorlist", colorlist);
+		model.addAttribute("stocklist", new_stocklist);
+		
 		return "product/productList";
 	}
 	

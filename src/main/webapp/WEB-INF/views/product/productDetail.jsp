@@ -91,7 +91,10 @@
 						<select class="js-select2" name="size" id="size">
 							<option>옵션을 선택해주세요.</option>
 							<c:forEach var="size" items="${sizelist}">
-							<option value="${size.remaining_stock}|${size.size_code}">${size.size_code}</option>
+								<option value="${size.remaining_stock}|${size.size_code}">${size.size_code}</option>
+								<script>
+									var p_stock = "<c:out value='${size.remaining_stock}'/>";
+								</script>
 							</c:forEach>
 						</select>
                       <div class="dropDownSelect2"></div>
@@ -107,7 +110,9 @@
                     <c:forEach var="color" items="${colorlist}">
                        <li id="${color.pid}_${color.color_code}" style="margin-right:8px;">
                           <a href="${pageContext.request.contextPath}/product/detail?pid=${product.pid}&co=${color.color_code}">
-                             <img src="${color.color_chip_url}" style="width: 20px; height: 20px;"/>
+                          	<div style="<c:if test="${product.color_code eq color.color_code}"> border: 2px solid black;</c:if>">
+                             <img src="${color.color_chip_url}" style="width: 20px; height: 20px; margin:2px;"/>
+                            </div>
                           </a>
                        </li>
                     </c:forEach>
@@ -154,11 +159,17 @@
                });
                
                $('.btn-num-product-up').on('click', function(){
-                   var numProduct = Number($(this).prev().val());
-                   $(this).prev().val(numProduct + 1);
+					var numProduct = Number($(this).prev().val());
+					var stock = $("#size option:selected").val().substring(0, $('#size').val().indexOf('|')); //member가 선택한 사이즈의 재고
                    
-                   var productprice = document.querySelector('#productprice').textContent;
-                    document.querySelector('#totalprice').textContent = productprice * productnum.value;
+					if(numProduct < stock){
+						$(this).prev().val(numProduct + 1);
+                   
+						var productprice = document.querySelector('#productprice').textContent;
+						document.querySelector('#totalprice').textContent = productprice * productnum.value;
+					}else{
+						swal("재고 부족", "선택하신 수량이 구매하실 수 있는 최대 수량입니다.", "warning");
+					}
                });
             </script>
 
@@ -315,7 +326,9 @@
                   <!-- Block2 -->
                   <div class="block2">
                      <div class="block2-pic hov-img0 text-center">
-                        <img src="${matching_cloth.product_detail_url3}" alt="IMG-PRODUCT" style="width:200px;">
+						<a href="${pageContext.request.contextPath}/product/detail?pid=${matching_cloth.pid}&co=${matching_cloth.color_code}">
+                       		<img src="${matching_cloth.product_detail_url3}" alt="IMG-PRODUCT" style="width:200px;">
+						</a>
                      </div>
 
                      <div class="block2-txt flex-w flex-t p-t-14 text-center">
@@ -369,9 +382,9 @@
 	    $(document).ready(function(){
 	      $('#size').change(function(){
 	        var stock = $("#size option:selected").val().substring(0, $('#size').val().indexOf('|')); //member가 선택한 사이즈의 재고
-	            var p_size_code = $("#size option:selected").val().substring($('#size').val().indexOf('|')+1); // member가 선택한 사이즈
+	        var p_size_code = $("#size option:selected").val().substring($('#size').val().indexOf('|')+1); // member가 선택한 사이즈
 	
-	            console.log(p_size_code, stock);
+	        console.log(p_size_code, stock);
 	        
 	        if(stock<=0){
 	          $('#addcart').prop("disabled", true);
@@ -395,8 +408,10 @@
           const p_color_code = pcolor.value; // member가 선택한 색상 = 현재product의 color 
           const p_size_code = $("#size option:selected").val().substring($('#size').val().indexOf('|')+1); // member가 선택한 사이즈
           const p_camount = productnum.value; //수량
+	      const p_stock = $("#size option:selected").val().substring(0, $('#size').val().indexOf('|')); //member가 선택한 사이즈의 재고
           
           console.log(p_pid, p_color_code, p_size_code, p_camount);
+          console.log('####', p_stock);
           
           let checkResult = true;
           
@@ -404,6 +419,12 @@
           if(p_size_code=='옵션을 선택해주세요.'){
             checkResult = false;
             swal("사이즈 선택 안함", "사이즈를 선택해주세요!", "warning");
+          }
+          
+          //선택한 수량이 현재 재고보다 많을 때
+          if(p_camount > p_stock){
+        	  checkResult = false;
+        	  swal("재고 부족","재고보다 선택한 수량이 더 많습니다.", "warning");
           }
           
           //서버로 제출할지 말지 결정

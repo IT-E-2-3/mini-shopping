@@ -245,6 +245,19 @@
 			<version>2.10</version>
 		</dependency>
 
+
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>5.3.8</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+			<version>5.3.8</version>
+		</dependency>
 	</dependencies>
 	<build>
 		<plugins>
@@ -284,4 +297,5 @@
 			</plugin>
 		</plugins>
 	</build>
+
 </project>
