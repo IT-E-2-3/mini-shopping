@@ -34,7 +34,7 @@
     </div>
     
 	<!-- 슬라이더 -->
-    <div
+    <%-- <div
       id="carouselExampleControls"
       class="carousel slide"
       data-ride="carousel"
@@ -80,9 +80,13 @@
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
         <span class="sr-only">Next</span>
       </a>
-    </div>
+    </div> --%>
 	<div>
+	<a href="/product/list?c=0404">
 		<img src="/resources/images/home_image.jpg"/>
+		</a>
+		<a href="/product/list?c=0404">
 		<img src="/resources/images/home_image2.jpg"/>
+		</a>
 	</div>
 <%@ include file="/WEB-INF/views/common/footer.jsp"%>

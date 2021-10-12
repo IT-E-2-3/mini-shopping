@@ -506,7 +506,7 @@
 											</label>
 										</div>
 										<img alt="BC카드"
-											src="/medias/BC.jpg?context=bWFzdGVyfHJvb3R8MjQ1OHxpbWFnZS9qcGVnfGhmMi9oMGQvODgxNDE4MTIyMDM4Mi5qcGd8MjZlZGU2ZGQyNDBkYzU5YmY2NWY0MDU3NDc1OTA0YWI5NmM4NDJjMDFiYjBiYjBjY2FhZjhmMzg3ZmE5NGU5Yw">
+											src="https://www.thehandsome.com/medias/BC.jpg?context=bWFzdGVyfHJvb3R8MjQ1OHxpbWFnZS9qcGVnfGhmMi9oMGQvODgxNDE4MTIyMDM4Mi5qcGd8MjZlZGU2ZGQyNDBkYzU5YmY2NWY0MDU3NDc1OTA0YWI5NmM4NDJjMDFiYjBiYjBjY2FhZjhmMzg3ZmE5NGU5Yw">
 									</fieldset>
 								</th>
 
@@ -613,7 +613,7 @@
 								<th class="col-sm-10 text-left text-black">
 
 									<div class="form-check d-inline-flex">
-										<h3>${order.odeposit_deadline} 까지 입금하지 않을 시 주문이 자동 취소
+										<h3>${order.odeposit_deadline}2021.10.14일 까지 입금하지 않을 시 주문이 자동 취소
 											됩니다.</h3>
 										<input hidden="hidden" id="odeposit_deadline"
 											name="odeposit_deadline">
@@ -745,7 +745,12 @@ $(document).ready(function(){
    function requestPost() {
       //제출 비활성화
       event.preventDefault();
-    
+     if(document.querySelector('input[name="opayment"]:checked').value==1){
+    	 if(Ocard_name==7){
+    		 swal("카드를 선택해주세요", "체크박스를 통해 결제할 카드를 선택해주세요!","warning");
+    		 return false;
+    	 }
+     }
     	  
       const Ozip_code = ozip_code.value;
       const Oaddress = oaddress.value;

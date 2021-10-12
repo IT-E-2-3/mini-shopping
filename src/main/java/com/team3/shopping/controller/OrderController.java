@@ -217,7 +217,8 @@ public class OrderController {
       String oid = order.getOid();
 //      OrderDto order = (OrderDto) orderService.getOrder(oid);
       List<OrderRowDetailDto> orderItems = orderService.getProductInfo(oid);
-
+      
+//      order.setOdeposit_deadline("2021");
       model.addAttribute("order", order);
       model.addAttribute("orderItems", orderItems);
 
@@ -226,6 +227,7 @@ public class OrderController {
       long cardCost = (order.getOtotal_price())/(Integer.parseInt(order.getOcard_installment_period()) )*(100-Integer.parseInt(order.getOcard_installmentrate()) );
       model.addAttribute("cardCost", cardCost);
       
+     
       //odate를 기반으로 2일 후까지 입금시켜야 하는 입금기한을 주려고 했으나 실패
 //      Timestamp ts= Timestamp.valueOf(order.getOdate());
 //      Calendar cal = Calendar.getInstance();
