@@ -82,11 +82,11 @@
       </a>
     </div> --%>
 	<div>
-	<a href="/product/list?c=0404">
-		<img src="/resources/images/home_image.jpg"/>
-		</a>
 		<a href="/product/list?c=0404">
-		<img src="/resources/images/home_image2.jpg"/>
+			<img src="/resources/images/home_image.jpg"/>
+		</a>
+		<a href="/product/list?c=03">
+			<img src="/resources/images/home_image2.jpg"/>
 		</a>
 	</div>
 <%@ include file="/WEB-INF/views/common/footer.jsp"%>

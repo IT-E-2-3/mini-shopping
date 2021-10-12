@@ -2,26 +2,31 @@
 
 <%@ include file="/WEB-INF/views/common/header-category.jsp"%>
 	<div class="page-title">
-		<div>
-			<a href="#">${parent.category_name}</a>
-		</div>
-		<div>&nbsp;>&nbsp;</div>
-		<div>
-			<a href="#">${current.category_name}</a>
-		</div>
+		<c:forEach var="parents" items="${parent}" varStatus="status">
+			<div>
+				<a href="${pageContext.request.contextPath}/product/list?c=${parents.category_code}">${parents.category_name}</a>
+			</div>
+			<c:if test="${status.last eq false}">
+				<div>&nbsp;>&nbsp;</div>
+			</c:if>
+		</c:forEach>
 	</div>
 	
 	<div style="display: grid; grid-template-columns: 15% 85%; margin: 0 150px">
 		<div id="sidebar">
 			<div>
-				<h6 class="p-1 border-bottom"
-					style="text-align: center; font-size: 20px">${current.category_name}</h6>
-				<ul class="list-group list-group-flush ml-4">
-					<c:forEach var="sub" items="${subcategory}">
-						<li class="list-group-item border-0 subcategory"><a href="#">${sub.category_name}</a>
-						</li>
-					</c:forEach>
-				</ul>
+				<c:forEach var="sub" items="${subcategory}" varStatus="status2">
+					<c:if test="${status2.first eq true}">
+						<h6 class="p-1 border-bottom"
+							style="text-align: center; font-size: 20px">${sub.category_name}</h6>
+					</c:if>
+					<c:if test="${status2.first eq false}">
+						<ul class="list-group list-group-flush ml-4">
+							<li class="list-group-item border-0 subcategory"><a href="${pageContext.request.contextPath}/product/list?c=${sub.category_code}">${sub.category_name}</a>
+							</li>
+						</ul>
+					</c:if>
+				</c:forEach>
 			</div>
 		</div>
 		<div id="products" class="container">
@@ -112,27 +117,27 @@
 					aria-label="Toolbar with button groups"
 					style="justify-content: center">
 					<div class="btn-group me-2" role="group" aria-label="group">
-	         			<a class="btn btn-outline-primary btn-sm" href="list?c=${current.category_code}&pageNo=1">처음</a>
+	         			<a class="page-link" href="list?c=${current.category_code}&pageNo=1">처음</a>
 	         			<!-- 현재 그룹번호가 1이상일 경우에만 나타나게 함 -->
 	         			<c:if test="${pager.groupNo>1}">
-	         				<a class="btn btn-outline-info btn-sm" href="list?c=${current.category_code}&pageNo=${pager.startPageNo-1}">이전</a>
+	         				<a class="page-link" href="list?c=${current.category_code}&pageNo=${pager.startPageNo-1}">이전</a>
 	         			</c:if>
 	         			
 	         			<c:forEach var="i" begin="${pager.startPageNo}" end="${pager.endPageNo}">
 	         				<c:if test="${pager.pageNo!= i}">
-	         					<a class="btn btn-link" href="list?c=${current.category_code}&pageNo=${i}">${i}</a>
+	         					<a class="page-link" href="list?c=${current.category_code}&pageNo=${i}">${i}</a>
 	         				</c:if>
 	         				<c:if test="${pager.pageNo== i}">
-	         					<a class="btn btn-outline-danger" href="list?c=${current.category_code}&pageNo=${i}">${i}</a>
+	         					<a class="btn btn-outline-primary" href="list?c=${current.category_code}&pageNo=${i}">${i}</a>
 	         				</c:if>
 	         			</c:forEach>
 	         			
 	         			<!-- 현재 그룹번호가 전체 그룹 수보다 작을 경우에만 나타나게 함 -->
 	         			<c:if test="${pager.groupNo<pager.totalGroupNo}">
-	         				<a class="btn btn-outline-info btn-sm" href="list?c=${current.category_code}&pageNo=${pager.endPageNo+1}">이후</a>
+	         				<a class="page-link" href="list?c=${current.category_code}&pageNo=${pager.endPageNo+1}">이후</a>
 	         			</c:if>
 	         			
-	         			<a class="btn btn-outline-primary btn-sm" href="list?c=${current.category_code}&pageNo=${pager.totalPageNo}">맨끝</a>
+	         			<a class="page-link" href="list?c=${current.category_code}&pageNo=${pager.totalPageNo}">맨끝</a>
 	         		</div>
 				</div>
 			</div>

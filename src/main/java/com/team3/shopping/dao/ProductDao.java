@@ -14,7 +14,7 @@ import com.team3.shopping.dto.ProductListDto;
 public interface ProductDao {
 	public List<CategoryDto> getcategoryList(String cateCode);
 	public CategoryDto currentCategory(String cateCode);
-	public CategoryDto parentCategory(String cateCode);
+	public List<CategoryDto> parentCategory(String cateCode);
 	public List<ProductListDto> getproductList(@Param("pager") Pager pager, @Param("cateCode") String catecode);
 	public int getCountRows(String cateCode);
 	public ProductListDto getproductDetail(@Param("pid")String pid, @Param("color") String color);
