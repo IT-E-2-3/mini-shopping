@@ -24,7 +24,7 @@ public class ProductService {
 	public CategoryDto currentCategory(String cateCode){
 		return productdao.currentCategory(cateCode);
 	}
-	public CategoryDto parentCategory(String cateCode) {
+	public List<CategoryDto> parentCategory(String cateCode) {
 		return productdao.parentCategory(cateCode);
 	}
 	public List<ProductListDto> getproductList(Pager pager, String cateCode){

@@ -48,7 +48,7 @@
 <link rel="stylesheet" type="text/css"
    href="${pageContext.request.contextPath}/resources/css/main.css" />
 <link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/resources/css/style.css?version=52" />
+	href="${pageContext.request.contextPath}/resources/css/style.css?version=53" />
 </head>
 <body>
 
@@ -79,13 +79,13 @@
          <div class="middle">
             <ul id="navbar" class="navbar-nav"
                style="display: flex; margin-left: 15px">
-               <li class="nav-item"><a class="nav-link" href="#"
-                  data-action="키즈">키즈</a></li>
-               <li class="nav-item"><a class="nav-link" href="#"
+               <li class="nav-item">
+               	<a class="nav-link" href="${pageContext.request.contextPath}/product/list?c=01" data-action="키즈">키즈</a></li>
+               <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/product/list?c=02" 
                   data-action="라이프스타일">라이프스타일</a></li>
-               <li class="nav-item"><a class="nav-link" href="#"
+               <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/product/list?c=03" 
                   data-action="남성">남성</a></li>
-               <li class="nav-item"><a class="nav-link" href="#"
+               <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/product/list?c=04" 
                   data-action="여성">여성</a></li>
             </ul>
          </div>
@@ -128,42 +128,42 @@
 
    <!-- 키즈 category -->
    <div id="키즈" class="sub-back">
-      <li class="category-list">전체보기</li>
+      <li class="category-list"><a href="${pageContext.request.contextPath}/product/list?c=01">전체보기</li>
       <ul class="category-list"
          style="display: flex; flex-direction: column">
-         <div class="largecategory">의류</div>
-         <li>하의</li>
-         <li>상의</li>
+         <div class="largecategory"><a href="${pageContext.request.contextPath}/product/list?c=0101">의류</a></div>
+         <li><a href="${pageContext.request.contextPath}/product/list?c=010101">하의</a></li>
+         <li><a href="${pageContext.request.contextPath}/product/list?c=010102">상의</a></li>
       </ul>
 
       <ul class="category-list">
-         <div class="largecategory">잡화</div>
-         <li>기타 소품</li>
+         <div class="largecategory"><a href="${pageContext.request.contextPath}/product/list?c=0102">잡화</a></div>
+         <li><a href="${pageContext.request.contextPath}/product/list?c=010201">기타 소품</a></li>
       </ul>
    </div>
 
    <!-- 라이프스타일 -->
    <div id="라이프스타일" class="sub-back">
-      <li class="category-list">전체보기</li>
+      <li class="category-list"><a href="${pageContext.request.contextPath}/product/list?c=02">전체보기</a></li>
       <ul class="category-list"
          style="display: flex; flex-direction: column">
-         <div class="largecategory">배스</div>
-         <li>기타 소품</li>
+         <div class="largecategory"><a href="${pageContext.request.contextPath}/product/list?c=0201">배스</a></div>
+         <li><a href="${pageContext.request.contextPath}/product/list?c=020101">기타 소품</a></li>
       </ul>
 
       <ul class="category-list">
-         <div class="largecategory">홈</div>
-         <li>패브릭</li>
-         <li>프래그런스</li>
-         <li>기타 소품</li>
+         <div class="largecategory"><a href="${pageContext.request.contextPath}/product/list?c=0202">홈</a></div>
+         <li><a href="${pageContext.request.contextPath}/product/list?c=020201">패브릭</a></li>
+         <li><a href="${pageContext.request.contextPath}/product/list?c=020202">프래그런스</a></li>
+         <li><a href="${pageContext.request.contextPath}/product/list?c=020203">기타 소품</a></li>
       </ul>
    </div>
    <div id="남성" class="sub-back men">
-      <li class="category-list">전체보기</li>
+      <li class="category-list"><a href="${pageContext.request.contextPath}/product/list?c=03">전체보기</a></li>
       <ul class="category-list"
          style="display: flex; flex-direction: column">
-         <div class="largecategory">아우터</div>
-         <li>가디건/베스트</li>
+         <div class="largecategory"><a href="${pageContext.request.contextPath}/product/list?c=0301">아우터</a></div>
+         <li><a href="${pageContext.request.contextPath}/product/list?c=030101">가디건/베스트</a></li>
          <li>코트</li>
          <li>다운/패딩</li>
          <li>재킷</li>
@@ -172,8 +172,8 @@
       </ul>
 
       <ul class="category-list">
-         <div class="largecategory">팬츠</div>
-         <li>데님</li>
+         <div class="largecategory"><a href="${pageContext.request.contextPath}/product/list?c=0302">팬츠</a></div>
+         <li><a href="${pageContext.request.contextPath}/product/list?c=030201">데님</a></li>
          <li>루즈/테이퍼드</li>
          <li>쇼츠</li>
          <li>스트레이트</li>
@@ -195,9 +195,9 @@
       </ul>
 
       <ul class="category-list">
-         <div class="largecategory">수트</div>
-         <li>드레스셔츠</li>
-         <li>수트재킷</li>
+         <div class="largecategory"><a href="${pageContext.request.contextPath}/product/list?c=0304">수트</div>
+         <li><a href="${pageContext.request.contextPath}/product/list?c=030401">드레스셔츠</a></li>
+         <li><a href="${pageContext.request.contextPath}/product/list?c=030402">수트재킷</a></li>
          <li>수트팬츠</li>
       </ul>
       <ul class="category-list">
@@ -227,41 +227,36 @@
       <ul class="category-list"
          style="display: flex; flex-direction: column">
          <div class="largecategory"><a href="${pageContext.request.contextPath}/product/list?c=0403">아우터</a></div>
-         <li>가디건/베스트</li>
-         <li>코트</li>
-         <li>다운/패딩</li>
-         <li>재킷</li>
-         <li>점퍼</li>
-         <li>트렌치 코트</li>
+         <li><a href="${pageContext.request.contextPath}/product/list?c=040301">가디건/베스트</a></li>
+         <li><a href="${pageContext.request.contextPath}/product/list?c=040302">코트</a></li>
+         <li><a href="${pageContext.request.contextPath}/product/list?c=040303">다운/패딩</a></li>
+         <li><a href="${pageContext.request.contextPath}/product/list?c=040304">재킷</a></li>
+         <li><a href="${pageContext.request.contextPath}/product/list?c=040305">점퍼</a></li>
+         <li><a href="${pageContext.request.contextPath}/product/list?c=040306">트렌치 코트</a></li>
       </ul>
 
       <ul class="category-list">
          <div class="largecategory"><a href="${pageContext.request.contextPath}/product/list?c=0404">팬츠</a></div>
-         <li>캐주얼</li>
-         <li>데님</li>
-         <li>포멀</li>
-         <li>쇼츠</li>
+         <li><a href="${pageContext.request.contextPath}/product/list?c=040401">캐주얼</a></li>
+         <li><a href="${pageContext.request.contextPath}/product/list?c=040402">데님</a></li>
+         <li><a href="${pageContext.request.contextPath}/product/list?c=040403">포멀</a></li>
+         <li><a href="${pageContext.request.contextPath}/product/list?c=040404">쇼츠</a></li>
       </ul>
       <ul class="category-list"
          style="display: flex; flex-direction: column">
          <div class="largecategory"><a href="${pageContext.request.contextPath}/product/list?c=0405">스커트</a></div>
-         <li>플레어 스커트</li>
-         <li>롱/맥시 스커트</li>
-         <li>미니 스커트</li>
-         <li>펜슬 스커트</li>
+         <li><a href="${pageContext.request.contextPath}/product/list?c=040501">플레어 스커트</a></li>
+         <li><a href="${pageContext.request.contextPath}/product/list?c=040502">롱/맥시 스커트</a></li>
+         <li><a href="${pageContext.request.contextPath}/product/list?c=040503">미니 스커트</a></li>
+         <li><a href="${pageContext.request.contextPath}/product/list?c=040504">펜슬 스커트</a></li>
       </ul>
 
       <ul class="category-list">
-         <div class="largecategory">SPECIAL SHOP*</div>
-         <li>잠시 생략....</li>
-      </ul>
-
-      <ul class="category-list">
-         <div class="largecategory">탑</div>
-         <li>블라우스</li>
-         <li>니트</li>
-         <li>셔츠</li>
-         <li>티셔츠</li>
+         <div class="largecategory"><a href="${pageContext.request.contextPath}/product/list?c=0407">탑</a></div>
+         <li><a href="${pageContext.request.contextPath}/product/list?c=040701">블라우스</a></li>
+         <li><a href="${pageContext.request.contextPath}/product/list?c=040702">니트</a></li>
+         <li><a href="${pageContext.request.contextPath}/product/list?c=040703">셔츠</a></li>
+         <li><a href="${pageContext.request.contextPath}/product/list?c=040704">티셔츠</a></li>
       </ul>
    </div>
 

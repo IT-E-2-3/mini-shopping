@@ -38,7 +38,7 @@ public class ProductController {
 		logger.info("실행");
 		List<CategoryDto> subcategory = productService.getcategoryList(cateCode);
 		CategoryDto current = productService.currentCategory(cateCode);
-		CategoryDto parent = productService.parentCategory(cateCode);
+		List<CategoryDto> parent = productService.parentCategory(cateCode);
 		logger.info(cateCode);
 		
 		model.addAttribute("subcategory", subcategory);

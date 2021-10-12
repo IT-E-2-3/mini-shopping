@@ -47,7 +47,7 @@
             <th class="col-sm-3 text-center text-black">상품 정보</th>
 
             <th class="col-sm-1 text-center text-black">결제금액</th>
-            <th class="col-sm-1 text-center text-black">수량</th>
+            <th class="col-sm-1 text-center text-black">주문상품개수</th>
             <th class="col-sm-2 text-center text-black">상태</th>
          </tr>
       </thead>
@@ -74,7 +74,7 @@
                      <div class="" style="color: var(- -bs-gray-800)">${order.ototal_price }</div>
                   </th>
                   <th class="col-sm-1 text-center">
-                     <div class="m-t-7" style="color: var(- -bs-gray-800)">1</div>
+                     <div class="m-t-7" style="color: var(- -bs-gray-800)">${order.productKindNum}</div>
                   </th>
                   <th class="col-sm-2 text-center"
                      style="color: var(- -bs-gray-800)">배송 준비</th>
@@ -104,7 +104,7 @@
                      <div class="" style="color: var(- -bs-gray-800)">${order.ototal_price }</div>
                   </th>
                   <th class="col-sm-1 text-center">
-                     <div class="m-t-7" style="color: var(- -bs-gray-800)">1</div>
+                     <div class="m-t-7" style="color: var(- -bs-gray-800)">${order.productKindNum }</div>
                   </th>
                   <th class="col-sm-2 text-center"
                      style="color: var(- -bs-gray-800)">배송 준비</th>

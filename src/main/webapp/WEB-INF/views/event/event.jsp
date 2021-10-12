@@ -17,7 +17,7 @@
 	<div style="margin: auto; width: 100%; position: relative"
 		class="text-center">
 		<a id="scrollspyHeading2" href="#scrollspyHeading2"> <img
-			src="${event.eimg_url}" style="width: 80%" /></a>
+			src="${event.eimg_url}" style="width: 60%" /></a>
 	</div>
 
 	<div class="d-flex justify-content-around m-t-20">
