@@ -71,10 +71,11 @@
 			</div>
 
 			<div class="col-sm-2">
-				<h4 class="stext-301 cl0 p-b-30">이벤트</h4>
-				<p class="stext-107 cl7 size-201">
-					<!-- 웹사이트를 만드느라 고생한 우리팀원들, 열정적으로 알려주시는 교수님, 이러한 좋은 기회를 만들어 주신 KOSA 선임님들과 현대IT&E관계자 분들께 감사함을 표시합니다. -->
-				
+				<h4 class="stext-301 cl0 p-b-30" style="text-align: center;">이벤트</h4>
+				<p class="stext-107 cl7 size-201" style="text-align: left;">
+				<a href="/event/">
+					<img src="/resources/images/footerevent.png" style="width: 128%;" class="m-r-30">
+					</a>
 				</p>
 
 			</div>

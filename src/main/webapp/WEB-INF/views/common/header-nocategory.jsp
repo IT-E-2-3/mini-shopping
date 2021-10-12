@@ -115,7 +115,7 @@
 						</li>
 					</sec:authorize>
 					<li class="nav-item"><a class="nav-link"
-						href="${pageContext.request.contextPath}/cart/2">쇼핑백(숫자)</a></li>
+						href="${pageContext.request.contextPath}/cart/2">쇼핑백</a></li>
 					<li class="nav-item"><a class="nav-link"
 						href="${pageContext.request.contextPath}/order/orderList">주문조회</a></li>
 				</ul>
